@@ -101,6 +101,7 @@ export class LoadingScreenScene extends Scene {
     preload() {
         this.initLoadScreen();
         this.load.image('player', 'gfx/player.png');
+        this.load.image('fairy', 'gfx/fairy.png');
         this.load.image('projectile', 'gfx/projectile.png');
 
         /*
@@ -109,14 +110,6 @@ export class LoadingScreenScene extends Scene {
         this.load.image('tileset', 'gfx/tileset.extruded.png');
         this.load.image('lightmask', 'gfx/lightmask.png');
         this.load.image('lightcone', 'gfx/lightcone.png');
-
-        this.load.tilemapTiledJSON('mainmap', 'maps/ship.tmj');
-
-        this.load.audio("plasma_death", "sfx/plasma_death.mp3");
-        this.load.audio("fuel_change", "sfx/fuel_change.mp3");
-        this.load.audio("oxygen_change", "sfx/oxygen_change.mp3");
-        this.load.audio("ambiance", "sfx/ambiance.mp3");
-        this.load.audio("typing", "sfx/typing.mp3");
         */
     }
 

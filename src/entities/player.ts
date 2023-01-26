@@ -9,9 +9,11 @@ export class Player extends Physics.Arcade.Sprite {
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
         super(scene, x, y, 'player');
+        this.setName('Player');
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
+        this.body.setSize(6,6,true);
 
         this.keymap = keymap;
     }
@@ -25,8 +27,6 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     updateControls(delta: number) {
-        const ndelta = delta / 16.0;
-
         let left = this.keymap.Left.isDown;
         let right = this.keymap.Right.isDown;
         let top = this.keymap.Up.isDown;
@@ -68,7 +68,6 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     update(time: number, delta: number) {
-        const ndelta = delta / 16.0;
         if (!this.isDead) {
             this.updateControls(delta);
         }
