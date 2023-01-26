@@ -1,0 +1,23 @@
+{
+    "name": "ben-touhou-jam-10",
+    "version": "1.0.0",
+    "description": "My entry to the 10th Touhou game jam",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "pretty": "prettier --write \"src/**/*.ts\"",
+        "typecheck": "tsc -p ./tsconfig.json --noEmit"
+    },
+    "author": "Benjamin Vincent Schulenburg <ben@wolkenwelten.net>",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "latest",
+        "typescript": "latest",
+        "vite": "latest"
+    },
+    "dependencies": {
+        "phaser": "latest"
+    }
+}
