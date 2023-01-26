@@ -16,11 +16,13 @@ const main = () => {
         height: 720,
         pixelArt: true,
         parent: document.getElementById('phaser-parent') as HTMLElement,
+        title: 'WIP',
+        backgroundColor: '#50A0F0',
         dom: {
-            createContainer: true
+            createContainer: true,
         },
         input: {
-            gamepad: true
+            gamepad: true,
         },
         scale: {
             mode: Phaser.Scale.FIT,
@@ -28,8 +30,19 @@ const main = () => {
         },
         physics: {
             default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: true,
+            },
         },
-        scene: [ LoadingScreenScene , MainMenuScene, GameScene, UIScene, GameOverScene, GameWonScene ]
+        scene: [
+            LoadingScreenScene,
+            MainMenuScene,
+            GameScene,
+            UIScene,
+            GameOverScene,
+            GameWonScene,
+        ],
     };
     const game = new Game(config);
 };
