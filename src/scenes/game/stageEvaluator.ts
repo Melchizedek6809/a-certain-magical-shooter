@@ -4,6 +4,7 @@ import { GameScene } from './gameScene';
 export class StageFiber {
     evaluator: StageEvaluator;
     code: any[];
+    ip = 0;
     blockedUntil = 0;
     bindings: Map<string, any>;
 
@@ -57,7 +58,7 @@ export class StageFiber {
             if (this.blockedUntil >= this.evaluator.ticks) {
                 return true;
             }
-            const v = this.code.shift();
+            const v = this.code[this.ip++];
             if (v) {
                 this.eval(v);
             } else {
@@ -98,7 +99,7 @@ export class StageFiber {
 
     shootEvery(x: number) {
         this.shootEveryT = x;
-        this.nextShot = this.evaluator.ticks + x;
+        this.nextShot = this.evaluator.ticks;
     }
 }
 
@@ -170,6 +171,13 @@ export class StageEvaluator {
         );
 
         fiber.bindings.set(
+            'comment',
+            ((args: any, fiber: StageFiber) => {
+                return undefined;
+            }).bind(this)
+        );
+
+        fiber.bindings.set(
             'spawn',
             ((args: any, fiber: StageFiber) => {
                 const n = fiber.eval(args[0]);
@@ -230,7 +238,7 @@ export class StageEvaluator {
         fiber.bindings.set(
             'sub',
             ((args: any[], fiber: StageFiber) => {
-                return args.reduce((acc, v) => {
+                return args.reduceRight((acc, v) => {
                     const n = fiber.eval(v);
                     if (typeof n !== 'number') {
                         console.error(`Invalid args: (sub ${args.join(' ')})`);
@@ -260,7 +268,7 @@ export class StageEvaluator {
         fiber.bindings.set(
             'div',
             ((args: any[], fiber: StageFiber) => {
-                return args.reduce((acc, v) => {
+                return args.reduceRight((acc, v) => {
                     const n = fiber.eval(v);
                     if (typeof n !== 'number') {
                         console.error(`Invalid args: (div ${args.join(' ')})`);
@@ -269,6 +277,28 @@ export class StageEvaluator {
                         return acc / n;
                     }
                 }, 1);
+            }).bind(this)
+        );
+
+        fiber.bindings.set(
+            'dotimes',
+            ((args: any[], fiber: StageFiber) => {
+                const sym = args[0][0];
+                const count = fiber.eval(args[0][1]);
+                let i = 0;
+                const code = args.slice(1);
+                if ((typeof sym !== 'string') || (typeof count !== 'number')){
+                    console.error(`Invalid args: (def ${args.join(' ')})`);
+                } else {
+                    let ret = undefined;
+                    while(i < count){
+                        fiber.bindings.set(sym, i++);
+                        for(const e of code){
+                            ret = fiber.eval(e);
+                        }
+                    }
+                    return ret;
+                }
             }).bind(this)
         );
 
@@ -294,8 +324,9 @@ export class StageEvaluator {
                     console.error(`Invalid λ: (lambda ${args.join(' ')})`);
                 }
                 return ((args: any[], fiber: StageFiber) => {
+                    let i=0;
                     argnames.map((a) =>
-                        fiber.bindings.set(a, fiber.eval(args.shift()))
+                        fiber.bindings.set(a, fiber.eval(args[i++]))
                     );
                     return fiber.eval(code);
                 }).bind(this);
@@ -370,7 +401,7 @@ export class StageEvaluator {
         if (Array.isArray(val)) {
             return this.apply(val[0], val.slice(1), fiber);
         } else if (typeof val === 'string') {
-            return fiber.bindings.get(val) || val;
+            return fiber.bindings.has(val) ? fiber.bindings.get(val) : val;
         } else {
             return val;
         }

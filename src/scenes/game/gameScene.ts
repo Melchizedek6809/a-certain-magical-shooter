@@ -54,17 +54,6 @@ export class GameScene extends Scene {
         this.player = undefined;
     }
 
-    checkEnemies() {
-        if (this.enemies!.children.size <= 0) {
-            this.colCount = Math.min(5, this.colCount + 1);
-            for (let y = 32; y < 720; y += 64) {
-                for (let x = 1200 - 64 * this.colCount; x < 1200; x += 64) {
-                    new Fairy(this, x, y);
-                }
-            }
-        }
-    }
-
     create() {
         const that = this;
         this.physics.world.setBounds(0, 0, 1280, 720);
@@ -125,12 +114,6 @@ export class GameScene extends Scene {
 
         this.cameras.main.setBounds(0, 0, 1280, 720);
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1, 0, 0);
-
-        for (let y = 32; y < 720; y += 64) {
-            for (let x = 1200 - 64 * this.colCount; x < 1200; x += 64) {
-                new Fairy(this, x, y);
-            }
-        }
 
         const handler = (a: any, b: any) => {
             a.onCollide && a.onCollide(b);

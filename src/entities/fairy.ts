@@ -53,12 +53,6 @@ export class Fairy extends Physics.Arcade.Sprite {
     }
 
     preUpdate(time: number, delta: number) {
-        if (Math.random() * 50 < 1) {
-            this.regoal();
-        }
-        if (Math.random() * 1000 < 1) {
-            this.shoot();
-        }
         const dx = this.x - this.goalX;
         const dy = this.y - this.goalY;
         const dd = dx * dx + dy * dy;
@@ -70,7 +64,7 @@ export class Fairy extends Physics.Arcade.Sprite {
     onCollide(other: Phaser.GameObjects.Sprite) {
         if (this.health-- <= 0) {
             const stars = Math.floor(Math.random() * 3 + 1);
-            const pows = Math.floor(Math.random() * 2);
+            const pows = Math.floor(Math.random() * 3);
             for (let i = 0; i < stars; i++) {
                 const pu = new Pickup(
                     this.scene as GameScene,
@@ -118,7 +112,6 @@ export class Fairy extends Physics.Arcade.Sprite {
             }
             const gs = this.scene as GameScene;
             this.destroy();
-            gs.checkEnemies();
         }
     }
 }
