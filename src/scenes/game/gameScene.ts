@@ -1,6 +1,7 @@
 import { Scene, Types } from 'phaser';
 import { Fairy } from '../../entities/fairy';
 import { Player } from '../../entities/player';
+import { UIScene } from '../ui/uiScene';
 
 const animation_frames = (frame: string, frames: number) => {
     const ret = [];
@@ -25,6 +26,7 @@ export class GameScene extends Scene {
     gameOverActive: boolean;
     player?: Player;
 
+    pickups?: Phaser.GameObjects.Group;
     playerProjectiles?: Phaser.GameObjects.Group;
     enemyProjectiles?: Phaser.GameObjects.Group;
     enemies?: Phaser.GameObjects.Group;
@@ -51,18 +53,25 @@ export class GameScene extends Scene {
         this.playerProjectiles = this.physics.add.group([],{key: 'playerProjectiles', visible: false, quantity: 0});
         this.enemyProjectiles = this.physics.add.group([],{key: 'enemyProjectiles', visible: false, quantity: 0});
         this.enemies = this.physics.add.group([],{key: 'enemies', visible: false, quantity: 0});
+        this.pickups = this.physics.add.group([],{key: 'pickups', visible: false, quantity: 0});
 
         this.cameras.main.setBounds(0, 0, 1280, 720);
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1, 0, 0);
 
-        for(let y=100;y<720;y+=80){
-            new Fairy(this, 1000, y);
+        for(let y=32;y<720;y+=64){
+            for(let x=800;x<1200;x+=64){
+                new Fairy(this, x, y);
+            }
         }
 
-        this.physics.add.overlap(this.playerProjectiles, this.enemies, (a:any,b:any) => {
+        const handler = (a:any,b:any) => {
             a.onCollide && a.onCollide(b);
             b.onCollide && b.onCollide(a);
-        });
+        };
+        this.physics.add.overlap(this.playerProjectiles, this.enemies, handler);
+        this.physics.add.overlap(this.player, this.pickups, handler);
+        this.physics.add.overlap(this.player, this.enemyProjectiles, handler);
+        this.physics.add.overlap(this.player, this.enemies, handler);
     }
 
     update(time: number, delta: number) {

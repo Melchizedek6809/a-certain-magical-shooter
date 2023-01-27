@@ -1,10 +1,16 @@
-import { Physics, Types } from 'phaser';
+import { Physics } from 'phaser';
 import { GameScene, KeyMap } from '../scenes/game/gameScene';
 import { Projectile } from './projectile';
+import { Pickup } from './pickup';
+import { EnemyBullet } from './enemyBullet';
+import { UIScene } from '../scenes/ui/uiScene';
+import { Fairy } from './fairy';
 
 export class Player extends Physics.Arcade.Sprite {
     isDead = false;
+    invincibleUntil = 0;
     shotCooldown = 0;
+    magnetDD = 56*56;
     keymap: KeyMap;
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
@@ -70,6 +76,54 @@ export class Player extends Physics.Arcade.Sprite {
     update(time: number, delta: number) {
         if (!this.isDead) {
             this.updateControls(delta);
+        } else {
+            this.setVisible(false);
+            this.setVelocity(0,0);
+        }
+    }
+
+    die() {
+        if(this.invincibleUntil >= this.scene.time.now){return;}
+        const ui = this.scene.scene.get("UIScene") as UIScene;
+        if(--ui.lives >= 0){
+            ui.bombs = 3;
+            this.invincibleUntil = this.scene.time.now + 3000;
+            this.scene.scene.get("UIScene").events.emit('refresh');
+            return;
+        } else {
+            this.isDead = true;
+        }
+    }
+
+    onPickup(other:Pickup) {
+        switch(other.pickupType){
+            default:
+            case "star":
+                this.scene.scene.get("UIScene").events.emit('incScore', 5);
+                break;
+            case "powerup":
+                this.scene.scene.get("UIScene").events.emit('incScore', 5);
+                break;
+            case "bomb":
+                this.scene.scene.get("UIScene").events.emit('incBomb');
+                break;
+            case "bigstar":
+                this.scene.scene.get("UIScene").events.emit('incScore', 500);
+                break;
+            case "life":
+                this.scene.scene.get("UIScene").events.emit('incLife');
+                break;
+        }
+    }
+
+    onCollide(other:any) {
+        if(other instanceof Pickup){
+            return this.onPickup(other);
+        } else if (other instanceof EnemyBullet){
+            this.die();
+        } else if (other instanceof Fairy){
+            this.die();
         }
     }
 }
+

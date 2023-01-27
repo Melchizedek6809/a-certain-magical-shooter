@@ -14,7 +14,7 @@ const main = () => {
         type: Phaser.WEBGL,
         width: 1280,
         height: 720,
-        pixelArt: true,
+        //pixelArt: true,
         parent: document.getElementById('phaser-parent') as HTMLElement,
         title: 'WIP',
         backgroundColor: '#60A0F0',
@@ -32,7 +32,7 @@ const main = () => {
             default: 'arcade',
             arcade: {
                 gravity: { y: 0 },
-                debug: true,
+                //debug: true,
             },
         },
         scene: [

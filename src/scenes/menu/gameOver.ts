@@ -17,6 +17,7 @@ export class GameOverScene extends Scene {
     restartGame() {
         this.scene.stop('GameOverScene');
         this.scene.get('GameScene').scene.restart();
+        this.scene.get('UIScene').scene.restart();
     }
 
     create() {
@@ -28,21 +29,14 @@ export class GameOverScene extends Scene {
         $dom.innerHTML = `<h1>Game Over</h1>
         <h2>Death Count: 0</h2>
         <br/><br/>
-        <button class="red-button">Start over</button>
-        <br/><br/>
-        <button class="green-button">Try again</button>`;
+        <button class="red-button">Start over</button>`;
         this.add.dom(this.scale.width / 2, this.scale.height / 2, $dom);
-
-        const $tryAgain = $dom.querySelector(
-            'button.green-button'
-        ) as HTMLElement;
-        $tryAgain.addEventListener('click', this.continueGame.bind(this));
-        $tryAgain.focus();
 
         const $startOver = $dom.querySelector(
             'button.red-button'
         ) as HTMLElement;
         $startOver.addEventListener('click', this.restartGame.bind(this));
+        $startOver.focus();
     }
 
     update(time: number, delta: number): void {
