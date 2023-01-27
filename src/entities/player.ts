@@ -8,6 +8,8 @@ import { Fairy } from './fairy';
 
 export class Player extends Physics.Arcade.Sprite {
     isDead = false;
+    ungracefulUntil = 0;
+    dyingOn = 0;
     invincibleUntil = 0;
     bombingUntil = 0;
     shotCooldown = 0;
@@ -18,6 +20,7 @@ export class Player extends Physics.Arcade.Sprite {
 
     bombBeam: GameObjects.Image;
     beamCollider: Physics.Arcade.Image;
+    graceCollider: Physics.Arcade.Image;
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
         super(scene, x, y, 'player');
@@ -38,6 +41,10 @@ export class Player extends Physics.Arcade.Sprite {
             .setVisible(false)
             .setOrigin(0, 0.5)
             .setScale(0, 0);
+        this.graceCollider = scene.physics.add
+            .image(x, y, 'void')
+            .setVisible(false)
+            .setScale(1.5, 1.5);
         scene.playerProjectiles?.add(this.beamCollider);
         this.setDepth(1);
         this.keymap = keymap;
@@ -165,12 +172,13 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     bomb() {
-        if (this.bombingUntil >= this.scene.time.now) {
+        if (this.isDead || this.bombingUntil >= this.scene.time.now) {
             return;
         }
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (ui.bombs > 0) {
             ui.bombs--;
+            this.dyingOn = 0;
             this.bombingUntil = this.scene.time.now + 5000;
             ui.events.emit('refresh');
             const gs = this.scene as GameScene;
@@ -257,6 +265,12 @@ export class Player extends Physics.Arcade.Sprite {
         } else {
             this.focus = Math.max(0, this.focus - delta / 500);
         }
+
+        if (this.dyingOn) {
+            if (this.dyingOn <= this.scene.time.now) {
+                this.die();
+            }
+        }
     }
 
     update(time: number, delta: number) {
@@ -270,6 +284,19 @@ export class Player extends Physics.Arcade.Sprite {
         this.bombBeam.y = this.y;
         this.beamCollider.x = this.x + 32;
         this.beamCollider.y = this.y;
+        this.graceCollider.x = this.x;
+        this.graceCollider.y = this.y;
+    }
+
+    willDie() {
+        if (
+            this.invincibleUntil >= this.scene.time.now ||
+            this.bombingUntil >= this.scene.time.now ||
+            this.dyingOn
+        ) {
+            return;
+        }
+        this.dyingOn = this.scene.time.now + 50;
     }
 
     die() {
@@ -279,6 +306,7 @@ export class Player extends Physics.Arcade.Sprite {
         if (this.bombingUntil >= this.scene.time.now) {
             return;
         }
+        this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
             ui.bombs = 3;
@@ -332,9 +360,19 @@ export class Player extends Physics.Arcade.Sprite {
         if (other instanceof Pickup) {
             return this.onPickup(other);
         } else if (other instanceof EnemyBullet) {
-            this.die();
+            this.willDie();
         } else if (other instanceof Fairy) {
-            this.die();
+            this.willDie();
+        }
+    }
+
+    onGrace(other: any) {
+        if (this.ungracefulUntil > this.scene.time.now) {
+            return;
+        }
+        if (other instanceof EnemyBullet) {
+            this.scene.scene.get('UIScene').events.emit('incScore', 1);
+            this.ungracefulUntil = this.scene.time.now + 10;
         }
     }
 }

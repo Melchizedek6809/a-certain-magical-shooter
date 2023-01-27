@@ -1,4 +1,5 @@
-import { Scene, Types } from 'phaser';
+import { GameObjects, Scene, Types } from 'phaser';
+import { EnemyBullet } from '../../entities/enemyBullet';
 import { Fairy } from '../../entities/fairy';
 import { Player } from '../../entities/player';
 import { UIScene } from '../ui/uiScene';
@@ -25,11 +26,15 @@ export class GameScene extends Scene {
     keymap?: KeyMap;
     gameOverActive: boolean;
     player?: Player;
+    skybg?: GameObjects.Image;
+    topclouds?: GameObjects.TileSprite;
+    darkclouds?: GameObjects.TileSprite;
+    darkdarkclouds?: GameObjects.TileSprite;
 
-    pickups?: Phaser.GameObjects.Group;
-    playerProjectiles?: Phaser.GameObjects.Group;
-    enemyProjectiles?: Phaser.GameObjects.Group;
-    enemies?: Phaser.GameObjects.Group;
+    pickups?: GameObjects.Group;
+    playerProjectiles?: GameObjects.Group;
+    enemyProjectiles?: GameObjects.Group;
+    enemies?: GameObjects.Group;
 
     colCount = 1;
 
@@ -55,6 +60,7 @@ export class GameScene extends Scene {
     }
 
     create() {
+        const that = this;
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
             'Up,Left,Right,Down,X,Z,Shift'
@@ -83,6 +89,32 @@ export class GameScene extends Scene {
             quantity: 0,
         });
         this.player = new Player(this, 128, 720 / 2, this.keymap);
+        this.skybg = this.add.image(-64, -64, 'sky');
+        this.skybg
+            .setDisplaySize(1280 + 128, 720 + 128)
+            .setOrigin(0, 0)
+            .setDepth(-100);
+        this.topclouds = this.add.tileSprite(-64, -40, 0, 0, 'topclouds');
+        this.topclouds
+            .setSize(1280 + 128, 64)
+            .setOrigin(0, 0)
+            .setDepth(2);
+        this.darkclouds = this.add.tileSprite(-64, -28, 0, 0, 'darkclouds');
+        this.darkclouds
+            .setSize(1280 + 128, 64)
+            .setOrigin(0, 0)
+            .setDepth(-1);
+        this.darkdarkclouds = this.add.tileSprite(
+            -64,
+            -20,
+            0,
+            0,
+            'darkdarkclouds'
+        );
+        this.darkdarkclouds
+            .setSize(1280 + 128, 64)
+            .setOrigin(0, 0)
+            .setDepth(-2);
 
         this.cameras.main.setBounds(0, 0, 1280, 720);
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1, 0, 0);
@@ -101,6 +133,13 @@ export class GameScene extends Scene {
         this.physics.add.overlap(this.player, this.pickups, handler);
         this.physics.add.overlap(this.player, this.enemyProjectiles, handler);
         this.physics.add.overlap(this.player, this.enemies, handler);
+        this.physics.add.overlap(
+            this.player.graceCollider,
+            this.enemyProjectiles,
+            (a: any, b: any) => {
+                that.player!.onGrace(a instanceof EnemyBullet ? a : b);
+            }
+        );
     }
 
     update(time: number, delta: number) {
@@ -111,5 +150,8 @@ export class GameScene extends Scene {
                 this.gameOverActive = true;
             }
         }
+        this.topclouds!.setTilePosition(time * 0.3, 0);
+        this.darkclouds!.setTilePosition(time * 0.17, 0);
+        this.darkdarkclouds!.setTilePosition(time * 0.09, 0);
     }
 }

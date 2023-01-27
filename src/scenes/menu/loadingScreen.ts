@@ -110,6 +110,10 @@ export class LoadingScreenScene extends Scene {
         this.load.image('life', 'gfx/life.png');
         this.load.image('bomb', 'gfx/bomb.png');
         this.load.image('bombbeam', 'gfx/bombbeam.png');
+        this.load.image('sky', 'gfx/sky.png');
+        this.load.image('topclouds', 'gfx/topclouds.png');
+        this.load.image('darkclouds', 'gfx/darkclouds.png');
+        this.load.image('darkdarkclouds', 'gfx/darkdarkclouds.png');
 
         /*
         this.load.multiatlas('packed', 'gfx/packed.json', 'gfx');
