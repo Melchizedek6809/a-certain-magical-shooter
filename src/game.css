@@ -1,5 +1,10 @@
+#game-power,
 #game-bombs,
-#game-lives,
+#game-lives {
+    font-family: 'Courier New', Courier, monospace;
+    font-size:20px;
+}
+
 #game-score {
     font-family: 'Courier New', Courier, monospace;
     font-size:32px;

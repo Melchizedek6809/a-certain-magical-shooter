@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { GameScene } from '../game/gameScene';
+import { UIScene } from '../ui/uiScene';
 
 export class GameWonScene extends Scene {
     constructor(config: Phaser.Types.Scenes.SettingsConfig) {
@@ -18,12 +19,13 @@ export class GameWonScene extends Scene {
     create() {
         const that = this;
         const gs = that.scene.get('GameScene') as GameScene;
+        const score = (that.scene.get('UIScene') as UIScene).score;
 
         const $dom = document.createElement('div');
         $dom.style.textAlign = 'center';
         $dom.innerHTML = `<h1>Congratulations</h1>
         <h2>You won!</h2>
-        <p>Death Count: 0</p>
+        <h2>Your Score: ${score}</h2>
         <br/><br/>
         <button class="green-button">Start over</button>`;
         this.add.dom(this.scale.width / 2, this.scale.height / 2, $dom);

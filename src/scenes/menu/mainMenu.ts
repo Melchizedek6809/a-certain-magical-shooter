@@ -1,7 +1,8 @@
 import { Scene } from 'phaser';
 
 const introHTML = `<h1>Touhou fan game jam 10</h1>
-<br/>`;
+<br/>
+<p>Use you arrow keys to move,<br/>Z to shoot,<br/>X to drop a bomb and <br/>shift to focus.</p>`;
 
 const gitHubLink = 'https://github.com/Melchizedek6809/touhou-jam-10';
 const phaserLink = 'https://phaser.io/';

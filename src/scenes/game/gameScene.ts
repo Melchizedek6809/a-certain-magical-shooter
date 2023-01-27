@@ -31,6 +31,8 @@ export class GameScene extends Scene {
     enemyProjectiles?: Phaser.GameObjects.Group;
     enemies?: Phaser.GameObjects.Group;
 
+    colCount = 1;
+
     constructor(config: Phaser.Types.Scenes.SettingsConfig) {
         if (!config) {
             config = {};
@@ -39,6 +41,17 @@ export class GameScene extends Scene {
         super(config);
         this.gameOverActive = false;
         this.player = undefined;
+    }
+
+    checkEnemies() {
+        if (this.enemies!.children.size <= 0) {
+            this.colCount = Math.min(5, this.colCount + 1);
+            for (let y = 32; y < 720; y += 64) {
+                for (let x = 1200 - 64 * this.colCount; x < 1200; x += 64) {
+                    new Fairy(this, x, y);
+                }
+            }
+        }
     }
 
     create() {
@@ -50,21 +63,37 @@ export class GameScene extends Scene {
 
         this.scene.run('UIScene');
         this.player = new Player(this, 128, 720 / 2, this.keymap);
-        this.playerProjectiles = this.physics.add.group([],{key: 'playerProjectiles', visible: false, quantity: 0});
-        this.enemyProjectiles = this.physics.add.group([],{key: 'enemyProjectiles', visible: false, quantity: 0});
-        this.enemies = this.physics.add.group([],{key: 'enemies', visible: false, quantity: 0});
-        this.pickups = this.physics.add.group([],{key: 'pickups', visible: false, quantity: 0});
+        this.playerProjectiles = this.physics.add.group([], {
+            key: 'playerProjectiles',
+            visible: false,
+            quantity: 0,
+        });
+        this.enemyProjectiles = this.physics.add.group([], {
+            key: 'enemyProjectiles',
+            visible: false,
+            quantity: 0,
+        });
+        this.enemies = this.physics.add.group([], {
+            key: 'enemies',
+            visible: false,
+            quantity: 0,
+        });
+        this.pickups = this.physics.add.group([], {
+            key: 'pickups',
+            visible: false,
+            quantity: 0,
+        });
 
         this.cameras.main.setBounds(0, 0, 1280, 720);
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1, 0, 0);
 
-        for(let y=32;y<720;y+=64){
-            for(let x=800;x<1200;x+=64){
+        for (let y = 32; y < 720; y += 64) {
+            for (let x = 1200 - 64 * this.colCount; x < 1200; x += 64) {
                 new Fairy(this, x, y);
             }
         }
 
-        const handler = (a:any,b:any) => {
+        const handler = (a: any, b: any) => {
             a.onCollide && a.onCollide(b);
             b.onCollide && b.onCollide(a);
         };

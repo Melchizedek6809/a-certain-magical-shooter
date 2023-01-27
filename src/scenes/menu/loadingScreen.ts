@@ -103,6 +103,7 @@ export class LoadingScreenScene extends Scene {
         this.load.image('player', 'gfx/player.png');
         this.load.image('fairy', 'gfx/fairy.png');
         this.load.image('projectile', 'gfx/projectile.png');
+        this.load.image('playerProjectile', 'gfx/playerProjectile.png');
         this.load.image('star', 'gfx/star.png');
         this.load.image('bigstar', 'gfx/bigstar.png');
         this.load.image('powerup', 'gfx/powerup.png');

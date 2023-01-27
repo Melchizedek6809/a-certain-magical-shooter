@@ -1,14 +1,12 @@
-# Space Harvest Wreckage - Extreme 2001
+# Touhou Game Jam 10
 
-You play an astronaut on a spaceship that got shot to pieces by meteorites.
+I made a simple Shmup, trying to get better at Art/Sound/Music, hopefully you'll enjoy the results.
 
-Take care of your fuel and oxygen supply and harvest as many floppy disks as possible, but watch out for the dangerous plasma traps! :3
+## [Play the game](https://melchizedek6809.github.io/touhou-jam-10/)
 
-## Ludum Dare
 
-This game was created for LD52 which had the topic "Harvest", you can find the (somewhat buggy) submitted Version on the LD52 branch and play it [here](https://ld52.wolkenwelten.net/).
 
-## Requirements
+## Dev Requirements
 - Node JS (v18+) with NPM
 
 ## Setup
