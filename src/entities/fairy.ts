@@ -16,7 +16,7 @@ export interface FairyCommand {
 }
 
 export class Fairy extends Physics.Arcade.Sprite {
-    health = 5;
+    health = 3;
     origX: number;
     origY: number;
     goalX = 0;

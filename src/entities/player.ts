@@ -367,7 +367,7 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     onGrace(other: any) {
-        if (this.ungracefulUntil > this.scene.time.now) {
+        if (this.ungracefulUntil > this.scene.time.now || this.isDead) {
             return;
         }
         if (other instanceof EnemyBullet) {

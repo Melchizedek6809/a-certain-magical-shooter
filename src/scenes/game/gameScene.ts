@@ -1,8 +1,11 @@
-import { GameObjects, Scene, Types } from 'phaser';
+import { GameObjects, Scene } from 'phaser';
 import { EnemyBullet } from '../../entities/enemyBullet';
 import { Fairy } from '../../entities/fairy';
 import { Player } from '../../entities/player';
-import { UIScene } from '../ui/uiScene';
+import { StageEvaluator } from './stageEvaluator';
+
+import '../../types';
+import stageOneData from './../../stages/stage1.lisp?raw';
 
 const animation_frames = (frame: string, frames: number) => {
     const ret = [];
@@ -35,6 +38,9 @@ export class GameScene extends Scene {
     playerProjectiles?: GameObjects.Group;
     enemyProjectiles?: GameObjects.Group;
     enemies?: GameObjects.Group;
+    gameTicks = 0;
+
+    stageEvaluator?: StageEvaluator;
 
     colCount = 1;
 
@@ -66,6 +72,7 @@ export class GameScene extends Scene {
             'Up,Left,Right,Down,X,Z,Shift'
         ) as KeyMap;
         this.gameOverActive = false;
+        this.gameTicks = 0;
 
         this.scene.run('UIScene');
         this.playerProjectiles = this.physics.add.group([], {
@@ -140,6 +147,8 @@ export class GameScene extends Scene {
                 that.player!.onGrace(a instanceof EnemyBullet ? a : b);
             }
         );
+
+        this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }
 
     update(time: number, delta: number) {
@@ -153,5 +162,7 @@ export class GameScene extends Scene {
         this.topclouds!.setTilePosition(time * 0.3, 0);
         this.darkclouds!.setTilePosition(time * 0.17, 0);
         this.darkdarkclouds!.setTilePosition(time * 0.09, 0);
+        this.gameTicks += delta;
+        this.stageEvaluator!.tick(delta);
     }
 }
