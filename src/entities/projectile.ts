@@ -11,7 +11,7 @@ export class Projectile extends Physics.Arcade.Sprite {
         scene.playerProjectiles?.add(this);
         scene.physics.add.existing(this);
         this.body.setSize(32, 16, true);
-        this.setBlendMode(Phaser.BlendModes.ADD);
+        //this.setBlendMode(Phaser.BlendModes.ADD);
     }
 
     preUpdate(time: number, delta: number) {

@@ -3,9 +3,11 @@
 #game-lives {
     font-family: 'Courier New', Courier, monospace;
     font-size:20px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
 }
 
 #game-score {
     font-family: 'Courier New', Courier, monospace;
     font-size:32px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
 }

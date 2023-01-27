@@ -34,8 +34,7 @@ export class Player extends Physics.Arcade.Sprite {
             .image(x, y, 'bombbeam')
             .setOrigin(0, 0.5)
             .setAlpha(0)
-            .setDepth(-1)
-            .setBlendMode(Phaser.BlendModes.ADD);
+            .setDepth(-1);
         this.beamCollider = scene.physics.add
             .image(x, y, 'void')
             .setVisible(false)

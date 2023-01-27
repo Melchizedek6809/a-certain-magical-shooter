@@ -20,7 +20,6 @@ export class Pickup extends Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
         this.pickupType = pickupType;
-        this.setScale(0.5, 0.5);
     }
 
     preUpdate(time: number, delta: number) {

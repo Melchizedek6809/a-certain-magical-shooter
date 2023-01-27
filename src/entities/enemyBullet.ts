@@ -11,7 +11,6 @@ export class EnemyBullet extends Physics.Arcade.Sprite {
         scene.enemyProjectiles?.add(this);
         scene.physics.add.existing(this);
         this.body.setSize(16, 16, true);
-        this.setBlendMode(Phaser.BlendModes.ADD);
     }
 
     preUpdate(time: number, delta: number) {

@@ -90,19 +90,19 @@ export class GameScene extends Scene {
             .setDisplaySize(1280 + 128, 720 + 128)
             .setOrigin(0, 0)
             .setDepth(-100);
-        this.topclouds = this.add.tileSprite(-64, -40, 0, 0, 'topclouds');
+        this.topclouds = this.add.tileSprite(-64, -32, 0, 0, 'topclouds');
         this.topclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
             .setDepth(2);
-        this.darkclouds = this.add.tileSprite(-64, -28, 0, 0, 'darkclouds');
+        this.darkclouds = this.add.tileSprite(-64, -8, 0, 0, 'darkclouds');
         this.darkclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
             .setDepth(-1);
         this.darkdarkclouds = this.add.tileSprite(
             -64,
-            -20,
+            16,
             0,
             0,
             'darkdarkclouds'

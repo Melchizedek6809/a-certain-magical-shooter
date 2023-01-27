@@ -54,7 +54,7 @@
           (wait 1000))
 
 
-(wait 5000)
+(wait 3000)
 ;; WAVE ONE
 (fairy-top-easy 800 900 0.0 8000)
 (wait 1000)
@@ -117,22 +117,22 @@
 
 (dotimes (iter 10)
          (fiber (wait (mul iter 50))
-                (fairy-top (add 800 (mul iter 20)) 1000)))
+                (fairy-top (add 700 (mul iter 40)) 1000)))
 (wait 2000)
 (wait 3000)
 
 
 (dotimes (iter 10)
          (fiber (wait (mul iter 50))
-                (fairy-bot (add 800 (mul iter 20)) 1000)))
+                (fairy-bot (add 700 (mul iter 40)) 1000)))
 (wait 2000)
 (wait 3000)
 
 (dotimes (iter 10)
          (fiber (wait (mul iter 400))
-                (fairy-top (add 700 (mul iter 20)) 1000)
+                (fairy-top (add 700 (mul iter 40)) 1000)
                 (wait 200)
-                (fairy-bot (add 700 (mul iter 20)) 1000)))
+                (fairy-bot (add 700 (mul iter 40)) 1000)))
 (wait 5000)
 (wait 3000)
 ;; END WAVE 2
