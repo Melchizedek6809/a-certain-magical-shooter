@@ -109,6 +109,7 @@ export class LoadingScreenScene extends Scene {
         this.load.image('powerup', 'gfx/powerup.png');
         this.load.image('life', 'gfx/life.png');
         this.load.image('bomb', 'gfx/bomb.png');
+        this.load.image('bombbeam', 'gfx/bombbeam.png');
 
         /*
         this.load.multiatlas('packed', 'gfx/packed.json', 'gfx');

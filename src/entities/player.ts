@@ -1,4 +1,4 @@
-import { Physics } from 'phaser';
+import { GameObjects, Physics } from 'phaser';
 import { GameScene, KeyMap } from '../scenes/game/gameScene';
 import { Projectile } from './projectile';
 import { Pickup } from './pickup';
@@ -9,11 +9,15 @@ import { Fairy } from './fairy';
 export class Player extends Physics.Arcade.Sprite {
     isDead = false;
     invincibleUntil = 0;
+    bombingUntil = 0;
     shotCooldown = 0;
     magnetDD = 56 * 56;
     power = 0;
     focus = 0;
     keymap: KeyMap;
+
+    bombBeam: GameObjects.Image;
+    beamCollider: Physics.Arcade.Image;
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
         super(scene, x, y, 'player');
@@ -23,11 +27,27 @@ export class Player extends Physics.Arcade.Sprite {
         this.setBounce(1).setCollideWorldBounds(true);
         this.body.setSize(6, 6, true);
 
+        this.bombBeam = scene.add
+            .image(x, y, 'bombbeam')
+            .setOrigin(0, 0.5)
+            .setAlpha(0)
+            .setDepth(-1)
+            .setBlendMode(Phaser.BlendModes.ADD);
+        this.beamCollider = scene.physics.add
+            .image(x, y, 'void')
+            .setVisible(false)
+            .setOrigin(0, 0.5)
+            .setScale(0, 0);
+        scene.playerProjectiles?.add(this.beamCollider);
+        this.setDepth(1);
         this.keymap = keymap;
     }
 
     blast() {
         if (this.shotCooldown > this.scene.time.now) {
+            return;
+        }
+        if (this.bombingUntil > this.scene.time.now) {
             return;
         }
         this.shotCooldown = this.scene.time.now + 50;
@@ -144,6 +164,29 @@ export class Player extends Physics.Arcade.Sprite {
         }
     }
 
+    bomb() {
+        if (this.bombingUntil >= this.scene.time.now) {
+            return;
+        }
+        const ui = this.scene.scene.get('UIScene') as UIScene;
+        if (ui.bombs > 0) {
+            ui.bombs--;
+            this.bombingUntil = this.scene.time.now + 5000;
+            ui.events.emit('refresh');
+            const gs = this.scene as GameScene;
+            gs.cameras.main.shake(
+                5000,
+                0.008,
+                false,
+                (cam: Phaser.Cameras.Scene2D.Camera, progress: number) => {
+                    const i = Math.sin(progress * Math.PI) * 0.014;
+                    cam.shakeEffect.intensity.x = i;
+                    cam.shakeEffect.intensity.y = i;
+                }
+            );
+        }
+    }
+
     updateControls(delta: number) {
         let left = this.keymap.Left.isDown;
         let right = this.keymap.Right.isDown;
@@ -151,6 +194,7 @@ export class Player extends Physics.Arcade.Sprite {
         let down = this.keymap.Down.isDown;
         let focus = this.keymap.Shift.isDown;
         let blast = this.keymap.Z.isDown;
+        let bomb = this.keymap.X.isDown;
 
         if (this.scene.input.gamepad.gamepads[0]) {
             const gamepad = this.scene.input.gamepad.gamepads[0];
@@ -169,10 +213,16 @@ export class Player extends Physics.Arcade.Sprite {
             if (gamepad.A) {
                 blast = true;
             }
+            if (gamepad.A) {
+                bomb = true;
+            }
         }
 
         if (blast) {
             this.blast();
+        }
+        if (bomb) {
+            this.bomb();
         }
 
         let mx = left ? -1 : right ? 1 : 0;
@@ -192,6 +242,16 @@ export class Player extends Physics.Arcade.Sprite {
             this.setAlpha(1);
         }
 
+        if (this.bombingUntil > this.scene.time.now) {
+            this.magnetDD = 1024 * 1024;
+            this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.01);
+            this.beamCollider.setScale(1536, 4);
+        } else {
+            this.magnetDD = 56 * 56;
+            this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.03);
+            this.beamCollider.setScale(0, 0);
+        }
+
         if (focus) {
             this.focus = Math.min(1, this.focus + delta / 500);
         } else {
@@ -206,10 +266,17 @@ export class Player extends Physics.Arcade.Sprite {
             this.setVisible(false);
             this.setVelocity(0, 0);
         }
+        this.bombBeam.x = this.x + 32;
+        this.bombBeam.y = this.y;
+        this.beamCollider.x = this.x + 32;
+        this.beamCollider.y = this.y;
     }
 
     die() {
         if (this.invincibleUntil >= this.scene.time.now) {
+            return;
+        }
+        if (this.bombingUntil >= this.scene.time.now) {
             return;
         }
         const ui = this.scene.scene.get('UIScene') as UIScene;

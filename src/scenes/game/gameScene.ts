@@ -62,7 +62,6 @@ export class GameScene extends Scene {
         this.gameOverActive = false;
 
         this.scene.run('UIScene');
-        this.player = new Player(this, 128, 720 / 2, this.keymap);
         this.playerProjectiles = this.physics.add.group([], {
             key: 'playerProjectiles',
             visible: false,
@@ -83,6 +82,7 @@ export class GameScene extends Scene {
             visible: false,
             quantity: 0,
         });
+        this.player = new Player(this, 128, 720 / 2, this.keymap);
 
         this.cameras.main.setBounds(0, 0, 1280, 720);
         this.cameras.main.startFollow(this.player, false, 0.1, 0.1, 0, 0);
