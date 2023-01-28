@@ -36,7 +36,8 @@ export class StageFiber {
             return;
         }
         const dur = this.blockedUntil - this.moveStart;
-        const i = (ticks - this.moveStart) / dur;
+        const ri = (ticks - this.moveStart) / dur;
+        const i = ri;
         const x = this.moveFrom[0] + (this.moveTo[0] - this.moveFrom[0]) * i;
         const y = this.moveFrom[1] + (this.moveTo[1] - this.moveFrom[1]) * i;
         this.fairy.x = x;

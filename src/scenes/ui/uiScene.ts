@@ -26,19 +26,19 @@ export class UIScene extends Scene {
 
         const $score = document.createElement('div');
         $score.id = 'game-score';
-        this.add.dom(16, this.scale.height - 40, $score);
+        this.add.dom(12, this.scale.height - 64, $score);
 
         const $lives = document.createElement('div');
         $lives.id = 'game-lives';
-        this.add.dom(16, this.scale.height - 64, $lives);
+        this.add.dom(12, this.scale.height - 28, $lives);
 
         const $bombs = document.createElement('div');
         $bombs.id = 'game-bombs';
-        this.add.dom(16, this.scale.height - 88, $bombs);
+        this.add.dom(156, this.scale.height - 28, $bombs);
 
         const $power = document.createElement('div');
         $power.id = 'game-power';
-        this.add.dom(16, this.scale.height - 112, $power);
+        this.add.dom(292, this.scale.height - 28, $power);
 
         this.refreshUI = () => {
             $score.innerText = `Score: ${that.score}`;

@@ -28,7 +28,8 @@ export class Player extends Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
-        this.body.setSize(6, 6, true);
+        this.setOrigin(0.6,0.5);
+        this.body.setSize(6, 6, true).setOffset(75,61);
 
         this.bombBeam = scene.add
             .image(x, y, 'bombbeam')

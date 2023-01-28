@@ -1,3 +1,9 @@
+;; Some strange quirks to be aware of:
+;; Every symbol/literal needs to be at least 2 characters long, even numbers
+;; So instead of writing 0 you need to write 0.0
+;; This is also why we use (add) instead of (+)
+;; Might fix this after the Jam is done
+
 (deffiber fairy-top (xpos interval)
           (spawn fairy (add xpos 200) -64)
           (move xpos 400)
@@ -52,7 +58,6 @@
           (shoot-every 0)
           (move (add xpos (sub 0.0 width)) -32)
           (wait 1000))
-
 
 (wait 3000)
 ;; WAVE ONE
