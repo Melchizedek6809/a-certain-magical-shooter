@@ -5,22 +5,8 @@ import { Pickup } from './pickup';
 import { Player } from './player';
 
 let count = 0;
-
-export interface FairyCommand {
-    op: 'move' | 'teleport' | 'shoot' | 'despawn';
-    shootEvery: number;
-    fromX: number;
-    fromY: number;
-    toX: number;
-    toY: number;
-}
-
 export class Fairy extends Physics.Arcade.Sprite {
     health = 3;
-    origX: number;
-    origY: number;
-    goalX = 0;
-    goalY = 0;
 
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'fairy');
@@ -30,16 +16,6 @@ export class Fairy extends Physics.Arcade.Sprite {
         scene.enemies?.add(this);
         this.body.setSize(24, 32, true);
         this.body.onOverlap = true;
-        this.body.onCollide = true;
-
-        this.origX = x;
-        this.origY = y;
-        this.regoal();
-    }
-
-    regoal() {
-        this.goalX = this.origX + (Math.random() - 0.5) * 48;
-        this.goalY = this.origY + (Math.random() - 0.5) * 48;
     }
 
     shoot() {
@@ -47,18 +23,8 @@ export class Fairy extends Physics.Arcade.Sprite {
         const bullet = new EnemyBullet(gs, this.x, this.y);
         const dx = gs.player!.x - this.x;
         const dy = gs.player!.y - this.y;
-        const dd = dx * dx + dy * dy;
         const v = new Phaser.Math.Vector2(dx, dy).normalize();
         bullet.setVelocity(v.x * 400, v.y * 400);
-    }
-
-    preUpdate(time: number, delta: number) {
-        const dx = this.x - this.goalX;
-        const dy = this.y - this.goalY;
-        const dd = dx * dx + dy * dy;
-        const v = new Phaser.Math.Vector2(dx, dy).normalize();
-        this.body.velocity.x = this.body.velocity.x * 0.95 - v.x * 400 * 0.005;
-        this.body.velocity.y = this.body.velocity.y * 0.95 - v.y * 400 * 0.005;
     }
 
     onCollide(other: Phaser.GameObjects.Sprite) {

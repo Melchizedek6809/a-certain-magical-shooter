@@ -1,6 +1,6 @@
 import { GameObjects, Scene } from 'phaser';
 import { EnemyBullet } from '../../entities/enemyBullet';
-import { Fairy } from '../../entities/fairy';
+import { Boss } from '../../entities/boss';
 import { Player } from '../../entities/player';
 import { StageEvaluator } from './stageEvaluator';
 
@@ -29,6 +29,7 @@ export class GameScene extends Scene {
     keymap?: KeyMap;
     gameOverActive: boolean;
     player?: Player;
+    boss?: Boss;
     skybg?: GameObjects.Image;
     topclouds?: GameObjects.TileSprite;
     darkclouds?: GameObjects.TileSprite;
@@ -130,6 +131,8 @@ export class GameScene extends Scene {
                 that.player!.onGrace(a instanceof EnemyBullet ? a : b);
             }
         );
+
+        this.boss = new Boss(this, 1080, 720/2);
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }
