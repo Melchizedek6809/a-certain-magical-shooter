@@ -5,7 +5,7 @@ let count = 0;
 
 export class Projectile extends Physics.Arcade.Sprite {
     constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'playerProjectile');
+        super(scene, x, y, 'packed', 'playerProjectile');
         this.setName(`playerProjectile ${count++}`);
         scene.add.existing(this);
         scene.playerProjectiles?.add(this);

@@ -5,7 +5,7 @@ let count = 0;
 
 export class EnemyBullet extends Physics.Arcade.Sprite {
     constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'projectile');
+        super(scene, x, y, 'packed', 'projectile');
         this.setName(`enemyProjectile ${count++}`);
         scene.add.existing(this);
         scene.enemyProjectiles?.add(this);

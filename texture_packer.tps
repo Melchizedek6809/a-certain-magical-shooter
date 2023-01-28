@@ -2,9 +2,9 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>5</int>
+        <int>6</int>
         <key>texturePackerVersion</key>
-        <string>6.0.2</string>
+        <string>7.0.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>phaser</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>assets/gfx/packed.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrQualityLevel</key>
@@ -74,7 +74,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png8</enum>
+        <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -127,8 +127,8 @@
                 <filename>assets/gfx/packed.json</filename>
             </struct>
         </map>
-        <key>multiPack</key>
-        <false/>
+        <key>multiPackMode</key>
+        <enum type="SettingsBase::MultiPackMode">MultiPackOff</enum>
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
@@ -173,17 +173,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">raw_assets/packed_sprites/asteroid.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow/plasma_glow-0.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow/plasma_glow-1.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow/plasma_glow-2.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow/plasma_glow-3.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow_horiz/plasma_glow_horiz-0.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow_horiz/plasma_glow_horiz-1.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow_horiz/plasma_glow_horiz-2.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_glow_horiz/plasma_glow_horiz-3.png</key>
-            <key type="filename">raw_assets/packed_sprites/transponder.png</key>
-            <key type="filename">raw_assets/packed_sprites/void.png</key>
+            <key type="filename">assets/unpacked_gfx/bigstar.png</key>
+            <key type="filename">assets/unpacked_gfx/bomb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -192,13 +183,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>8,8,16,16</rect>
+                <rect>6,6,12,12</rect>
                 <key>scale9Paddings</key>
-                <rect>8,8,16,16</rect>
+                <rect>6,6,12,12</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/asteroid_big.png</key>
+            <key type="filename">assets/unpacked_gfx/bombbeam.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -207,63 +198,14 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>12,12,24,24</rect>
+                <rect>64,16,128,32</rect>
                 <key>scale9Paddings</key>
-                <rect>12,12,24,24</rect>
+                <rect>64,16,128,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/asteroid_tiny.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>4,4,8,8</rect>
-                <key>scale9Paddings</key>
-                <rect>4,4,8,8</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">raw_assets/packed_sprites/bar_air.png</key>
-            <key type="filename">raw_assets/packed_sprites/bar_bg.png</key>
-            <key type="filename">raw_assets/packed_sprites/bar_fuel.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>64,4,128,8</rect>
-                <key>scale9Paddings</key>
-                <rect>64,4,128,8</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">raw_assets/packed_sprites/blaster.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>16,8,32,16</rect>
-                <key>scale9Paddings</key>
-                <rect>16,8,32,16</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">raw_assets/packed_sprites/blaster_blast/blaster_blast-0.png</key>
-            <key type="filename">raw_assets/packed_sprites/blaster_blast/blaster_blast-1.png</key>
-            <key type="filename">raw_assets/packed_sprites/blaster_blast/blaster_blast-2.png</key>
-            <key type="filename">raw_assets/packed_sprites/blaster_blast/blaster_blast-3.png</key>
+            <key type="filename">assets/unpacked_gfx/boss.png</key>
+            <key type="filename">assets/unpacked_gfx/player.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -278,7 +220,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/floppy.png</key>
+            <key type="filename">assets/unpacked_gfx/darkclouds.png</key>
+            <key type="filename">assets/unpacked_gfx/topclouds.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -287,14 +230,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>5,6,10,11</rect>
+                <rect>32,16,64,32</rect>
                 <key>scale9Paddings</key>
-                <rect>5,6,10,11</rect>
+                <rect>32,16,64,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/fuel.png</key>
-            <key type="filename">raw_assets/packed_sprites/oxygen.png</key>
+            <key type="filename">assets/unpacked_gfx/darkdarkclouds.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -303,13 +245,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>12,4,24,8</rect>
+                <rect>39,16,78,32</rect>
                 <key>scale9Paddings</key>
-                <rect>12,4,24,8</rect>
+                <rect>39,16,78,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/hull.png</key>
+            <key type="filename">assets/unpacked_gfx/fairy.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -318,13 +260,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>64,64,128,128</rect>
+                <rect>16,16,32,32</rect>
                 <key>scale9Paddings</key>
-                <rect>64,64,128,128</rect>
+                <rect>16,16,32,32</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/plasma_conduit.png</key>
+            <key type="filename">assets/unpacked_gfx/life.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -333,13 +275,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,8,8,16</rect>
+                <rect>8,8,16,16</rect>
                 <key>scale9Paddings</key>
-                <rect>4,8,8,16</rect>
+                <rect>8,8,16,16</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/plasma_conduit_horiz.png</key>
+            <key type="filename">assets/unpacked_gfx/playerProjectile.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -354,10 +296,9 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/plasma_tile_glow/plasma_tile_glow-0.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_tile_glow/plasma_tile_glow-1.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_tile_glow/plasma_tile_glow-2.png</key>
-            <key type="filename">raw_assets/packed_sprites/plasma_tile_glow/plasma_tile_glow-3.png</key>
+            <key type="filename">assets/unpacked_gfx/powerup.png</key>
+            <key type="filename">assets/unpacked_gfx/projectile.png</key>
+            <key type="filename">assets/unpacked_gfx/star.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -366,13 +307,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>16,16,31,32</rect>
+                <rect>4,4,8,8</rect>
                 <key>scale9Paddings</key>
-                <rect>16,16,31,32</rect>
+                <rect>4,4,8,8</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/player.png</key>
+            <key type="filename">assets/unpacked_gfx/sky.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -381,18 +322,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>27,25,53,50</rect>
+                <rect>1,8,2,16</rect>
                 <key>scale9Paddings</key>
-                <rect>27,25,53,50</rect>
+                <rect>1,8,2,16</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">raw_assets/packed_sprites/thrust_backward.png</key>
-            <key type="filename">raw_assets/packed_sprites/thrust_forward.png</key>
-            <key type="filename">raw_assets/packed_sprites/thrust_rotate_ccw.png</key>
-            <key type="filename">raw_assets/packed_sprites/thrust_rotate_cw.png</key>
-            <key type="filename">raw_assets/packed_sprites/thrust_strafe_left.png</key>
-            <key type="filename">raw_assets/packed_sprites/thrust_strafe_right.png</key>
+            <key type="filename">assets/unpacked_gfx/void.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -401,17 +337,23 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>32,30,63,60</rect>
+                <rect>0,0,1,1</rect>
                 <key>scale9Paddings</key>
-                <rect>32,30,63,60</rect>
+                <rect>0,0,1,1</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
-        <key>fileList</key>
-        <array>
-            <filename>raw_assets/packed_sprites</filename>
-        </array>
+        <key>fileLists</key>
+        <map type="SpriteSheetMap">
+            <key>default</key>
+            <struct type="SpriteSheet">
+                <key>files</key>
+                <array>
+                    <filename>assets/unpacked_gfx</filename>
+                </array>
+            </struct>
+        </map>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>

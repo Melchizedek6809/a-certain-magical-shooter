@@ -19,11 +19,12 @@ export class Player extends Physics.Arcade.Sprite {
     keymap: KeyMap;
 
     bombBeam: GameObjects.Image;
+    bombBeamRepeater: GameObjects.TileSprite;
     beamCollider: Physics.Arcade.Image;
     graceCollider: Physics.Arcade.Image;
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
-        super(scene, x, y, 'player');
+        super(scene, x, y, 'packed', 'player');
         this.setName('Player');
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -32,17 +33,26 @@ export class Player extends Physics.Arcade.Sprite {
         this.body.setSize(6, 6, true).setOffset(75,61);
 
         this.bombBeam = scene.add
-            .image(x, y, 'bombbeam')
+            .image(x, y, 'packed', 'bombbeam')
             .setOrigin(0, 0.5)
             .setAlpha(0)
+            .setScale(2,2)
             .setDepth(-1);
+        this.bombBeamRepeater = scene.add
+            .tileSprite(x,y,0,0,'packed', 'bombbeam_repeater')
+            .setAlpha(0)
+            .setOrigin(0, 0.5)
+            .setDepth(-1)
+            .setScale(2,2)
+            .setDisplaySize(1024,128);
+
         this.beamCollider = scene.physics.add
-            .image(x, y, 'void')
+            .image(x, y, 'packed', 'void')
             .setVisible(false)
             .setOrigin(0, 0.5)
             .setScale(0, 0);
         this.graceCollider = scene.physics.add
-            .image(x, y, 'void')
+            .image(x, y, 'packed', 'void')
             .setVisible(false)
             .setScale(1.25, 1.25);
         scene.playerProjectiles?.add(this.beamCollider);
@@ -252,12 +262,19 @@ export class Player extends Physics.Arcade.Sprite {
 
         if (this.bombingUntil > this.scene.time.now) {
             this.magnetDD = 1024 * 1024;
-            this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.01);
-            this.beamCollider.setScale(1536, 4);
+            this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.04);
+            this.beamCollider.setScale(2048, 128);
         } else {
             this.magnetDD = 64 * 64;
-            this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.03);
+            this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.01);
             this.beamCollider.setScale(0, 0);
+        }
+        if(this.bombBeam.alpha <= 0){
+            this.bombBeam.setVisible(false);
+            this.bombBeamRepeater.setVisible(false);
+        } else {
+            this.bombBeam.setVisible(true);
+            this.bombBeamRepeater.setAlpha(this.bombBeam.alpha).setVisible(true);
         }
 
         if (focus) {
@@ -282,6 +299,8 @@ export class Player extends Physics.Arcade.Sprite {
         }
         this.bombBeam.x = this.x + 32;
         this.bombBeam.y = this.y;
+        this.bombBeamRepeater.x = this.bombBeam.x + 512;
+        this.bombBeamRepeater.y = this.y;
         this.beamCollider.x = this.x + 32;
         this.beamCollider.y = this.y;
         this.graceCollider.x = this.x;

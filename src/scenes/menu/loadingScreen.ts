@@ -100,29 +100,7 @@ export class LoadingScreenScene extends Scene {
 
     preload() {
         this.initLoadScreen();
-        this.load.image('player', 'gfx/player.png');
-        this.load.image('fairy', 'gfx/fairy.png');
-        this.load.image('projectile', 'gfx/projectile.png');
-        this.load.image('playerProjectile', 'gfx/playerProjectile.png');
-        this.load.image('star', 'gfx/star.png');
-        this.load.image('bigstar', 'gfx/bigstar.png');
-        this.load.image('powerup', 'gfx/powerup.png');
-        this.load.image('life', 'gfx/life.png');
-        this.load.image('bomb', 'gfx/bomb.png');
-        this.load.image('bombbeam', 'gfx/bombbeam.png');
-        this.load.image('sky', 'gfx/sky.png');
-        this.load.image('topclouds', 'gfx/topclouds.png');
-        this.load.image('darkclouds', 'gfx/darkclouds.png');
-        this.load.image('darkdarkclouds', 'gfx/darkdarkclouds.png');
-        this.load.image('boss', 'gfx/boss.png');
-
-        /*
         this.load.multiatlas('packed', 'gfx/packed.json', 'gfx');
-
-        this.load.image('tileset', 'gfx/tileset.extruded.png');
-        this.load.image('lightmask', 'gfx/lightmask.png');
-        this.load.image('lightcone', 'gfx/lightcone.png');
-        */
     }
 
     create() {

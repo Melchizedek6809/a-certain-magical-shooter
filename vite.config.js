@@ -5,6 +5,7 @@ export default defineConfig({
   base: '',
   build: {
     sourcemap: true,
+    assetsInlineLimit: 65536
   },
   publicDir: 'assets'
 })

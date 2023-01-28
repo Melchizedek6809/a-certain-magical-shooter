@@ -88,17 +88,17 @@ export class GameScene extends Scene {
             quantity: 0,
         });
         this.player = new Player(this, 128, 720 / 2, this.keymap);
-        this.skybg = this.add.image(-64, -64, 'sky');
+        this.skybg = this.add.image(-64, -64, 'packed', 'sky');
         this.skybg
             .setDisplaySize(1280 + 128, 720 + 128)
             .setOrigin(0, 0)
             .setDepth(-100);
-        this.topclouds = this.add.tileSprite(-64, -32, 0, 0, 'topclouds');
+        this.topclouds = this.add.tileSprite(-64, -32, 0, 0, 'packed', 'topclouds');
         this.topclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
             .setDepth(2);
-        this.darkclouds = this.add.tileSprite(-64, -8, 0, 0, 'darkclouds');
+        this.darkclouds = this.add.tileSprite(-64, -8, 0, 0, 'packed', 'darkclouds');
         this.darkclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
@@ -108,6 +108,7 @@ export class GameScene extends Scene {
             16,
             0,
             0,
+            'packed',
             'darkdarkclouds'
         );
         this.darkdarkclouds

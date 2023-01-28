@@ -9,7 +9,7 @@ export class Fairy extends Physics.Arcade.Sprite {
     health = 3;
 
     constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'fairy');
+        super(scene, x, y, 'packed', 'fairy');
         this.setName(`Fairy ${count++}`);
         scene.add.existing(this);
         scene.physics.add.existing(this);

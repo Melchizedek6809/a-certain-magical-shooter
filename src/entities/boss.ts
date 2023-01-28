@@ -9,7 +9,7 @@ export class Boss extends Physics.Arcade.Sprite {
     maxHealth = 1000;
 
     constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'boss');
+        super(scene, x, y, 'packed', 'boss');
         this.setName(`Cirno ${count++}`);
         scene.add.existing(this);
         scene.physics.add.existing(this);

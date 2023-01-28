@@ -13,7 +13,7 @@ export class Pickup extends Physics.Arcade.Sprite {
         y: number,
         pickupType: PickupType
     ) {
-        super(scene, x, y, pickupType);
+        super(scene, x, y, 'packed', pickupType);
         this.setName(`${pickupType} ${count++}`);
         scene.add.existing(this);
         scene.pickups?.add(this);
