@@ -10,6 +10,7 @@ export class Fairy extends Physics.Arcade.Sprite {
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'packed', 'fairy');
         this.setName(`Fairy ${count++}`);
+        this.play('fairy_animated');
         scene.add.existing(this);
         scene.physics.add.existing(this);
         scene.enemies?.add(this);

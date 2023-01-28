@@ -25,6 +25,7 @@ export class Player extends Physics.Arcade.Sprite {
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
         super(scene, x, y, 'packed', 'player');
+        this.play('player_animated');
         this.setName('Player');
         scene.add.existing(this);
         scene.physics.add.existing(this);

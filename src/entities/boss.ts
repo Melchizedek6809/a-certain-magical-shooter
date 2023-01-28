@@ -10,6 +10,7 @@ export class Boss extends Physics.Arcade.Sprite {
 
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'packed', 'boss');
+        this.play('boss_animated');
         this.setName(`Cirno ${count++}`);
         scene.add.existing(this);
         scene.physics.add.existing(this);

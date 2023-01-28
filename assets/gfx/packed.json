@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "boss",
+					"filename": "boss_1",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -60,16 +60,16 @@
 						"h": 128
 					},
 					"spriteSourceSize": {
-						"x": 31,
-						"y": 23,
+						"x": 32,
+						"y": 22,
 						"w": 72,
-						"h": 89
+						"h": 90
 					},
 					"frame": {
 						"x": 420,
 						"y": 2,
 						"w": 72,
-						"h": 89
+						"h": 90
 					}
 				},
 				{
@@ -136,7 +136,7 @@
 					}
 				},
 				{
-					"filename": "player",
+					"filename": "player_0",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -172,7 +172,7 @@
 					},
 					"frame": {
 						"x": 2,
-						"y": 94,
+						"y": 95,
 						"w": 32,
 						"h": 32
 					}
@@ -214,7 +214,7 @@
 					},
 					"frame": {
 						"x": 37,
-						"y": 94,
+						"y": 95,
 						"w": 24,
 						"h": 24
 					}
@@ -262,7 +262,7 @@
 					}
 				},
 				{
-					"filename": "fairy",
+					"filename": "fairy_0",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -270,16 +270,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 4,
-						"y": 13,
-						"w": 59,
-						"h": 41
+						"x": 5,
+						"y": 12,
+						"w": 56,
+						"h": 42
 					},
 					"frame": {
 						"x": 64,
 						"y": 88,
-						"w": 59,
-						"h": 41
+						"w": 56,
+						"h": 42
 					}
 				},
 				{
@@ -304,45 +304,24 @@
 					}
 				},
 				{
-					"filename": "star_1",
+					"filename": "bomb",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 16,
-						"h": 16
+						"w": 24,
+						"h": 24
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 16,
-						"h": 16
+						"w": 24,
+						"h": 24
 					},
 					"frame": {
-						"x": 94,
-						"y": 69,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "star_2",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 113,
-						"y": 69,
-						"w": 16,
-						"h": 16
+						"x": 123,
+						"y": 95,
+						"w": 24,
+						"h": 24
 					}
 				},
 				{
@@ -360,7 +339,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 132,
+						"x": 150,
 						"y": 69,
 						"w": 128,
 						"h": 64
@@ -381,52 +360,73 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 263,
+						"x": 281,
 						"y": 69,
 						"w": 128,
 						"h": 63
 					}
 				},
 				{
-					"filename": "star_3",
+					"filename": "boss_0",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 16,
-						"h": 16
+						"w": 128,
+						"h": 128
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
+						"x": 31,
+						"y": 23,
+						"w": 72,
+						"h": 89
 					},
 					"frame": {
-						"x": 394,
-						"y": 69,
-						"w": 16,
-						"h": 16
+						"x": 412,
+						"y": 95,
+						"w": 72,
+						"h": 89
 					}
 				},
 				{
-					"filename": "bomb",
+					"filename": "player_1",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 24,
-						"h": 24
+						"w": 128,
+						"h": 128
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
+						"x": 1,
+						"y": 12,
+						"w": 121,
+						"h": 98
 					},
 					"frame": {
-						"x": 394,
-						"y": 94,
-						"w": 24,
-						"h": 24
+						"x": 281,
+						"y": 135,
+						"w": 121,
+						"h": 98
+					}
+				},
+				{
+					"filename": "fairy_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 13,
+						"w": 59,
+						"h": 41
+					},
+					"frame": {
+						"x": 405,
+						"y": 187,
+						"w": 59,
+						"h": 41
 					}
 				}
 			]
@@ -435,6 +435,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:f36d4485e21d7a7eee2bb2408cd17733:3f3ef94cda095032c1efcca950f55711:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:c0d860c6721bfd00a063ab3ec731f418:184b2e74282a5296da4ccb2c8756e4f4:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }
