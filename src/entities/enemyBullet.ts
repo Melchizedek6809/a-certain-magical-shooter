@@ -1,12 +1,9 @@
 import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 
-let count = 0;
-
 export class EnemyBullet extends Physics.Arcade.Image {
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'packed', 'projectile');
-        this.setName(`enemyProjectile ${count++}`);
         scene.add.existing(this);
         scene.enemyProjectiles?.add(this);
         scene.physics.add.existing(this);

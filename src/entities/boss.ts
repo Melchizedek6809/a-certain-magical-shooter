@@ -1,6 +1,7 @@
 import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 import { UIScene } from '../scenes/ui/uiScene';
+import { HitFX } from './hitFx';
 
 let count = 0;
 
@@ -29,5 +30,6 @@ export class Boss extends Physics.Arcade.Sprite {
         if (this.health-- <= 0) {
             this.destroy();
         }
+        new HitFX(this.scene as GameScene, other.x, other.y);
     }
 }

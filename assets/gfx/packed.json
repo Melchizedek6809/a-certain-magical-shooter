@@ -157,7 +157,7 @@
 					}
 				},
 				{
-					"filename": "life",
+					"filename": "hit",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -172,6 +172,27 @@
 					},
 					"frame": {
 						"x": 2,
+						"y": 95,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "life",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 37,
 						"y": 95,
 						"w": 32,
 						"h": 32
@@ -196,27 +217,6 @@
 						"y": 69,
 						"w": 32,
 						"h": 16
-					}
-				},
-				{
-					"filename": "bigstar",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 37,
-						"y": 95,
-						"w": 24,
-						"h": 24
 					}
 				},
 				{
@@ -276,7 +276,7 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 64,
+						"x": 72,
 						"y": 88,
 						"w": 56,
 						"h": 42
@@ -304,27 +304,6 @@
 					}
 				},
 				{
-					"filename": "bomb",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 123,
-						"y": 95,
-						"w": 24,
-						"h": 24
-					}
-				},
-				{
 					"filename": "topclouds",
 					"rotated": false,
 					"trimmed": false,
@@ -339,7 +318,7 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 150,
+						"x": 131,
 						"y": 69,
 						"w": 128,
 						"h": 64
@@ -360,10 +339,31 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 281,
+						"x": 262,
 						"y": 69,
 						"w": 128,
 						"h": 63
+					}
+				},
+				{
+					"filename": "bigstar",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 393,
+						"y": 69,
+						"w": 24,
+						"h": 24
 					}
 				},
 				{
@@ -381,10 +381,31 @@
 						"h": 89
 					},
 					"frame": {
-						"x": 412,
+						"x": 420,
 						"y": 95,
 						"w": 72,
 						"h": 89
+					}
+				},
+				{
+					"filename": "bomb",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 393,
+						"y": 96,
+						"w": 24,
+						"h": 24
 					}
 				},
 				{
@@ -397,15 +418,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 1,
-						"y": 12,
+						"y": 14,
 						"w": 121,
-						"h": 98
+						"h": 96
 					},
 					"frame": {
-						"x": 281,
+						"x": 262,
 						"y": 135,
 						"w": 121,
-						"h": 98
+						"h": 96
 					}
 				},
 				{
@@ -423,7 +444,7 @@
 						"h": 41
 					},
 					"frame": {
-						"x": 405,
+						"x": 386,
 						"y": 187,
 						"w": 59,
 						"h": 41
@@ -435,6 +456,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:c0d860c6721bfd00a063ab3ec731f418:184b2e74282a5296da4ccb2c8756e4f4:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:da81c948286e5c35ae30b3686d07872f:f5b57023e111db3e7b1968d00767e9bd:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }

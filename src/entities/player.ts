@@ -243,28 +243,13 @@ export class Player extends Physics.Arcade.Sprite {
         if (bomb) {
             this.bomb();
         }
-
-        let mx = left ? -1 : right ? 1 : 0;
-        let my = top ? -1 : down ? 1 : 0;
-        const m = new Phaser.Math.Vector2(mx, my);
-        m.normalize();
-        const speed = focus ? 192 : 512;
-        mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
-        my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
-        this.setVelocity(mx, my);
-
-        if (this.invincibleUntil > this.scene.time.now) {
-            this.setAlpha(
-                Boolean((this.scene.time.now / 200) & 1) ? 1.0 : 0.33
-            );
-        } else {
-            this.setAlpha(1);
-        }
+        let speed = focus ? 192 : 512;
 
         if (this.bombingUntil > this.scene.time.now) {
             this.magnetDD = 1024 * 1024;
             this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.04);
             this.beamCollider.setScale(2048, 128);
+            speed = 192;
         } else {
             this.magnetDD = 64 * 64;
             this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.01);
@@ -282,6 +267,23 @@ export class Player extends Physics.Arcade.Sprite {
             this.focus = Math.min(1, this.focus + delta / 500);
         } else {
             this.focus = Math.max(0, this.focus - delta / 500);
+        }
+
+        let mx = left ? -1 : right ? 1 : 0;
+        let my = top ? -1 : down ? 1 : 0;
+        const m = new Phaser.Math.Vector2(mx, my);
+        m.normalize();
+
+        mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
+        my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
+        this.setVelocity(mx, my);
+
+        if (this.invincibleUntil > this.scene.time.now) {
+            this.setAlpha(
+                Boolean((this.scene.time.now / 200) & 1) ? 1.0 : 0.33
+            );
+        } else {
+            this.setAlpha(1);
         }
 
         if (this.dyingOn) {

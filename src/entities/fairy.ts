@@ -2,6 +2,7 @@ import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 import { EnemyBullet } from './enemyBullet';
 import { Pickup } from './pickup';
+import { HitFX } from './hitFx';
 
 let count = 0;
 export class Fairy extends Physics.Arcade.Sprite {
@@ -77,6 +78,7 @@ export class Fairy extends Physics.Arcade.Sprite {
                 pu.setVelocity(Math.random() * 2500, Math.random() * 2500);
             }
             const gs = this.scene as GameScene;
+            new HitFX(gs, this.x, this.y);
             this.destroy();
         }
     }

@@ -23,8 +23,8 @@
 }
 
 #game-boss-health::before {
-    content: "チルノ";
-    font-size:16px;
+    content: "Enemy";
+    font-size:20px;
     position: absolute;
     left:4px;
     top:0px;
