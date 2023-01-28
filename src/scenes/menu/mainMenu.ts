@@ -1,8 +1,11 @@
 import { Scene } from 'phaser';
 
-const introHTML = `<h1>Touhou fan game jam 10</h1>
+const introHTML = `<h1>Little magic shooter</h1>
 <br/>
-<p>Use you arrow keys to move,<br/>Z to shoot,<br/>X to drop a bomb and <br/>shift to focus.</p>`;
+<p>This is a free fan-game based on the Touhou games originally developed by Team Shanghai Alice.</p>
+<p>It was developed for the 10th Touhou Fan Game Jam</p>
+<br/>
+<p>Use you arrow keys to move<br/>Z to shoot<br/>X to drop a bomb<br/>Shift to focus</p>`;
 
 const gitHubLink = 'https://github.com/Melchizedek6809/touhou-jam-10';
 const phaserLink = 'https://phaser.io/';
