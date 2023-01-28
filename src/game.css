@@ -11,3 +11,33 @@
     font-size:32px;
     text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
 }
+
+#game-boss-health {
+    display:block;
+    position:relative;
+    border: solid 1px #000;
+    background: transparent;
+    width: 1256px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+#game-boss-health::before {
+    content: "チルノ";
+    font-size:16px;
+    position: absolute;
+    left:4px;
+    top:0px;
+    z-index:1;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
+}
+
+#game-boss-health-bar {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:#ff0000c0;
+    transition: width 66ms;
+}

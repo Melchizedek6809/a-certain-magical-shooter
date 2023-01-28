@@ -7,6 +7,8 @@ export class UIScene extends Scene {
     bombs = 3;
     power = 0;
 
+    bossHealth?: GameObjects.DOMElement;
+
     constructor(config: Phaser.Types.Scenes.SettingsConfig) {
         if (!config) {
             config = {};
@@ -40,6 +42,12 @@ export class UIScene extends Scene {
         $power.id = 'game-power';
         this.add.dom(292, this.scale.height - 28, $power);
 
+        const $bossHealth = document.createElement('div');
+        $bossHealth.id = 'game-boss-health-wrap';
+        $bossHealth.innerHTML = '<div id="game-boss-health"><div id="game-boss-health-bar"></div></div>';
+        const $bossHealthBar = $bossHealth.querySelector("#game-boss-health-bar") as HTMLElement;
+        this.bossHealth = this.add.dom(12, 12, $bossHealth).setOrigin(0,0);
+
         this.refreshUI = () => {
             $score.innerText = `Score: ${that.score}`;
             $lives.innerText = `Lives: ${that.lives}`;
@@ -48,6 +56,15 @@ export class UIScene extends Scene {
                 that.power >= 50 ? 'MAX' : that.power
             }`;
         };
+        this.events.on('setBossHealth', (hp: number, maxHp: number) => {
+            if(maxHp === 0) {
+                this.bossHealth?.setVisible(false);
+            } else {
+                this.bossHealth?.setVisible(true);
+                const w = (hp / maxHp)*100;
+                $bossHealthBar.style.width = `${w}%`;
+            }
+        });
         this.events.on('incScore', (δ: number) => {
             const oldScore = Math.floor(that.score / 20000);
             that.score += δ;
@@ -77,6 +94,5 @@ export class UIScene extends Scene {
     }
 
     update(time: number, delta: number) {
-        const game = this.scene.get('GameScene') as GameScene;
     }
 }

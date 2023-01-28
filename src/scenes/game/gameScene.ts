@@ -6,6 +6,7 @@ import { StageEvaluator } from './stageEvaluator';
 
 import '../../types';
 import stageOneData from './../../stages/stage1.lisp?raw';
+import { UIScene } from '../ui/uiScene';
 
 const animation_frames = (frame: string, frames: number) => {
     const ret = [];
@@ -131,7 +132,6 @@ export class GameScene extends Scene {
                 that.player!.onGrace(a instanceof EnemyBullet ? a : b);
             }
         );
-
         this.boss = new Boss(this, 1080, 720/2);
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
@@ -139,6 +139,16 @@ export class GameScene extends Scene {
 
     update(time: number, delta: number) {
         this.player?.update(time, delta);
+        if(this.boss){
+            if(!this.boss.scene){
+                this.boss = undefined;
+            } else {
+                this.boss?.update(time, delta);
+            }
+        } else {
+            const ui = this.scene.get("UIScene") as UIScene;
+            ui.events.emit("setBossHealth",0,0);
+        }
         if (this.player?.isDead) {
             if (!this.gameOverActive) {
                 this.scene.run('GameOverScene');
