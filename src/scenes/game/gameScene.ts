@@ -7,6 +7,7 @@ import { StageEvaluator } from './stageEvaluator';
 import '../../types';
 import stageOneData from './../../stages/stage1.lisp?raw';
 import { UIScene } from '../ui/uiScene';
+import { Pickup } from '../../entities/pickup';
 
 const animation_frames = (frame: string, frames: number) => {
     const ret = [];
@@ -122,7 +123,6 @@ export class GameScene extends Scene {
             b.onCollide && b.onCollide(a);
         };
         this.physics.add.overlap(this.playerProjectiles, this.enemies, handler);
-        this.physics.add.overlap(this.player, this.pickups, handler);
         this.physics.add.overlap(this.player, this.enemyProjectiles, handler);
         this.physics.add.overlap(this.player, this.enemies, handler);
         this.physics.add.overlap(
@@ -130,6 +130,19 @@ export class GameScene extends Scene {
             this.enemyProjectiles,
             (a: any, b: any) => {
                 that.player!.onGrace(a instanceof EnemyBullet ? a : b);
+            }
+        );
+        this.physics.add.overlap(
+            this.player.graceCollider,
+            this.pickups,
+            (a: any, b: any) => {
+                if(a instanceof Pickup){
+                    that.player!.onCollide(a);
+                    a.onCollide(that.player!);
+                } else {
+                    that.player!.onCollide(b);
+                    b.onCollide(that.player!);
+                }
             }
         );
         this.boss = new Boss(this, 1080, 720/2);

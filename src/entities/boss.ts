@@ -5,8 +5,8 @@ import { UIScene } from '../scenes/ui/uiScene';
 let count = 0;
 
 export class Boss extends Physics.Arcade.Sprite {
-    health = 500;
-    maxHealth = 500;
+    health = 1000;
+    maxHealth = 1000;
 
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'boss');

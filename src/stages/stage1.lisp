@@ -6,46 +6,46 @@
 
 (deffiber fairy-top (xpos interval)
           (spawn fairy (add xpos 200) -64)
-          (move xpos 400)
+          (move xpos 500 (add xpos 200) 350)
           (wait 1500)
           (shoot-every interval)
-          (move (add xpos 100) 800)
+          (move (add xpos 100) 800 (add xpos 200) 860)
           (wait 3000))
 
 (deffiber fairy-top-easy (xpos xpos-end interval speed)
           (spawn fairy xpos -32)
           (shoot-every interval)
-          (move xpos-end 756)
+          (move xpos-end 756 (add xpos-end 200) 360)
           (wait speed))
 
 (deffiber fairy-bot-easy (xpos xpos-end interval speed)
           (spawn fairy xpos 756)
           (shoot-every interval)
-          (move xpos-end -32)
+          (move xpos-end -32 (add xpos-end 200) 360)
           (wait speed))
 
 (deffiber fairy-bot (xpos interval)
           (spawn fairy (add xpos 200) 800)
-          (move (add xpos 50) 400)
+          (move (add xpos 50) 400 (add xpos -100) 550)
           (wait 1500)
           (shoot-every interval)
-          (move (add xpos 100) -64)
+          (move (add xpos 100) -64 (add xpos 300) 120)
           (wait 3000))
 
 (deffiber fairy-swing-bot (xpos interval width height)
           (spawn fairy (add xpos width) 752)
-          (move xpos (add 752 height))
+          (move xpos (add 752 height) (add xpos 100) (add 752 height -100))
           (wait 1000)
-          (move (add xpos (sub 0.0 width)) 752)
+          (move (add xpos (sub 0.0 width)) 752 (add xpos 200) 752)
           (shoot-every interval)
           (wait 2000))
 
 (deffiber fairy-swing-top (xpos interval width height)
           (spawn fairy (add xpos width) -32)
-          (move xpos height)
+          (move xpos height (add xpos 200) (add height 50))
           (wait 1000)
-          (move (add xpos (sub 0.0 width)) -32)
           (shoot-every interval)
+          (move (add xpos (sub 0.0 width)) -32 (add xpos -150) 32)
           (wait 2000))
 
 (deffiber fairy-swing-top-shoot (xpos interval width height)
@@ -95,20 +95,22 @@
 (wait 3000)
 
 
-(dotimes (iter 5)
-         (fiber (wait (mul iter 1000))
-                (fairy-swing-bot (add 800 (mul iter 20)) 1000 200 -200)))
-(wait 5000)
-(wait 3000)
 
 (dotimes (iter 5)
          (fiber (wait (mul iter 1000))
-                (fairy-top (add 800 (mul iter 20)) 1000)
+                (fairy-swing-bot (add 800 (mul iter 20)) 350 200 -200)))
+(wait 5000)
+(wait 3000)
+
+
+
+(dotimes (iter 5)
+         (fiber (wait (mul iter 1000))
+                (fairy-top (add 600 (mul iter 20)) 5000)
                 (wait 500)
                 (fairy-bot (add 800 (mul iter 20)) 1000)))
 (wait 5000)
 (wait 3000)
-
 
 (dotimes (iter 5)
          (fiber (wait (mul iter 1000))

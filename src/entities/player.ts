@@ -44,7 +44,7 @@ export class Player extends Physics.Arcade.Sprite {
         this.graceCollider = scene.physics.add
             .image(x, y, 'void')
             .setVisible(false)
-            .setScale(1.5, 1.5);
+            .setScale(1.25, 1.25);
         scene.playerProjectiles?.add(this.beamCollider);
         this.setDepth(1);
         this.keymap = keymap;
@@ -255,7 +255,7 @@ export class Player extends Physics.Arcade.Sprite {
             this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.01);
             this.beamCollider.setScale(1536, 4);
         } else {
-            this.magnetDD = 56 * 56;
+            this.magnetDD = 64 * 64;
             this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.03);
             this.beamCollider.setScale(0, 0);
         }

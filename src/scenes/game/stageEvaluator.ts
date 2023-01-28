@@ -10,6 +10,7 @@ export class StageFiber {
 
     moveFrom: [number, number] = [0, 0];
     moveTo: [number, number] = [0, 0];
+    moveControl: [number, number] = [0, 0];
     moveStart = 0;
     shootEveryT = 0;
     nextShot = 0;
@@ -36,12 +37,14 @@ export class StageFiber {
             return;
         }
         const dur = this.blockedUntil - this.moveStart;
-        const ri = (ticks - this.moveStart) / dur;
-        const i = ri;
-        const x = this.moveFrom[0] + (this.moveTo[0] - this.moveFrom[0]) * i;
-        const y = this.moveFrom[1] + (this.moveTo[1] - this.moveFrom[1]) * i;
-        this.fairy.x = x;
-        this.fairy.y = y;
+        const t = (ticks - this.moveStart) / dur;
+        if((this.moveControl[0] >= 0) && (this.moveControl[1] >= 0)){
+            this.fairy.x = (1-t)*(1-t) * this.moveFrom[0] + 2*(1-t)*t*this.moveControl[0] + t*t*this.moveTo[0];
+            this.fairy.y = (1-t)*(1-t) * this.moveFrom[1] + 2*(1-t)*t*this.moveControl[1] + t*t*this.moveTo[1];
+        } else {
+            this.fairy.x = this.moveFrom[0] + (this.moveTo[0] - this.moveFrom[0]) * t;
+            this.fairy.y = this.moveFrom[1] + (this.moveTo[1] - this.moveFrom[1]) * t;
+        }
         if (this.shootEveryT) {
             if (ticks > this.nextShot) {
                 this.fairy.shoot();
@@ -73,13 +76,15 @@ export class StageFiber {
         return this.evaluator.eval(val, this);
     }
 
-    move(x: number, y: number) {
+    move(x: number, y: number, cx:number, cy:number) {
         const t = this.moveFrom;
         this.moveFrom = this.moveTo;
         this.moveTo = t;
         this.moveStart = this.evaluator.ticks;
         this.moveTo[0] = x;
         this.moveTo[1] = y;
+        this.moveControl[0] = cx;
+        this.moveControl[1] = cy;
     }
 
     wait(until: number) {
@@ -88,7 +93,7 @@ export class StageFiber {
 
     spawn(name: string, x: number, y: number) {
         this.fairy = new Fairy(this.evaluator.scene, x, y);
-        this.move(x, y);
+        this.move(x, y, -1, -1);
     }
 
     despawn() {
@@ -201,10 +206,12 @@ export class StageEvaluator {
             ((args: any, fiber: StageFiber) => {
                 const x = fiber.eval(args[0]);
                 const y = fiber.eval(args[1]);
+                const cx = fiber.eval(args[2]) || -1;
+                const cy = fiber.eval(args[3]) || -1;
                 if (typeof x !== 'number' || typeof y !== 'number') {
                     console.error(`Invalid args: (move ${args.join(' ')})`);
                 } else {
-                    fiber.move(x, y);
+                    fiber.move(x, y, cx, cy);
                 }
             }).bind(this)
         );
