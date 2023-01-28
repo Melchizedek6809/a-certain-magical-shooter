@@ -92,7 +92,7 @@ export class Fairy extends Physics.Arcade.Sprite {
                 );
                 pu.setVelocity(Math.random() * 1500, Math.random() * 1500);
             }
-            if (Math.floor(Math.random() * 100) === 0) {
+            if (Math.floor(Math.random() * 300) === 0) {
                 const pu = new Pickup(
                     this.scene as GameScene,
                     this.x,
@@ -101,7 +101,7 @@ export class Fairy extends Physics.Arcade.Sprite {
                 );
                 pu.setVelocity(Math.random() * 1500, Math.random() * 1500);
             }
-            if (Math.floor(Math.random() * 300) === 0) {
+            if (Math.floor(Math.random() * 900) === 0) {
                 const pu = new Pickup(
                     this.scene as GameScene,
                     this.x,
