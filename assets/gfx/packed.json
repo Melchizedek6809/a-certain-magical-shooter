@@ -24,8 +24,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 1,
-						"y": 1,
+						"x": 2,
+						"y": 2,
 						"w": 256,
 						"h": 64
 					}
@@ -45,8 +45,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 259,
-						"y": 1,
+						"x": 261,
+						"y": 2,
 						"w": 156,
 						"h": 64
 					}
@@ -66,94 +66,10 @@
 						"h": 89
 					},
 					"frame": {
-						"x": 417,
-						"y": 1,
+						"x": 420,
+						"y": 2,
 						"w": 72,
 						"h": 89
-					}
-				},
-				{
-					"filename": "powerup",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 491,
-						"y": 1,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "bombbeam_repeater",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1,
-						"h": 64
-					},
-					"frame": {
-						"x": 509,
-						"y": 1,
-						"w": 1,
-						"h": 64
-					}
-				},
-				{
-					"filename": "projectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 491,
-						"y": 19,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "star",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 491,
-						"y": 37,
-						"w": 16,
-						"h": 16
 					}
 				},
 				{
@@ -171,10 +87,31 @@
 						"h": 128
 					},
 					"frame": {
-						"x": 491,
-						"y": 55,
+						"x": 495,
+						"y": 2,
 						"w": 4,
 						"h": 128
+					}
+				},
+				{
+					"filename": "bombbeam_repeater",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 64
+					},
+					"frame": {
+						"x": 502,
+						"y": 2,
+						"w": 1,
+						"h": 64
 					}
 				},
 				{
@@ -192,8 +129,8 @@
 						"h": 1
 					},
 					"frame": {
-						"x": 497,
-						"y": 55,
+						"x": 506,
+						"y": 2,
 						"w": 1,
 						"h": 1
 					}
@@ -213,136 +150,10 @@
 						"h": 98
 					},
 					"frame": {
-						"x": 1,
-						"y": 185,
+						"x": 2,
+						"y": 133,
 						"w": 121,
 						"h": 98
-					}
-				},
-				{
-					"filename": "topclouds",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 64
-					},
-					"frame": {
-						"x": 1,
-						"y": 92,
-						"w": 128,
-						"h": 64
-					}
-				},
-				{
-					"filename": "bigstar",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 1,
-						"y": 158,
-						"w": 24,
-						"h": 24
-					}
-				},
-				{
-					"filename": "bomb",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 27,
-						"y": 158,
-						"w": 24,
-						"h": 24
-					}
-				},
-				{
-					"filename": "playerProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 16
-					},
-					"frame": {
-						"x": 1,
-						"y": 67,
-						"w": 32,
-						"h": 16
-					}
-				},
-				{
-					"filename": "darkclouds",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 63
-					},
-					"frame": {
-						"x": 131,
-						"y": 67,
-						"w": 128,
-						"h": 63
-					}
-				},
-				{
-					"filename": "fairy",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 13,
-						"w": 59,
-						"h": 41
-					},
-					"frame": {
-						"x": 261,
-						"y": 67,
-						"w": 59,
-						"h": 41
 					}
 				},
 				{
@@ -360,10 +171,262 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 322,
-						"y": 67,
+						"x": 2,
+						"y": 94,
 						"w": 32,
 						"h": 32
+					}
+				},
+				{
+					"filename": "playerProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 16
+					},
+					"frame": {
+						"x": 2,
+						"y": 69,
+						"w": 32,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bigstar",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 37,
+						"y": 94,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "powerup",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 37,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "projectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 56,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "fairy",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 13,
+						"w": 59,
+						"h": 41
+					},
+					"frame": {
+						"x": 64,
+						"y": 88,
+						"w": 59,
+						"h": 41
+					}
+				},
+				{
+					"filename": "star",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 75,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "star_1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 94,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "star_2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 113,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "topclouds",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 64
+					},
+					"frame": {
+						"x": 132,
+						"y": 69,
+						"w": 128,
+						"h": 64
+					}
+				},
+				{
+					"filename": "darkclouds",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 63
+					},
+					"frame": {
+						"x": 263,
+						"y": 69,
+						"w": 128,
+						"h": 63
+					}
+				},
+				{
+					"filename": "star_3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 394,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "bomb",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 394,
+						"y": 94,
+						"w": 24,
+						"h": 24
 					}
 				}
 			]
@@ -372,6 +435,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:7f40bdefd4a8016f5caa6abb12fe5d4e:8cfaafd22a5882eb03af60c634c0e8a9:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:f36d4485e21d7a7eee2bb2408cd17733:3f3ef94cda095032c1efcca950f55711:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }

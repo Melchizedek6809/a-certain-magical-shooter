@@ -64,7 +64,7 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>0</uint>
+        <uint>1</uint>
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
@@ -76,7 +76,7 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>0</uint>
+        <uint>1</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -204,6 +204,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">assets/unpacked_gfx/bombbeam_repeater.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>0,16,1,32</rect>
+                <key>scale9Paddings</key>
+                <rect>0,16,1,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">assets/unpacked_gfx/boss.png</key>
             <key type="filename">assets/unpacked_gfx/player.png</key>
             <struct type="IndividualSpriteSettings">
@@ -299,6 +314,9 @@
             <key type="filename">assets/unpacked_gfx/powerup.png</key>
             <key type="filename">assets/unpacked_gfx/projectile.png</key>
             <key type="filename">assets/unpacked_gfx/star.png</key>
+            <key type="filename">assets/unpacked_gfx/star_1.png</key>
+            <key type="filename">assets/unpacked_gfx/star_2.png</key>
+            <key type="filename">assets/unpacked_gfx/star_3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

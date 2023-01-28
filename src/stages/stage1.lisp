@@ -59,7 +59,7 @@
           (move (add xpos (sub 0.0 width)) -32)
           (wait 1000))
 
-(wait 3000)
+;(wait 3000)
 ;; WAVE ONE
 (fairy-top-easy 800 900 0.0 8000)
 (wait 1000)

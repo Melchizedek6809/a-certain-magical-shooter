@@ -1,10 +1,10 @@
-import { Physics, Types } from 'phaser';
-import { GameScene, KeyMap } from '../scenes/game/gameScene';
+import { Physics } from 'phaser';
+import { GameScene } from '../scenes/game/gameScene';
 
 let count = 0;
 export type PickupType = 'star' | 'powerup' | 'bomb' | 'bigstar' | 'life';
 
-export class Pickup extends Physics.Arcade.Sprite {
+export class Pickup extends Physics.Arcade.Image {
     pickupType: PickupType;
 
     constructor(

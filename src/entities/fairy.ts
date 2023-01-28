@@ -1,8 +1,7 @@
-import { Physics, Types } from 'phaser';
-import { GameScene, KeyMap } from '../scenes/game/gameScene';
+import { Physics } from 'phaser';
+import { GameScene } from '../scenes/game/gameScene';
 import { EnemyBullet } from './enemyBullet';
 import { Pickup } from './pickup';
-import { Player } from './player';
 
 let count = 0;
 export class Fairy extends Physics.Arcade.Sprite {

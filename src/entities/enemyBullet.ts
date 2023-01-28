@@ -1,9 +1,9 @@
-import { Physics, Types } from 'phaser';
-import { GameScene, KeyMap } from '../scenes/game/gameScene';
+import { Physics } from 'phaser';
+import { GameScene } from '../scenes/game/gameScene';
 
 let count = 0;
 
-export class EnemyBullet extends Physics.Arcade.Sprite {
+export class EnemyBullet extends Physics.Arcade.Image {
     constructor(scene: GameScene, x: number, y: number) {
         super(scene, x, y, 'packed', 'projectile');
         this.setName(`enemyProjectile ${count++}`);

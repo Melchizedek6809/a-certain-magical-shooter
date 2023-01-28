@@ -11,8 +11,8 @@ import { Pickup } from '../../entities/pickup';
 
 const animation_frames = (frame: string, frames: number) => {
     const ret = [];
-    for (let i = 0; i < frames; i++) {
-        ret.push({ key: 'packed', frame: `${frame}/${frame}-${i}` });
+    for (let i = 1; i < frames; i++) {
+        ret.push({ key: 'packed', frame: `${frame}_${i}` });
     }
     return ret;
 };
@@ -59,6 +59,8 @@ export class GameScene extends Scene {
 
     create() {
         const that = this;
+        //this.anims.create({key: 'star_animation', frames: animation_frames('star', 3), frameRate:6, repeat: -1});
+
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
             'Up,Left,Right,Down,X,Z,Shift'
