@@ -1,3 +1,10 @@
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size:16px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
+}
+
+h2,h3,
 #game-power,
 #game-bombs,
 #game-lives {
@@ -6,6 +13,7 @@
     text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
 }
 
+h1,
 #game-score {
     font-family: 'Courier New', Courier, monospace;
     font-size:32px;

@@ -59,7 +59,15 @@
           (move (add xpos (sub 0.0 width)) -32)
           (wait 1000))
 
+(deffiber boss-fa-pattern-one ()
+          )
+
+(deffiber boss-first-appearance ()
+          (boss-fa-pattern-one))
+
+
 (wait 3000)
+
 ;; WAVE ONE
 (fairy-top-easy 800 900 0.0 8000)
 (wait 1000)
@@ -85,7 +93,8 @@
 (wait 3000)
 ;; END WAVE ONE
 
-
+(boss-fist-appearance)
+(wait-no-boss)
 
 ;; Wave 2
 (dotimes (iter 5)

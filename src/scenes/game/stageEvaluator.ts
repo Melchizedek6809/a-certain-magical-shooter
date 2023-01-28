@@ -1,3 +1,4 @@
+import { Boss } from '../../entities/boss';
 import { Fairy } from '../../entities/fairy';
 import { GameScene } from './gameScene';
 
@@ -5,6 +6,7 @@ export class StageFiber {
     evaluator: StageEvaluator;
     code: any[];
     ip = 0;
+    blockedOnBoss = false;
     blockedUntil = 0;
     bindings: Map<string, any>;
 
@@ -14,17 +16,24 @@ export class StageFiber {
     moveStart = 0;
     shootEveryT = 0;
     nextShot = 0;
-    fairy?: Fairy;
+
+    fairy?: Fairy | Boss;
 
     constructor(
         evaluator: StageEvaluator,
         code: any[],
-        bindings: Map<string, any>
+        bindings: Map<string, any>,
+        fairy?: Fairy | Boss
     ) {
         this.evaluator = evaluator;
         this.code = code;
         this.bindings = bindings;
+        this.fairy = fairy;
         evaluator.fibers.push(this);
+    }
+
+    isBlocked():boolean {
+        return (this.blockedUntil >= this.evaluator.ticks) || (this.blockedOnBoss && Boolean(this.evaluator.scene.boss));
     }
 
     interpolate() {
@@ -59,7 +68,7 @@ export class StageFiber {
         }
         this.interpolate();
         while (true) {
-            if (this.blockedUntil >= this.evaluator.ticks) {
+            if(this.isBlocked()){
                 return true;
             }
             const v = this.code[this.ip++];
@@ -91,9 +100,18 @@ export class StageFiber {
         this.blockedUntil = this.evaluator.ticks + until;
     }
 
+    waitNoBoss() {
+        this.blockedOnBoss = true;
+    }
+
     spawn(name: string, x: number, y: number) {
-        this.fairy = new Fairy(this.evaluator.scene, x, y);
-        this.move(x, y, -1, -1);
+        if(name === "fairy"){
+            this.fairy = new Fairy(this.evaluator.scene, x, y);
+            this.move(x, y, -1, -1);
+        } else if(name === "boss"){
+            this.fairy = new Boss(this.evaluator.scene, x, y);
+            this.move(x, y, -1, -1);
+        }
     }
 
     despawn() {
@@ -146,7 +164,7 @@ export class StageEvaluator {
         fiber.bindings.set(
             'fiber',
             ((args: any, fiber: StageFiber) => {
-                new StageFiber(this, args, new Map(fiber.bindings)).run();
+                new StageFiber(this, args, new Map(fiber.bindings), fiber.fairy).run();
             }).bind(this)
         );
 
@@ -157,6 +175,13 @@ export class StageEvaluator {
                 if (typeof blocked === 'number') {
                     fiber.wait(blocked);
                 }
+            }).bind(this)
+        );
+
+        fiber.bindings.set(
+            'wait-no-boss',
+            ((args: any, fiber: StageFiber) => {
+                fiber.waitNoBoss();
             }).bind(this)
         );
 
