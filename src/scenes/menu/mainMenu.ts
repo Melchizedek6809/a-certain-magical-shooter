@@ -2,7 +2,7 @@ import { Scene } from 'phaser';
 
 const introHTML = `<h1>Little magic shooter</h1>
 <br/>
-<p>This is a free fan-game based on the Touhou games originally developed by Team Shanghai Alice.</p>
+<p>This is an independent and free fan-game based on the Touhou games originally created by ZUN/Team Shanghai Alice.</p>
 <p>It was developed for the 10th Touhou Fan Game Jam</p>
 <br/>
 <p>Use you arrow keys to move<br/>Z to shoot<br/>X to drop a bomb<br/>Shift to focus</p>`;

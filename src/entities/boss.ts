@@ -27,9 +27,9 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     onCollide(other: Phaser.GameObjects.Sprite) {
+        new HitFX(this.scene as GameScene, other.x, other.y);
         if (this.health-- <= 0) {
             this.destroy();
         }
-        new HitFX(this.scene as GameScene, other.x, other.y);
     }
 }
