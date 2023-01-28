@@ -5,6 +5,7 @@ import { Pickup } from './pickup';
 import { EnemyBullet } from './enemyBullet';
 import { UIScene } from '../scenes/ui/uiScene';
 import { Fairy } from './fairy';
+import { HitFX } from './hitFx';
 
 export class Player extends Physics.Arcade.Sprite {
     isDead = false;
@@ -327,6 +328,12 @@ export class Player extends Physics.Arcade.Sprite {
         }
         if (this.bombingUntil >= this.scene.time.now) {
             return;
+        }
+
+        for(let i=0;i<8;i++){
+            const ox = (Math.random() - 0.5)*64;
+            const oy = (Math.random() - 0.5)*64;
+            new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
         }
         this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;
