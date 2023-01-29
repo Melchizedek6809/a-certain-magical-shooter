@@ -28,6 +28,9 @@ export class Fairy extends Physics.Arcade.Sprite {
         bullet.setVelocity(v.x * 400, v.y * 400);
     }
 
+    wave() {}
+    teaWave() {}
+
     onCollide(other: Phaser.GameObjects.Sprite) {
         if (this.health-- <= 0) {
             const stars = Math.floor(Math.random() * 3 + 1);

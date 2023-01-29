@@ -44,8 +44,9 @@ export class UIScene extends Scene {
 
         const $bossHealth = document.createElement('div');
         $bossHealth.id = 'game-boss-health-wrap';
-        $bossHealth.innerHTML = '<div id="game-boss-health"><div id="game-boss-health-bar"></div></div>';
+        $bossHealth.innerHTML = '<div id="game-boss-health"><div id="game-boss-health-bar"></div><div id="game-boss-spell-card-counter"></div></div>';
         const $bossHealthBar = $bossHealth.querySelector("#game-boss-health-bar") as HTMLElement;
+        const $bossHealthSpellCardCounter = $bossHealth.querySelector("#game-boss-spell-card-counter") as HTMLElement;
         this.bossHealth = this.add.dom(12, 12, $bossHealth).setOrigin(0,0);
 
         this.refreshUI = () => {
@@ -56,13 +57,14 @@ export class UIScene extends Scene {
                 that.power >= 50 ? 'MAX' : that.power
             }`;
         };
-        this.events.on('setBossHealth', (hp: number, maxHp: number) => {
+        this.events.on('setBossHealth', (hp: number, maxHp: number, cardsLeft: number) => {
             if(maxHp === 0) {
                 this.bossHealth?.setVisible(false);
             } else {
                 this.bossHealth?.setVisible(true);
                 const w = (hp / maxHp)*100;
                 $bossHealthBar.style.width = `${w}%`;
+                $bossHealthSpellCardCounter.innerText = `${cardsLeft}`;
             }
         });
         this.events.on('incScore', (δ: number) => {

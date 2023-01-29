@@ -59,42 +59,109 @@
           (move (add xpos (sub 0.0 width)) -32)
           (wait 1000))
 
-(deffiber boss-fa-pattern-one ()
-          )
+(deffiber boss-fa-icicle-daisies ()
+          (begin-spell-card)
+
+          (move 1100 160 1300 260)
+          (wait 2100)
+          (shoot-every 66.0 wave)
+          (wait-here 700)
+          (shoot-every 0.0 wave)
+
+          (move 1100 360 900 260)
+          (wait 2100)
+          (shoot-every 66.0 wave)
+          (wait-here 700)
+          (shoot-every 0.0 wave)
+
+          (move 1100 560 1300 460)
+          (wait 2100)
+          (shoot-every 66.0 wave)
+          (wait-here 700)
+          (shoot-every 0.0 wave)
+
+          (move 1100 360 900 460)
+          (wait 2100)
+          (shoot-every 66.0 wave)
+          (wait-here 700)
+          (shoot-every 0.0 wave))
+
+
+(deffiber boss-fa-frozen-tea ()
+          (begin-spell-card)
+
+          (move 1050 560 1200 560)
+          (wait 2100)
+          (shoot-every 300.0 tea)
+          (wait-here 700)
+          (shoot-every 100.0 projectile)
+
+          (move 1050 160 1200 360)
+          (wait 2100)
+          (shoot-every 300.0 tea)
+          (wait-here 700)
+          (shoot-every 100.0 projectile)
+
+          (move 1200 360 1200 160)
+          (wait 2100)
+          (shoot-every 300.0 tea)
+          (wait-here 700)
+          (shoot-every 100.0 projectile))
+
 
 (deffiber boss-first-appearance ()
-          (boss-fa-pattern-one))
+          (spawn boss 1400 500 5)
+          (move 1100 360 1000 540)
+          (wait 1000)
+          (interpolate 0)
+
+          (boss-fa-icicle-daisies)
+          (wait-spell-end)
+          (stop-spell)
+
+          (interpolate 1)
+          (wait 200)
+          (move 1100 360)
+          (wait 400)
+          (interpolate 0)
+
+          (boss-fa-frozen-tea)
+          (wait-spell-end)
+          (stop-spell)
+
+          (interpolate 1)
+          (move 1400 200)
+          (wait 700)
+
+          (despawn))
 
 
 (wait 3000)
 
 ;; WAVE ONE
-(fairy-top-easy 800 900 0.0 8000)
+(fairy-top-easy 800 900 0.0 6000)
 (wait 1000)
-(fairy-top-easy 820 920 0.0 8000)
+(fairy-top-easy 820 920 0.0 6000)
 (wait 1000)
-(fairy-top-easy 840 940 0.0 8000)
+(fairy-top-easy 840 940 0.0 6000)
 (wait 1000)
-(fairy-top-easy 860 960 1000 8000)
+(fairy-top-easy 860 960 1000 6000)
 (wait 1000)
-(fairy-top-easy 880 980 1000 8000)
+(fairy-top-easy 880 980 1000 6000)
 (wait 1000)
 
 (wait 5000)
-(fairy-bot-easy 800 900 1000 8000)
+(fairy-bot-easy 800 900 1000 6000)
 (wait 1000)
-(fairy-bot-easy 820 920 1000 8000)
+(fairy-bot-easy 820 920 1000 6000)
 (wait 1000)
-(fairy-bot-easy 840 940 1000 8000)
+(fairy-bot-easy 840 940 1000 6000)
 (wait 1000)
-(fairy-bot-easy 860 960 1000 8000)
+(fairy-bot-easy 860 960 1000 6000)
 (wait 1000)
-(fairy-bot-easy 880 980 1000 8000)
+(fairy-bot-easy 880 980 1000 6000)
 (wait 3000)
 ;; END WAVE ONE
-
-(boss-fist-appearance)
-(wait-no-boss)
 
 ;; Wave 2
 (dotimes (iter 5)
@@ -163,6 +230,9 @@
 ;; END WAVE 2
 
 ;;; FIRST MID BOSS!!!
+(boss-first-appearance)
+(wait 1000)
+(wait-no-boss)
 
 
 

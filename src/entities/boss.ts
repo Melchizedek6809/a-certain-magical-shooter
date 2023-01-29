@@ -7,11 +7,13 @@ import { HitFX } from './hitFx';
 let count = 0;
 
 export class Boss extends Physics.Arcade.Sprite {
-    health = 100;
-    maxHealth = 100;
+    health = 400;
+    maxHealth = 400;
+    spellCardOver = false;
+    spellCards:number;
 
-    constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'packed', 'boss');
+    constructor(scene: GameScene, x: number, y: number, spellCards = 5) {
+        super(scene, x, y, 'packed', 'boss_0');
         this.play('boss_animated');
         this.setName(`Cirno ${count++}`);
         scene.add.existing(this);
@@ -19,7 +21,30 @@ export class Boss extends Physics.Arcade.Sprite {
         scene.enemies?.add(this);
         this.body.setSize(32, 72, true);
         this.body.onOverlap = true;
+        this.spellCards = spellCards;
         scene.boss = this;
+    }
+
+    wave(wc: number) {
+        for(let i=0;i<24;i++){
+            const gs = this.scene as GameScene;
+            const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
+            const t = i/24 * Math.PI*2 + (wc/256)*Math.PI*2 ;
+            const vx = Math.cos(t) * 400;
+            const vy = Math.sin(t) * 400;
+            bullet.setVelocity(vx, vy);
+        }
+    }
+
+    teaWave(wc: number) {
+        for(let i=0;i<32;i++){
+            const gs = this.scene as GameScene;
+            const bullet = new EnemyBullet(gs, this.x, this.y, 'bossTeaProjectile');
+            const t = i/32 * Math.PI + Math.PI/2  + (wc/256)*Math.PI/32;
+            const vx = Math.cos(t) * 400;
+            const vy = Math.sin(t) * 400;
+            bullet.setVelocity(vx, vy);
+        }
     }
 
     shoot() {
@@ -33,7 +58,7 @@ export class Boss extends Physics.Arcade.Sprite {
 
     update(time: number, delta: number) {
         const ui = this.scene.scene.get("UIScene") as UIScene;
-        ui.events.emit("setBossHealth", this.health, this.maxHealth);
+        ui.events.emit("setBossHealth", this.health, this.maxHealth, this.spellCards);
     }
 
     onCollide(other: Phaser.GameObjects.Sprite) {
@@ -44,8 +69,14 @@ export class Boss extends Physics.Arcade.Sprite {
                 const oy = (Math.random() - 0.5)*64;
                 new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
             }
-            (this.scene as GameScene).boss = undefined;
-            this.destroy();
+            if(this.spellCards > 0){
+                this.spellCards--;
+                this.health = this.maxHealth;
+                this.spellCardOver = true;
+            } else {
+                (this.scene as GameScene).boss = undefined;
+                this.destroy();
+            }
         }
     }
 }

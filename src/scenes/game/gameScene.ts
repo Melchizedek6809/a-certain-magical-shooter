@@ -62,7 +62,6 @@ export class GameScene extends Scene {
         this.anims.create({key: 'fairy_animated', frames: animation_frames('fairy', 2), frameRate:6, repeat: -1});
         this.anims.create({key: 'player_animated', frames: animation_frames('player', 2), frameRate:6, repeat: -1});
         this.anims.create({key: 'boss_animated', frames: animation_frames('boss', 2), frameRate:6, repeat: -1});
-        console.log(this.anims);
 
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
@@ -151,7 +150,6 @@ export class GameScene extends Scene {
                 }
             }
         );
-        this.boss = new Boss(this, 1080, 720/2);
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }

@@ -1,13 +1,16 @@
 import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 
+type BulletFrame = "projectile" | "bossProjectile" | "bossTeaProjectile";
+
 export class EnemyBullet extends Physics.Arcade.Image {
-    constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'packed', 'projectile');
+    constructor(scene: GameScene, x: number, y: number, frame: BulletFrame = "projectile") {
+        super(scene, x, y, 'packed', frame);
         scene.add.existing(this);
         scene.enemyProjectiles?.add(this);
         scene.physics.add.existing(this);
-        this.body.setSize(16, 16, true);
+        const s = frame === "projectile" ? 16 : 32;
+        this.body.setSize(s, s, true);
     }
 
     preUpdate(time: number, delta: number) {

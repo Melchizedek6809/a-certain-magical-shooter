@@ -25,7 +25,7 @@ export class Player extends Physics.Arcade.Sprite {
     graceCollider: Physics.Arcade.Image;
 
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
-        super(scene, x, y, 'packed', 'player');
+        super(scene, x, y, 'packed', 'player_0');
         this.play('player_animated');
         this.setName('Player');
         scene.add.existing(this);
@@ -92,20 +92,20 @@ export class Player extends Physics.Arcade.Sprite {
             case 2:
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y + (8 + 8 * f)
                 ).setVelocityY(f * 20);
                 new Projectile(this.scene as GameScene, this.x + 64, this.y);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y - (8 + 8 * f)
                 ).setVelocityY(f * -20);
                 break;
             case 3:
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y - (12 + 12 * f)
                 ).setVelocityY(f * -30);
                 new Projectile(
@@ -120,42 +120,42 @@ export class Player extends Physics.Arcade.Sprite {
                 ).setVelocityY(f * 15);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y + (12 + 12 * f)
                 ).setVelocityY(f * 30);
                 break;
             case 4:
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 48,
                     this.y - (16 + 16 * f)
                 ).setVelocityY(f * -40);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y - (8 + 8 * f)
                 ).setVelocityY(f * -20);
                 new Projectile(this.scene as GameScene, this.x + 64, this.y);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 56,
                     this.y + (8 + 8 * f)
                 ).setVelocityY(f * 20);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 48,
                     this.y + (16 + 16 * f)
                 ).setVelocityY(f * 40);
                 break;
             case 5:
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 48,
                     this.y - (18 + 18 * f)
                 ).setVelocityY(f * -60);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 60,
                     this.y - (12 + 12 * f)
                 ).setVelocityY(f * -40);
                 new Projectile(
@@ -170,12 +170,12 @@ export class Player extends Physics.Arcade.Sprite {
                 ).setVelocityY(f * 20);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 60,
                     this.y + (12 + 12 * f)
                 ).setVelocityY(f * 40);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 64,
+                    this.x + 48,
                     this.y + (18 + 18 * f)
                 ).setVelocityY(f * 60);
 
@@ -339,7 +339,7 @@ export class Player extends Physics.Arcade.Sprite {
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
             ui.bombs = 3;
-            this.power = 0;
+            this.power = Math.max(this.power-5);
             this.scene.scene.get('UIScene').events.emit('setPower', this.power);
             this.invincibleUntil = this.scene.time.now + 1000;
             this.scene.scene.get('UIScene').events.emit('refresh');

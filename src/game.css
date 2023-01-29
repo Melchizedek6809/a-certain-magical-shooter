@@ -20,6 +20,15 @@ h1,
     text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
 }
 
+#game-boss-spell-card-counter {
+    font-family: 'Courier New', Courier, monospace;
+    font-size:32px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
+    position:absolute;
+    top:28px;
+    left:0;
+}
+
 #game-boss-health {
     display:block;
     position:relative;
