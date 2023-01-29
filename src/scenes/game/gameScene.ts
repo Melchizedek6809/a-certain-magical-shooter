@@ -50,6 +50,9 @@ export class GameScene extends Scene {
 
     snowFlakes?: GameObjects.Blitter;
     snowFlakeData: SnowFlakeData[] = [];
+
+    frontSnowFlakes?: GameObjects.Blitter;
+    frontSnowFlakeData: SnowFlakeData[] = [];
     gameTicks = 0;
 
     stageEvaluator?: StageEvaluator;
@@ -160,6 +163,10 @@ export class GameScene extends Scene {
             }
         );
 
+        this.frontSnowFlakeData.length = 0;
+        this.frontSnowFlakes = this.add.blitter(-8,-8,'packed');
+        this.frontSnowFlakes.setDepth(1);
+
         this.snowFlakeData.length = 0;
         this.snowFlakes = this.add.blitter(-8,-8,'packed');
         this.snowFlakes.setDepth(-1);
@@ -170,9 +177,22 @@ export class GameScene extends Scene {
             console.log(frame);
             this.snowFlakes.create(x,y,frame);
             this.snowFlakeData.push({
-                velX: 0.4 + Math.random() * 0.9,
-                velY: 0.6 + Math.random() * 0.3,
-                velZ: 0.4 + Math.random() * 0.9,
+                velX: 0.2 + Math.random() * 1.1,
+                velY: 0.3 + Math.random() * 0.5,
+                velZ: 0.2 + Math.random() * 1.1,
+            })
+        }
+
+        for(let i=0;i<96;i++){
+            const x = Math.random() * this.renderer.width;
+            const y = Math.random() * this.renderer.height;
+            const frame = `snowflake_${i&3}`;
+            console.log(frame);
+            this.frontSnowFlakes.create(x,y,frame);
+            this.frontSnowFlakeData.push({
+                velX: 0.5 + Math.random() * 1.1,
+                velY: 0.7 + Math.random() * 0.5,
+                velZ: 0.5 + Math.random() * 1.1,
             })
         }
 
@@ -183,11 +203,21 @@ export class GameScene extends Scene {
         const h = this.renderer.height + 16;
         const w = this.renderer.width + 16;
         const flakes = this.snowFlakes?.children.list;
-        if(!flakes){return;}
+        const frontFlakes = this.frontSnowFlakes?.children.list;
+        if(!flakes || !frontFlakes){return;}
 
         for(let i=0;i<flakes.length;i++){
             const flake = flakes[i];
             const data = this.snowFlakeData[i];
+            flake.y = (flake.y + data.velY) % h;
+            flake.x = (w+(flake.x - data.velX - 3)) % w;
+            data.velX += data.velZ * 0.02;
+            data.velZ -= data.velX * 0.02;
+        }
+
+        for(let i=0;i<frontFlakes.length;i++){
+            const flake = frontFlakes[i];
+            const data = this.frontSnowFlakeData[i];
             flake.y = (flake.y + data.velY) % h;
             flake.x = (w+(flake.x - data.velX - 3)) % w;
             data.velX += data.velZ * 0.02;
