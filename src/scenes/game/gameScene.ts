@@ -54,6 +54,7 @@ export class GameScene extends Scene {
     frontSnowFlakes?: GameObjects.Blitter;
     frontSnowFlakeData: SnowFlakeData[] = [];
     gameTicks = 0;
+    bossFade = 0;
 
     stageEvaluator?: StageEvaluator;
 
@@ -71,10 +72,12 @@ export class GameScene extends Scene {
 
     create() {
         const that = this;
+        this.sound.pauseOnBlur = false;
+        this.bossFade = 0;
         this.anims.create({key: 'fairy_animated', frames: animation_frames('fairy', 2), frameRate:6, repeat: -1});
         this.anims.create({key: 'player_animated', frames: animation_frames('player', 2), frameRate:6, repeat: -1});
         this.anims.create({key: 'boss_animated', frames: animation_frames('boss', 2), frameRate:6, repeat: -1});
-
+1
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
             'Up,Left,Right,Down,X,Z,Shift'
@@ -170,7 +173,7 @@ export class GameScene extends Scene {
         this.snowFlakeData.length = 0;
         this.snowFlakes = this.add.blitter(-8,-8,'packed');
         this.snowFlakes.setDepth(-1);
-        for(let i=0;i<256;i++){
+        for(let i=0;i<192;i++){
             const x = Math.random() * this.renderer.width;
             const y = Math.random() * this.renderer.height;
             const frame = `snowflake_${i&3}`;
@@ -234,10 +237,20 @@ export class GameScene extends Scene {
             } else {
                 this.boss?.update(time, delta);
             }
+            this.bossFade = Math.min(1,this.bossFade + 0.015);
         } else {
             const ui = this.scene.get("UIScene") as UIScene;
             ui.events.emit("setBossHealth",0,0);
+            this.bossFade = Math.max(0,this.bossFade - 0.002);
         }
+        const alpha = Math.min(1,1.0-this.bossFade);
+        const cloudAlpha = Math.min(1,1.0-this.bossFade*0.75);
+        this.skybg?.setAlpha(alpha);
+        this.snowFlakes?.setAlpha(alpha);
+        this.frontSnowFlakes?.setAlpha(alpha);
+        this.topclouds?.setAlpha(cloudAlpha);
+        this.darkclouds?.setAlpha(cloudAlpha);
+        this.darkdarkclouds?.setAlpha(cloudAlpha);
         if (this.player?.isDead) {
             if (!this.gameOverActive) {
                 this.scene.run('GameOverScene');

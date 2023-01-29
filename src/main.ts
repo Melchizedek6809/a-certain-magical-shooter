@@ -17,7 +17,7 @@ const main = () => {
         //pixelArt: true,
         parent: document.getElementById('phaser-parent') as HTMLElement,
         title: 'A certain magical shooter',
-        backgroundColor: '#60A0F0',
+        backgroundColor: '#000',
         dom: {
             createContainer: true,
         },
