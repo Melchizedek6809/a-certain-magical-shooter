@@ -241,7 +241,7 @@
 					}
 				},
 				{
-					"filename": "player_0",
+					"filename": "player_1",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -250,15 +250,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 1,
-						"y": 12,
-						"w": 121,
-						"h": 98
+						"y": 14,
+						"w": 119,
+						"h": 97
 					},
 					"frame": {
 						"x": 2,
 						"y": 133,
-						"w": 121,
-						"h": 98
+						"w": 119,
+						"h": 97
 					}
 				},
 				{
@@ -535,27 +535,6 @@
 					}
 				},
 				{
-					"filename": "player_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 14,
-						"w": 121,
-						"h": 96
-					},
-					"frame": {
-						"x": 273,
-						"y": 135,
-						"w": 121,
-						"h": 96
-					}
-				},
-				{
 					"filename": "bomb",
 					"rotated": false,
 					"trimmed": false,
@@ -577,6 +556,27 @@
 					}
 				},
 				{
+					"filename": "player_0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 16,
+						"w": 119,
+						"h": 95
+					},
+					"frame": {
+						"x": 273,
+						"y": 135,
+						"w": 119,
+						"h": 95
+					}
+				},
+				{
 					"filename": "fairy_1",
 					"rotated": false,
 					"trimmed": true,
@@ -591,7 +591,7 @@
 						"h": 41
 					},
 					"frame": {
-						"x": 397,
+						"x": 395,
 						"y": 187,
 						"w": 59,
 						"h": 41
@@ -612,7 +612,7 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 397,
+						"x": 395,
 						"y": 231,
 						"w": 56,
 						"h": 42
@@ -624,6 +624,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:35eaab4afde6c7997462cd388a0313ca:eb33ec93117583b3d67dc2709b22fea0:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b362af82b28ba10cde4482767a38cd6c:a654265696da2d44a92bd014c3a4a615:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }
