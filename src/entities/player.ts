@@ -17,6 +17,7 @@ export class Player extends Physics.Arcade.Sprite {
     magnetDD = 56 * 56;
     power = 0;
     focus = 0;
+    bossStarsPickedUp = 0;
     keymap: KeyMap;
 
     bombBeam: GameObjects.Image;
@@ -72,6 +73,7 @@ export class Player extends Physics.Arcade.Sprite {
         this.shotCooldown = this.scene.time.now + 50;
         const powerLevel = Math.floor(this.power / 10);
         const f = 1 - this.focus;
+        this.scene.sound.add('shot').play();
         switch (powerLevel) {
             case 0:
             default:
@@ -187,6 +189,7 @@ export class Player extends Physics.Arcade.Sprite {
         if (this.isDead || this.bombingUntil >= this.scene.time.now) {
             return;
         }
+        this.scene.sound.add('laserBeam').play();
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (ui.bombs > 0) {
             ui.bombs--;
@@ -335,6 +338,8 @@ export class Player extends Physics.Arcade.Sprite {
             const oy = (Math.random() - 0.5)*64;
             new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
         }
+        this.scene.sound.add('playerHitHurt').play();
+
         this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
@@ -350,7 +355,12 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     powerup() {
+        const oldLevel = Math.floor(this.power / 10);
         this.power++;
+        const newPower = Math.floor(this.power / 10);
+        if(newPower !== oldLevel){
+            this.scene.sound.add('powerUp').play();
+        }
         const overflow = this.power - 50;
         if (overflow > 0) {
             this.power = 50;
@@ -362,8 +372,16 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     onPickup(other: Pickup) {
+        if(other.pickupType === "bossStar"){
+            if((++this.bossStarsPickedUp & 1) == 0){
+                this.scene.sound.add('pickupCoin').play();
+            }
+        } else {
+            this.scene.sound.add('pickupCoin').play();
+        }
         switch (other.pickupType) {
             default:
+            case 'bossStar':
             case 'star':
                 this.scene.scene.get('UIScene').events.emit('incScore', 5);
                 break;

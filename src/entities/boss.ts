@@ -26,6 +26,7 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     wave(wc: number) {
+        this.scene.sound.add('bossWave').play();
         for(let i=0;i<27;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
@@ -37,6 +38,7 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     reverseWave(wc: number) {
+        this.scene.sound.add('bossWave').play();
         for(let i=0;i<27;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
@@ -48,6 +50,7 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     teaWave(wc: number) {
+        this.scene.sound.add('bossWave').play();
         for(let i=0;i<26;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossTeaProjectile');
@@ -59,6 +62,7 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     shoot() {
+        this.scene.sound.add('bossShoot').play();
         const gs = this.scene as GameScene;
         const bullet = new EnemyBullet(gs, this.x, this.y);
         const dx = gs.player!.x - this.x;
@@ -74,12 +78,14 @@ export class Boss extends Physics.Arcade.Sprite {
 
     onCollide(other: Phaser.GameObjects.Sprite) {
         new HitFX(this.scene as GameScene, other.x, other.y);
+        this.scene.sound.add('bossHitHurt').play();
         if (this.health-- <= 0) {
             for(let i=0;i<16;i++){
                 const ox = (Math.random() - 0.5)*64;
                 const oy = (Math.random() - 0.5)*64;
                 new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
             }
+            this.scene.sound.add('bossExplosion').play();
             if(this.spellCards > 0){
                 this.spellCards--;
                 this.health = this.maxHealth;

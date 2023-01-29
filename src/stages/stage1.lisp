@@ -260,7 +260,6 @@
           (boss-big-frost)
           (wait-no-boss))
 
-
 (wait 3000)
 ;; WAVE ONE
 (fairy-top-easy 800 900 0.0 6000)

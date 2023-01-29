@@ -9,7 +9,7 @@ export class Fairy extends Physics.Arcade.Sprite {
     health = 3;
 
     constructor(scene: GameScene, x: number, y: number) {
-        super(scene, x, y, 'packed', 'fairy');
+        super(scene, x, y, 'packed', 'fairy_0');
         this.setName(`Fairy ${count++}`);
         this.play('fairy_animated');
         scene.add.existing(this);
@@ -20,6 +20,7 @@ export class Fairy extends Physics.Arcade.Sprite {
     }
 
     shoot() {
+        this.scene.sound.add('bossShoot').play();
         const gs = this.scene as GameScene;
         const bullet = new EnemyBullet(gs, this.x, this.y);
         const dx = gs.player!.x - this.x;
@@ -83,6 +84,7 @@ export class Fairy extends Physics.Arcade.Sprite {
             }
             const gs = this.scene as GameScene;
             new HitFX(gs, this.x, this.y);
+            this.scene.sound.add('explosion').play();
             this.destroy();
         }
     }
