@@ -14,7 +14,7 @@ export class EnemyBullet extends Physics.Arcade.Image {
     }
 
     preUpdate(time: number, delta: number) {
-        if (this.x <= this.width / 2 || this.y < 0 || this.y > 1280) {
+        if (this.x <= this.width / 2 || this.y < 0 || this.y > 1280 || this.x > 1300) {
             this.destroy();
         }
     }

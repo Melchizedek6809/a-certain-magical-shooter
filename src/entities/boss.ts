@@ -36,11 +36,22 @@ export class Boss extends Physics.Arcade.Sprite {
         }
     }
 
+    reverseWave(wc: number) {
+        for(let i=0;i<24;i++){
+            const gs = this.scene as GameScene;
+            const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
+            const t = i/24 * Math.PI*2 - (wc/256)*Math.PI*2 ;
+            const vx = Math.cos(t) * 400;
+            const vy = Math.sin(t) * 400;
+            bullet.setVelocity(vx, vy);
+        }
+    }
+
     teaWave(wc: number) {
-        for(let i=0;i<32;i++){
+        for(let i=0;i<24;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossTeaProjectile');
-            const t = i/32 * Math.PI + Math.PI/2  + (wc/256)*Math.PI/32;
+            const t = i/24 * Math.PI + Math.PI/2  + (wc/256)*Math.PI/32;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             bullet.setVelocity(vx, vy);
@@ -69,7 +80,7 @@ export class Boss extends Physics.Arcade.Sprite {
                 const oy = (Math.random() - 0.5)*64;
                 new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
             }
-            if(this.spellCards > 0){
+            if(this.spellCards > 1){
                 this.spellCards--;
                 this.health = this.maxHealth;
                 this.spellCardOver = true;

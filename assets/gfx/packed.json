@@ -262,7 +262,7 @@
 					}
 				},
 				{
-					"filename": "powerup",
+					"filename": "bossStar",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -283,7 +283,28 @@
 					}
 				},
 				{
-					"filename": "projectile",
+					"filename": "star",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 37,
+						"y": 69,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "powerup",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -304,7 +325,7 @@
 					}
 				},
 				{
-					"filename": "star",
+					"filename": "projectile",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -498,6 +519,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ff962caf8c1145e967b832c86fdd9651:398f7a8103b6bab8bf1e37d924bb4e5f:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:359302240e13d6f1ef4b43883fe9a9ad:81177cc439e0f9128544f9d8079e6702:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }

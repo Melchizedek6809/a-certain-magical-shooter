@@ -1,5 +1,7 @@
 import { Boss } from '../../entities/boss';
+import { EnemyBullet } from '../../entities/enemyBullet';
 import { Fairy } from '../../entities/fairy';
+import { Pickup } from '../../entities/pickup';
 import { GameScene } from './gameScene';
 
 export class StageFiber {
@@ -88,7 +90,9 @@ export class StageFiber {
                 if(this.shotType === "wave"){
                     this.fairy.wave(this.shotCount);
                 } else if(this.shotType === "tea"){
-                        this.fairy.teaWave(this.shotCount);
+                    this.fairy.teaWave(this.shotCount);
+                } else if(this.shotType === "reverse-wave"){
+                    this.fairy.reverseWave(this.shotCount);
                 } else {
                     this.fairy.shoot();
                 }
@@ -164,7 +168,7 @@ export class StageFiber {
             this.fairy = new Fairy(this.evaluator.scene, x, y);
             this.move(x, y, -1, -1);
         } else if(name === "boss"){
-            this.fairy = new Boss(this.evaluator.scene, x, y, 5);
+            this.fairy = new Boss(this.evaluator.scene, x, y, cards);
             this.move(x, y, -1, -1);
         }
     }
@@ -303,17 +307,36 @@ export class StageEvaluator {
         );
 
         fiber.bindings.set(
+            'win-game',
+            ((args: any, fiber: StageFiber) => {
+                const gs = this.scene;
+                if (!gs.gameOverActive) {
+                    gs.scene.run('GameWonScene');
+                    gs.gameOverActive = true;
+                }
+            }).bind(this)
+        );
+
+        fiber.bindings.set(
             'stop-spell',
             ((args: any, fiber: StageFiber) => {
                 for(const cf of this.fibers){
                     if(cf === fiber){continue;}
                     if(!cf.doInterpolate){continue;}
                     if(cf.fairy && cf.fairy instanceof Boss){
-                        fiber.moveTo[0] = fiber.moveFrom[0] = fiber.fairy!.x;
-                        fiber.moveTo[1] = fiber.moveFrom[1] = fiber.fairy!.y;
                         fiber.moveControl[0] = fiber.moveControl[1] = -1;
                         cf.destroyed = true;
+                        if(fiber.fairy?.scene){
+                            fiber.moveTo[0] = fiber.moveFrom[0] = fiber.fairy!.x;
+                            fiber.moveTo[1] = fiber.moveFrom[1] = fiber.fairy!.y;
+                        }
                     }
+                }
+
+                for(const bul of this.scene.enemyProjectiles?.children.entries.slice() || []){
+                    const eb = bul as EnemyBullet;
+                    new Pickup(this.scene, eb.x, eb.y, 'bossStar');
+                    bul.destroy();
                 }
             }).bind(this)
         );

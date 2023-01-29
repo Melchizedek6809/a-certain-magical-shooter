@@ -30,6 +30,7 @@ export class Fairy extends Physics.Arcade.Sprite {
 
     wave() {}
     teaWave() {}
+    reverseWave() {}
 
     onCollide(other: Phaser.GameObjects.Sprite) {
         if (this.health-- <= 0) {

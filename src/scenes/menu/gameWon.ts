@@ -26,6 +26,7 @@ export class GameWonScene extends Scene {
         $dom.innerHTML = `<h1>Congratulations</h1>
         <h2>You won!</h2>
         <h2>Your Score: ${score}</h2>
+        <h2>Thank you for playing my game, I hope you had fun :)</h2>
         <br/><br/>
         <button class="green-button">Start over</button>`;
         this.add.dom(this.scale.width / 2, this.scale.height / 2, $dom);

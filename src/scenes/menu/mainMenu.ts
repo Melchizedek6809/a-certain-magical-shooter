@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 
-const introHTML = `<h1>Little magic shooter</h1>
+const introHTML = `<h1>A certain magical shooter</h1>
 <br/>
 <p>This is an independent and free fan-game based on the Touhou games originally created by ZUN/Team Shanghai Alice.</p>
 <p>It was developed for the 10th Touhou Fan Game Jam</p>

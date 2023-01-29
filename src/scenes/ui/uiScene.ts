@@ -68,9 +68,9 @@ export class UIScene extends Scene {
             }
         });
         this.events.on('incScore', (δ: number) => {
-            const oldScore = Math.floor(that.score / 20000);
+            const oldScore = Math.floor(that.score / 10000);
             that.score += δ;
-            const newScore = Math.floor(that.score / 20000);
+            const newScore = Math.floor(that.score / 10000);
             if (newScore > oldScore) {
                 that.lives++;
             }
