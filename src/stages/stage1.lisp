@@ -353,9 +353,11 @@
 ;; END WAVE 2
 
 ;;; --------------------------- FIRST MID BOSS!!! ------------------------------
+(advance-bgm)
 (boss-first-appearance)
 (wait 1000)
 (wait-no-boss)
+(advance-bgm)
 (wait 5000)
 
 
@@ -485,7 +487,7 @@
 
 ;; END WAVE 4
 
-
+(advance-bgm)
 (boss-second-appearance)
 (wait-no-boss)
 (stop-spell)

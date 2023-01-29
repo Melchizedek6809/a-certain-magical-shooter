@@ -112,6 +112,13 @@ export class LoadingScreenScene extends Scene {
         this.load.audio('bossHitHurt', 'sfx/bossHitHurt.wav');
         this.load.audio('playerHitHurt', 'sfx/playerHitHurt.wav');
         this.load.audio('laserBeam', 'sfx/laserBeam.wav');
+
+        /*
+        this.load.audio('wave_one', 'bgm/wave_one.mp3');
+        this.load.audio('boss_first_encounter', 'bgm/boss_first_encounter.mp3');
+        this.load.audio('wave_two', 'bgm/wave_two.mp3');
+        this.load.audio('boss_second_encounter', 'bgm/boss_second_encounter.mp3');
+        */
     }
 
     create() {

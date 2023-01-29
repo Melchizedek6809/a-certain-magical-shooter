@@ -361,6 +361,13 @@ export class StageEvaluator {
         );
 
         fiber.bindings.set(
+            'advance-bgm',
+            ((args: any, fiber: StageFiber) => {
+                this.scene.advanceBgm();
+            }).bind(this)
+        );
+
+        fiber.bindings.set(
             'move',
             ((args: any, fiber: StageFiber) => {
                 const x = fiber.eval(args[0]);

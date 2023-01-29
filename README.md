@@ -1,4 +1,6 @@
-# Touhou Game Jam 10
+# A certain magical shooter
+
+![Have a screenshot](./screenshot.png)
 
 I made a simple Shmup, trying to get better at Art/Sound/Music, hopefully you'll enjoy the results.
 
