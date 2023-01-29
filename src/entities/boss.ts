@@ -7,12 +7,12 @@ import { HitFX } from './hitFx';
 let count = 0;
 
 export class Boss extends Physics.Arcade.Sprite {
-    health = 400;
-    maxHealth = 400;
+    health = 600;
+    maxHealth = 600;
     spellCardOver = false;
     spellCards:number;
 
-    constructor(scene: GameScene, x: number, y: number, spellCards = 5) {
+    constructor(scene: GameScene, x: number, y: number, spellCards = 4) {
         super(scene, x, y, 'packed', 'boss_0');
         this.play('boss_animated');
         this.setName(`Cirno ${count++}`);
@@ -26,10 +26,10 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     wave(wc: number) {
-        for(let i=0;i<24;i++){
+        for(let i=0;i<27;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
-            const t = i/24 * Math.PI*2 + (wc/256)*Math.PI*2 ;
+            const t = i/27 * Math.PI*2 + (wc/256)*Math.PI*2 ;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             bullet.setVelocity(vx, vy);
@@ -37,10 +37,10 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     reverseWave(wc: number) {
-        for(let i=0;i<24;i++){
+        for(let i=0;i<27;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossProjectile');
-            const t = i/24 * Math.PI*2 - (wc/256)*Math.PI*2 ;
+            const t = i/27 * Math.PI*2 - (wc/256)*Math.PI*2 ;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             bullet.setVelocity(vx, vy);
@@ -48,10 +48,10 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     teaWave(wc: number) {
-        for(let i=0;i<24;i++){
+        for(let i=0;i<26;i++){
             const gs = this.scene as GameScene;
             const bullet = new EnemyBullet(gs, this.x, this.y, 'bossTeaProjectile');
-            const t = i/24 * Math.PI + Math.PI/2  + (wc/256)*Math.PI/32;
+            const t = i/26 * Math.PI + Math.PI/2  + (wc/256)*Math.PI/32;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             bullet.setVelocity(vx, vy);
@@ -80,7 +80,7 @@ export class Boss extends Physics.Arcade.Sprite {
                 const oy = (Math.random() - 0.5)*64;
                 new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
             }
-            if(this.spellCards > 1){
+            if(this.spellCards > 0){
                 this.spellCards--;
                 this.health = this.maxHealth;
                 this.spellCardOver = true;

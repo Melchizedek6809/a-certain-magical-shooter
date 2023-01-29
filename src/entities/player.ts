@@ -157,22 +157,22 @@ export class Player extends Physics.Arcade.Sprite {
                     this.scene as GameScene,
                     this.x + 60,
                     this.y - (12 + 12 * f)
-                ).setVelocityY(f * -40);
+                ).setVelocityY(f * -30);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 64,
                     this.y - (6 + 6 * f)
-                ).setVelocityY(f * -20);
+                ).setVelocityY(f * -5);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 64,
                     this.y + (6 + 6 * f)
-                ).setVelocityY(f * 20);
+                ).setVelocityY(f * 5);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 60,
                     this.y + (12 + 12 * f)
-                ).setVelocityY(f * 40);
+                ).setVelocityY(f * 30);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 48,

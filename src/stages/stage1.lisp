@@ -81,25 +81,25 @@
           (move 1100 160 1300 260)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 700)
+          (wait-here 1300)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 260)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 700)
+          (wait-here 1300)
           (shoot-every 0.0 wave)
 
           (move 1100 560 1300 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 700)
+          (wait-here 1300)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 700)
+          (wait-here 1300)
           (shoot-every 0.0 wave))
 
 
@@ -131,48 +131,40 @@
           (move 1100 160 1300 260)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 400)
+          (wait-here 500)
           (shoot-every 42.0 reverse-wave)
-          (wait-here 300)
-          (shoot-every 42.0 wave)
-          (wait-here 150)
+          (wait-here 500)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 260)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 400)
+          (wait-here 500)
           (shoot-every 42.0 reverse-wave)
-          (wait-here 300)
-          (shoot-every 42.0 wave)
-          (wait-here 150)
+          (wait-here 500)
           (shoot-every 0.0 wave)
 
           (move 1100 560 1300 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 400)
+          (wait-here 500)
           (shoot-every 42.0 reverse-wave)
-          (wait-here 300)
-          (shoot-every 42.0 wave)
-          (wait-here 150)
+          (wait-here 500)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 400)
+          (wait-here 500)
           (shoot-every 42.0 reverse-wave)
-          (wait-here 300)
-          (shoot-every 42.0 wave)
-          (wait-here 150)
+          (wait-here 500)
           (shoot-every 0.0 wave))
 
 
 (deffiber boss-big-frost ()
           (begin-spell-card)
 
-          (shoot-every 500.0 tea)
+          (shoot-every 400.0 tea)
           (move 1050 560 1200 560)
           (wait 2100)
           (wait-here 700)
@@ -192,17 +184,17 @@
 (deffiber boss-round-glacier ()
           (begin-spell-card)
 
-          (shoot-every 120.0 wave)
+          (shoot-every 110.0 wave)
           (move 1050 560 1200 560)
           (wait 1600)
           (wait-here 500)
 
-          (shoot-every 80.0 reverse-wave)
+          (shoot-every 70.0 reverse-wave)
           (move 1050 160 1200 360)
           (wait 1600)
           (wait-here 500)
 
-          (shoot-every 200.0 wave)
+          (shoot-every 180.0 wave)
           (move 1200 360 1200 160)
           (wait 1600)
           (wait-here 500))
@@ -210,7 +202,7 @@
 
 
 (deffiber boss-first-appearance ()
-          (spawn boss 1400 500 5)
+          (spawn boss 1400 500 4)
           (move 1100 360 1000 540)
           (wait 1000)
           (interpolate 0)
@@ -239,7 +231,7 @@
 
 
 (deffiber boss-second-appearance ()
-          (spawn boss 1400 500 3)
+          (spawn boss 1400 500 2)
           (move 1100 360 1000 540)
           (wait 1000)
           (interpolate 0)
@@ -255,7 +247,7 @@
           (wait 400)
           (interpolate 0)
 
-          (boss-big-frost)
+          (boss-round-glacier)
           (wait-spell-end)
           (stop-spell)
 
@@ -265,7 +257,7 @@
           (wait 400)
           (interpolate 0)
 
-          (boss-round-glacier)
+          (boss-big-frost)
           (wait-no-boss))
 
 
@@ -445,7 +437,7 @@
 
 
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 500))
                 (fairy-top-tough (add 600 (mul iter 20)) 400)
                 (wait 250)
@@ -453,7 +445,7 @@
 (wait 4000)
 (wait 3000)
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 500))
                 (fairy-swing-top (add 800 (mul iter 20)) 400 200 200)
                 (wait 250)
@@ -463,20 +455,20 @@
 
 
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 100))
                 (fairy-top-tough (add 700 (mul iter 40)) 450)))
 (wait 3000)
 (wait 3000)
 
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 100))
                 (fairy-bot-tough (add 700 (mul iter 40)) 450)))
 (wait 3000)
 (wait 3000)
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 400))
                 (fairy-top-tough (add 700 (mul iter 40)) 450)
                 (wait 200)
@@ -484,7 +476,7 @@
 (wait 4000)
 (wait 2000)
 
-(dotimes (iter 10)
+(dotimes (iter 8)
          (fiber (wait (mul iter 100))
                 (fairy-top-tough (add 800 (mul iter 40)) 450)
                 (wait 50)
@@ -493,6 +485,7 @@
 (wait 3000)
 
 ;; END WAVE 4
+
 
 (boss-second-appearance)
 (wait-no-boss)

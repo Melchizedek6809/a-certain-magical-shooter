@@ -347,7 +347,7 @@ export class StageEvaluator {
                 const n = fiber.eval(args[0]);
                 const x = fiber.eval(args[1]);
                 const y = fiber.eval(args[2]);
-                const cards = fiber.eval(args[3]) || 5;
+                const cards = fiber.eval(args[3]) || 4;
                 if (
                     typeof n !== 'string' ||
                     typeof x !== 'number' ||
