@@ -15,9 +15,9 @@ export class HitFX extends GameObjects.Image {
         if (this.ttl < 0) {
             this.destroy();
         } else {
-            const t = 1 - (this.ttl / this.initTtl);
-            this.setScale(1+t*2, 1+t*2);
-            this.setAlpha(1-t);
+            const t = 1 - this.ttl / this.initTtl;
+            this.setScale(1 + t * 2, 1 + t * 2);
+            this.setAlpha(1 - t);
         }
     }
 }

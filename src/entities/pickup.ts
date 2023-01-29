@@ -2,7 +2,13 @@ import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 
 let count = 0;
-export type PickupType = 'star' | 'powerup' | 'bomb' | 'bigstar' | 'life' | 'bossStar';
+export type PickupType =
+    | 'star'
+    | 'powerup'
+    | 'bomb'
+    | 'bigstar'
+    | 'life'
+    | 'bossStar';
 
 export class Pickup extends Physics.Arcade.Image {
     pickupType: PickupType;
@@ -27,7 +33,8 @@ export class Pickup extends Physics.Arcade.Image {
         const dx = this.x - gs.player!.x;
         const dy = this.y - gs.player!.y;
         const dd = dx * dx + dy * dy;
-        const magnetDD = this.pickupType === "bossStar" ? 1024*1024 : gs.player!.magnetDD;
+        const magnetDD =
+            this.pickupType === 'bossStar' ? 1024 * 1024 : gs.player!.magnetDD;
         if (dd < magnetDD) {
             const v = new Phaser.Math.Vector2(dx, dy).normalize();
             const d = 1536 - Math.sqrt(dd);

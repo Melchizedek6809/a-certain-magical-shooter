@@ -19,7 +19,7 @@ export class StageFiber {
     moveStart = 0;
     shootEveryT = 0;
     nextShot = 0;
-    shotType = "projectile";
+    shotType = 'projectile';
     doInterpolate = true;
     loopFiber = false;
     shotCount = 0;
@@ -32,13 +32,13 @@ export class StageFiber {
         code: any[],
         bindings: Map<string, any>
     ) {
-        if(parent instanceof StageEvaluator){
+        if (parent instanceof StageEvaluator) {
             this.evaluator = parent;
         } else {
             this.evaluator = parent.evaluator;
             this.fairy = parent.fairy;
             parent.doInterpolate = false;
-            for(let i=0;i<2;i++){
+            for (let i = 0; i < 2; i++) {
                 this.moveFrom[i] = parent.moveFrom[i];
                 this.moveTo[i] = parent.moveTo[i];
                 this.moveControl[i] = parent.moveControl[i];
@@ -50,10 +50,10 @@ export class StageFiber {
         this.evaluator.fibers.push(this);
     }
 
-    isBlocked():boolean {
-        if(this.blockedOnSpellCard){
+    isBlocked(): boolean {
+        if (this.blockedOnSpellCard) {
             const boss = this.fairy as Boss;
-            if(boss.spellCardOver){
+            if (boss.spellCardOver) {
                 boss.spellCardOver = false;
                 this.blockedOnSpellCard = false;
                 return false;
@@ -61,8 +61,10 @@ export class StageFiber {
                 return true;
             }
         }
-        return (this.blockedUntil >= this.evaluator.ticks)
-            || (this.blockedOnBoss && Boolean(this.evaluator.scene.boss));
+        return (
+            this.blockedUntil >= this.evaluator.ticks ||
+            (this.blockedOnBoss && Boolean(this.evaluator.scene.boss))
+        );
     }
 
     interpolate() {
@@ -77,21 +79,29 @@ export class StageFiber {
         }
         const dur = this.blockedUntil - this.moveStart;
         const t = (ticks - this.moveStart) / dur;
-        if((this.moveControl[0] >= 0) && (this.moveControl[1] >= 0)){
-            this.fairy.x = (1-t)*(1-t) * this.moveFrom[0] + 2*(1-t)*t*this.moveControl[0] + t*t*this.moveTo[0];
-            this.fairy.y = (1-t)*(1-t) * this.moveFrom[1] + 2*(1-t)*t*this.moveControl[1] + t*t*this.moveTo[1];
+        if (this.moveControl[0] >= 0 && this.moveControl[1] >= 0) {
+            this.fairy.x =
+                (1 - t) * (1 - t) * this.moveFrom[0] +
+                2 * (1 - t) * t * this.moveControl[0] +
+                t * t * this.moveTo[0];
+            this.fairy.y =
+                (1 - t) * (1 - t) * this.moveFrom[1] +
+                2 * (1 - t) * t * this.moveControl[1] +
+                t * t * this.moveTo[1];
         } else {
-            this.fairy.x = this.moveFrom[0] + (this.moveTo[0] - this.moveFrom[0]) * t;
-            this.fairy.y = this.moveFrom[1] + (this.moveTo[1] - this.moveFrom[1]) * t;
+            this.fairy.x =
+                this.moveFrom[0] + (this.moveTo[0] - this.moveFrom[0]) * t;
+            this.fairy.y =
+                this.moveFrom[1] + (this.moveTo[1] - this.moveFrom[1]) * t;
         }
         if (this.shootEveryT) {
             if (ticks > this.nextShot) {
                 ++this.shotCount;
-                if(this.shotType === "wave"){
+                if (this.shotType === 'wave') {
                     this.fairy.wave(this.shotCount);
-                } else if(this.shotType === "tea"){
+                } else if (this.shotType === 'tea') {
                     this.fairy.teaWave(this.shotCount);
-                } else if(this.shotType === "reverse-wave"){
+                } else if (this.shotType === 'reverse-wave') {
                     this.fairy.reverseWave(this.shotCount);
                 } else {
                     this.fairy.shoot();
@@ -99,11 +109,10 @@ export class StageFiber {
                 this.nextShot += this.shootEveryT;
             }
         }
-
     }
 
     run() {
-        if(this.destroyed){
+        if (this.destroyed) {
             return false;
         }
         if (this.fairy && !this.fairy.scene) {
@@ -111,14 +120,14 @@ export class StageFiber {
         }
         this.interpolate();
         while (true) {
-            if(this.isBlocked()){
+            if (this.isBlocked()) {
                 return true;
             }
             const v = this.code[this.ip++];
             if (v) {
                 this.eval(v);
             } else {
-                if(this.loopFiber){
+                if (this.loopFiber) {
                     this.ip = 0;
                 } else {
                     this.despawn();
@@ -132,7 +141,7 @@ export class StageFiber {
         return this.evaluator.eval(val, this);
     }
 
-    move(x: number, y: number, cx:number, cy:number) {
+    move(x: number, y: number, cx: number, cy: number) {
         const t = this.moveFrom;
         this.moveFrom = this.moveTo;
         this.moveTo = t;
@@ -149,7 +158,7 @@ export class StageFiber {
 
     waitHere(until: number) {
         this.blockedUntil = this.evaluator.ticks + until;
-        for(let i=0;i<2;i++){
+        for (let i = 0; i < 2; i++) {
             this.moveFrom[i] = this.moveTo[i];
             this.moveControl[i] = this.moveTo[i];
         }
@@ -164,10 +173,10 @@ export class StageFiber {
     }
 
     spawn(name: string, x: number, y: number, cards: number) {
-        if(name === "fairy"){
+        if (name === 'fairy') {
             this.fairy = new Fairy(this.evaluator.scene, x, y);
             this.move(x, y, -1, -1);
-        } else if(name === "boss"){
+        } else if (name === 'boss') {
             this.fairy = new Boss(this.evaluator.scene, x, y, cards);
             this.move(x, y, -1, -1);
         }
@@ -175,7 +184,7 @@ export class StageFiber {
 
     despawn() {
         if (this.fairy) {
-            if(this.fairy instanceof Boss){
+            if (this.fairy instanceof Boss) {
                 const gs = this.fairy.scene as GameScene;
                 gs.boss = undefined;
                 this.fairy.destroy();
@@ -320,20 +329,27 @@ export class StageEvaluator {
         fiber.bindings.set(
             'stop-spell',
             ((args: any, fiber: StageFiber) => {
-                for(const cf of this.fibers){
-                    if(cf === fiber){continue;}
-                    if(!cf.doInterpolate){continue;}
-                    if(cf.fairy && cf.fairy instanceof Boss){
+                for (const cf of this.fibers) {
+                    if (cf === fiber) {
+                        continue;
+                    }
+                    if (!cf.doInterpolate) {
+                        continue;
+                    }
+                    if (cf.fairy && cf.fairy instanceof Boss) {
                         fiber.moveControl[0] = fiber.moveControl[1] = -1;
                         cf.destroyed = true;
-                        if(fiber.fairy?.scene){
-                            fiber.moveTo[0] = fiber.moveFrom[0] = fiber.fairy!.x;
-                            fiber.moveTo[1] = fiber.moveFrom[1] = fiber.fairy!.y;
+                        if (fiber.fairy?.scene) {
+                            fiber.moveTo[0] = fiber.moveFrom[0] =
+                                fiber.fairy!.x;
+                            fiber.moveTo[1] = fiber.moveFrom[1] =
+                                fiber.fairy!.y;
                         }
                     }
                 }
 
-                for(const bul of this.scene.enemyProjectiles?.children.entries.slice() || []){
+                for (const bul of this.scene.enemyProjectiles?.children.entries.slice() ||
+                    []) {
                     const eb = bul as EnemyBullet;
                     new Pickup(this.scene, eb.x, eb.y, 'bossStar');
                     bul.destroy();
@@ -386,16 +402,16 @@ export class StageEvaluator {
             'shoot-every',
             ((args: any, fiber: StageFiber) => {
                 const x = fiber.eval(args[0]);
-                const t = fiber.eval(args[1]) || "projectile";
+                const t = fiber.eval(args[1]) || 'projectile';
                 if (typeof x !== 'number') {
-                    console.error(`Invalid args: (shoot-every ${args.join(' ')})`);
+                    console.error(
+                        `Invalid args: (shoot-every ${args.join(' ')})`
+                    );
                 } else {
                     fiber.shootEvery(x, t);
                 }
             }).bind(this)
         );
-
-
 
         fiber.bindings.set(
             'add',
@@ -464,13 +480,13 @@ export class StageEvaluator {
                 const count = fiber.eval(args[0][1]);
                 let i = 0;
                 const code = args.slice(1);
-                if ((typeof sym !== 'string') || (typeof count !== 'number')){
+                if (typeof sym !== 'string' || typeof count !== 'number') {
                     console.error(`Invalid args: (def ${args.join(' ')})`);
                 } else {
                     let ret = undefined;
-                    while(i < count){
+                    while (i < count) {
                         fiber.bindings.set(sym, i++);
-                        for(const e of code){
+                        for (const e of code) {
                             ret = fiber.eval(e);
                         }
                     }
@@ -501,7 +517,7 @@ export class StageEvaluator {
                     console.error(`Invalid λ: (lambda ${args.join(' ')})`);
                 }
                 return ((args: any[], fiber: StageFiber) => {
-                    let i=0;
+                    let i = 0;
                     argnames.map((a) =>
                         fiber.bindings.set(a, fiber.eval(args[i++]))
                     );
@@ -526,11 +542,7 @@ export class StageEvaluator {
                     const bindings = new Map(pBindings);
                     let i = 0;
                     argnames.map((a) => bindings.set(a, n.eval(args[i++])));
-                    new StageFiber(
-                        n,
-                        code.slice(),
-                        bindings
-                    ).run();
+                    new StageFiber(n, code.slice(), bindings).run();
                 }).bind(this);
                 return fiber.bindings.set(n, λ);
             }).bind(this)

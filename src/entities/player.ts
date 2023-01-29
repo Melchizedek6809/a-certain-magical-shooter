@@ -32,22 +32,22 @@ export class Player extends Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
-        this.setOrigin(0.6,0.5);
-        this.body.setSize(6, 6, true).setOffset(75,61);
+        this.setOrigin(0.6, 0.5);
+        this.body.setSize(6, 6, true).setOffset(75, 61);
 
         this.bombBeam = scene.add
             .image(x, y, 'packed', 'bombbeam')
             .setOrigin(0, 0.5)
             .setAlpha(0)
-            .setScale(2,2)
+            .setScale(2, 2)
             .setDepth(-1);
         this.bombBeamRepeater = scene.add
-            .tileSprite(x,y,0,0,'packed', 'bombbeam_repeater')
+            .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
             .setAlpha(0)
             .setOrigin(0, 0.5)
             .setDepth(-1)
-            .setScale(2,2)
-            .setDisplaySize(1024,128);
+            .setScale(2, 2)
+            .setDisplaySize(1024, 128);
 
         this.beamCollider = scene.physics.add
             .image(x, y, 'packed', 'void')
@@ -259,12 +259,14 @@ export class Player extends Physics.Arcade.Sprite {
             this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.01);
             this.beamCollider.setScale(0, 0);
         }
-        if(this.bombBeam.alpha <= 0){
+        if (this.bombBeam.alpha <= 0) {
             this.bombBeam.setVisible(false);
             this.bombBeamRepeater.setVisible(false);
         } else {
             this.bombBeam.setVisible(true);
-            this.bombBeamRepeater.setAlpha(this.bombBeam.alpha).setVisible(true);
+            this.bombBeamRepeater
+                .setAlpha(this.bombBeam.alpha)
+                .setVisible(true);
         }
 
         if (focus) {
@@ -333,9 +335,9 @@ export class Player extends Physics.Arcade.Sprite {
             return;
         }
 
-        for(let i=0;i<8;i++){
-            const ox = (Math.random() - 0.5)*64;
-            const oy = (Math.random() - 0.5)*64;
+        for (let i = 0; i < 8; i++) {
+            const ox = (Math.random() - 0.5) * 64;
+            const oy = (Math.random() - 0.5) * 64;
             new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
         }
         this.scene.sound.add('playerHitHurt').play();
@@ -344,7 +346,7 @@ export class Player extends Physics.Arcade.Sprite {
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
             ui.bombs = 3;
-            this.power = Math.max(this.power-5);
+            this.power = Math.max(this.power - 5);
             this.scene.scene.get('UIScene').events.emit('setPower', this.power);
             this.invincibleUntil = this.scene.time.now + 1000;
             this.scene.scene.get('UIScene').events.emit('refresh');
@@ -358,7 +360,7 @@ export class Player extends Physics.Arcade.Sprite {
         const oldLevel = Math.floor(this.power / 10);
         this.power++;
         const newPower = Math.floor(this.power / 10);
-        if(newPower !== oldLevel){
+        if (newPower !== oldLevel) {
             this.scene.sound.add('powerUp').play();
         }
         const overflow = this.power - 50;
@@ -372,8 +374,8 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     onPickup(other: Pickup) {
-        if(other.pickupType === "bossStar"){
-            if((++this.bossStarsPickedUp & 1) == 0){
+        if (other.pickupType === 'bossStar') {
+            if ((++this.bossStarsPickedUp & 1) == 0) {
                 this.scene.sound.add('pickupCoin').play();
             }
         } else {

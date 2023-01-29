@@ -28,10 +28,10 @@ export type KeyMap = {
 };
 
 export type SnowFlakeData = {
-    velX: number,
-    velY: number,
-    velZ: number,
-}
+    velX: number;
+    velY: number;
+    velZ: number;
+};
 
 export class GameScene extends Scene {
     keymap?: KeyMap;
@@ -57,7 +57,7 @@ export class GameScene extends Scene {
     bossFade = 0;
 
     bgm?: Phaser.Sound.BaseSound[];
-    bgmIndex : number;
+    bgmIndex: number;
 
     stageEvaluator?: StageEvaluator;
 
@@ -96,10 +96,25 @@ export class GameScene extends Scene {
         this.bgm[this.bgmIndex].play();
         */
         this.bossFade = 0;
-        this.anims.create({key: 'fairy_animated', frames: animation_frames('fairy', 2), frameRate:6, repeat: -1});
-        this.anims.create({key: 'player_animated', frames: animation_frames('player', 2), frameRate:6, repeat: -1});
-        this.anims.create({key: 'boss_animated', frames: animation_frames('boss', 2), frameRate:6, repeat: -1});
-1
+        this.anims.create({
+            key: 'fairy_animated',
+            frames: animation_frames('fairy', 2),
+            frameRate: 6,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'player_animated',
+            frames: animation_frames('player', 2),
+            frameRate: 6,
+            repeat: -1,
+        });
+        this.anims.create({
+            key: 'boss_animated',
+            frames: animation_frames('boss', 2),
+            frameRate: 6,
+            repeat: -1,
+        });
+        1;
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
             'Up,Left,Right,Down,X,Z,Shift'
@@ -134,12 +149,26 @@ export class GameScene extends Scene {
             .setDisplaySize(1280 + 128, 720 + 128)
             .setOrigin(0, 0)
             .setDepth(-100);
-        this.topclouds = this.add.tileSprite(-64, -32, 0, 0, 'packed', 'topclouds');
+        this.topclouds = this.add.tileSprite(
+            -64,
+            -32,
+            0,
+            0,
+            'packed',
+            'topclouds'
+        );
         this.topclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
             .setDepth(2);
-        this.darkclouds = this.add.tileSprite(-64, -8, 0, 0, 'packed', 'darkclouds');
+        this.darkclouds = this.add.tileSprite(
+            -64,
+            -8,
+            0,
+            0,
+            'packed',
+            'darkclouds'
+        );
         this.darkclouds
             .setSize(1280 + 128, 64)
             .setOrigin(0, 0)
@@ -178,7 +207,7 @@ export class GameScene extends Scene {
             this.player.graceCollider,
             this.pickups,
             (a: any, b: any) => {
-                if(a instanceof Pickup){
+                if (a instanceof Pickup) {
                     that.player!.onCollide(a);
                     a.onCollide(that.player!);
                 } else {
@@ -189,36 +218,36 @@ export class GameScene extends Scene {
         );
 
         this.frontSnowFlakeData.length = 0;
-        this.frontSnowFlakes = this.add.blitter(-8,-8,'packed');
+        this.frontSnowFlakes = this.add.blitter(-8, -8, 'packed');
         this.frontSnowFlakes.setDepth(1);
 
         this.snowFlakeData.length = 0;
-        this.snowFlakes = this.add.blitter(-8,-8,'packed');
+        this.snowFlakes = this.add.blitter(-8, -8, 'packed');
         this.snowFlakes.setDepth(-1);
-        for(let i=0;i<192;i++){
+        for (let i = 0; i < 192; i++) {
             const x = Math.random() * this.renderer.width;
             const y = Math.random() * this.renderer.height;
-            const frame = `snowflake_${i&3}`;
+            const frame = `snowflake_${i & 3}`;
             console.log(frame);
-            this.snowFlakes.create(x,y,frame);
+            this.snowFlakes.create(x, y, frame);
             this.snowFlakeData.push({
                 velX: 0.2 + Math.random() * 1.1,
                 velY: 0.3 + Math.random() * 0.5,
                 velZ: 0.2 + Math.random() * 1.1,
-            })
+            });
         }
 
-        for(let i=0;i<96;i++){
+        for (let i = 0; i < 96; i++) {
             const x = Math.random() * this.renderer.width;
             const y = Math.random() * this.renderer.height;
-            const frame = `snowflake_${i&3}`;
+            const frame = `snowflake_${i & 3}`;
             console.log(frame);
-            this.frontSnowFlakes.create(x,y,frame);
+            this.frontSnowFlakes.create(x, y, frame);
             this.frontSnowFlakeData.push({
                 velX: 0.5 + Math.random() * 1.1,
                 velY: 0.7 + Math.random() * 0.5,
                 velZ: 0.5 + Math.random() * 1.1,
-            })
+            });
         }
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
@@ -229,22 +258,24 @@ export class GameScene extends Scene {
         const w = this.renderer.width + 16;
         const flakes = this.snowFlakes?.children.list;
         const frontFlakes = this.frontSnowFlakes?.children.list;
-        if(!flakes || !frontFlakes){return;}
+        if (!flakes || !frontFlakes) {
+            return;
+        }
 
-        for(let i=0;i<flakes.length;i++){
+        for (let i = 0; i < flakes.length; i++) {
             const flake = flakes[i];
             const data = this.snowFlakeData[i];
             flake.y = (flake.y + data.velY) % h;
-            flake.x = (w+(flake.x - data.velX - 3)) % w;
+            flake.x = (w + (flake.x - data.velX - 3)) % w;
             data.velX += data.velZ * 0.02;
             data.velZ -= data.velX * 0.02;
         }
 
-        for(let i=0;i<frontFlakes.length;i++){
+        for (let i = 0; i < frontFlakes.length; i++) {
             const flake = frontFlakes[i];
             const data = this.frontSnowFlakeData[i];
             flake.y = (flake.y + data.velY) % h;
-            flake.x = (w+(flake.x - data.velX - 3)) % w;
+            flake.x = (w + (flake.x - data.velX - 3)) % w;
             data.velX += data.velZ * 0.02;
             data.velZ -= data.velX * 0.02;
         }
@@ -253,20 +284,20 @@ export class GameScene extends Scene {
     update(time: number, delta: number) {
         this.updateSnow(delta);
         this.player?.update(time, delta);
-        if(this.boss){
-            if(!this.boss.scene){
+        if (this.boss) {
+            if (!this.boss.scene) {
                 this.boss = undefined;
             } else {
                 this.boss?.update(time, delta);
             }
-            this.bossFade = Math.min(1,this.bossFade + 0.015);
+            this.bossFade = Math.min(1, this.bossFade + 0.015);
         } else {
-            const ui = this.scene.get("UIScene") as UIScene;
-            ui.events.emit("setBossHealth",0,0);
-            this.bossFade = Math.max(0,this.bossFade - 0.002);
+            const ui = this.scene.get('UIScene') as UIScene;
+            ui.events.emit('setBossHealth', 0, 0);
+            this.bossFade = Math.max(0, this.bossFade - 0.002);
         }
-        const alpha = Math.min(1,1.0-this.bossFade);
-        const cloudAlpha = Math.min(1,1.0-this.bossFade*0.75);
+        const alpha = Math.min(1, 1.0 - this.bossFade);
+        const cloudAlpha = Math.min(1, 1.0 - this.bossFade * 0.75);
         this.skybg?.setAlpha(alpha);
         this.snowFlakes?.setAlpha(alpha);
         this.frontSnowFlakes?.setAlpha(alpha);
