@@ -27,6 +27,12 @@ export type KeyMap = {
     Shift: Phaser.Input.Keyboard.Key;
 };
 
+export type SnowFlakeData = {
+    velX: number,
+    velY: number,
+    velZ: number,
+}
+
 export class GameScene extends Scene {
     keymap?: KeyMap;
     gameOverActive: boolean;
@@ -41,6 +47,9 @@ export class GameScene extends Scene {
     playerProjectiles?: GameObjects.Group;
     enemyProjectiles?: GameObjects.Group;
     enemies?: GameObjects.Group;
+
+    snowFlakes?: GameObjects.Blitter;
+    snowFlakeData: SnowFlakeData[] = [];
     gameTicks = 0;
 
     stageEvaluator?: StageEvaluator;
@@ -151,10 +160,43 @@ export class GameScene extends Scene {
             }
         );
 
+        this.snowFlakeData.length = 0;
+        this.snowFlakes = this.add.blitter(-8,-8,'packed');
+        this.snowFlakes.setDepth(-1);
+        for(let i=0;i<256;i++){
+            const x = Math.random() * this.renderer.width;
+            const y = Math.random() * this.renderer.height;
+            const frame = `snowflake_${i&3}`;
+            console.log(frame);
+            this.snowFlakes.create(x,y,frame);
+            this.snowFlakeData.push({
+                velX: 0.4 + Math.random() * 0.9,
+                velY: 0.6 + Math.random() * 0.3,
+                velZ: 0.4 + Math.random() * 0.9,
+            })
+        }
+
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }
 
+    updateSnow(delta: number) {
+        const h = this.renderer.height + 16;
+        const w = this.renderer.width + 16;
+        const flakes = this.snowFlakes?.children.list;
+        if(!flakes){return;}
+
+        for(let i=0;i<flakes.length;i++){
+            const flake = flakes[i];
+            const data = this.snowFlakeData[i];
+            flake.y = (flake.y + data.velY) % h;
+            flake.x = (w+(flake.x - data.velX - 3)) % w;
+            data.velX += data.velZ * 0.02;
+            data.velZ -= data.velX * 0.02;
+        }
+    }
+
     update(time: number, delta: number) {
+        this.updateSnow(delta);
         this.player?.update(time, delta);
         if(this.boss){
             if(!this.boss.scene){

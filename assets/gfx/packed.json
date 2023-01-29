@@ -73,6 +73,27 @@
 					}
 				},
 				{
+					"filename": "snowflake",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 495,
+						"y": 2,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
 					"filename": "sky",
 					"rotated": false,
 					"trimmed": false,
@@ -87,10 +108,94 @@
 						"h": 128
 					},
 					"frame": {
-						"x": 495,
+						"x": 506,
 						"y": 2,
 						"w": 4,
 						"h": 128
+					}
+				},
+				{
+					"filename": "snowflake_0",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 495,
+						"y": 13,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "snowflake_1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 495,
+						"y": 24,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "snowflake_2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 495,
+						"y": 35,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "snowflake_3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 495,
+						"y": 46,
+						"w": 8,
+						"h": 8
 					}
 				},
 				{
@@ -108,8 +213,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 502,
-						"y": 2,
+						"x": 495,
+						"y": 57,
 						"w": 1,
 						"h": 64
 					}
@@ -129,8 +234,8 @@
 						"h": 1
 					},
 					"frame": {
-						"x": 506,
-						"y": 2,
+						"x": 499,
+						"y": 57,
 						"w": 1,
 						"h": 1
 					}
@@ -409,6 +514,27 @@
 					}
 				},
 				{
+					"filename": "bigstar",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 479,
+						"y": 124,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
 					"filename": "player_1",
 					"rotated": false,
 					"trimmed": true,
@@ -430,27 +556,6 @@
 					}
 				},
 				{
-					"filename": "bigstar",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 479,
-						"y": 133,
-						"w": 24,
-						"h": 24
-					}
-				},
-				{
 					"filename": "bomb",
 					"rotated": false,
 					"trimmed": false,
@@ -466,7 +571,7 @@
 					},
 					"frame": {
 						"x": 479,
-						"y": 160,
+						"y": 151,
 						"w": 24,
 						"h": 24
 					}
@@ -519,6 +624,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:56cb090d22478547c815d6b6dbe8d9e4:653b6cbf7b462448a77e3a34cfed6fe9:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:caa0cc212a930934c1358dbb1e3a731f:23ebec1b5e1f57f4a9cf00b50921c254:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }

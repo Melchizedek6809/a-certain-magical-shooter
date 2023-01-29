@@ -219,7 +219,44 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">assets/unpacked_gfx/boss.png</key>
+            <key type="filename">assets/unpacked_gfx/bossProjectile.png</key>
+            <key type="filename">assets/unpacked_gfx/bossTeaProjectile.png</key>
+            <key type="filename">assets/unpacked_gfx/hit.png</key>
+            <key type="filename">assets/unpacked_gfx/life.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9Paddings</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/unpacked_gfx/bossStar.png</key>
+            <key type="filename">assets/unpacked_gfx/powerup.png</key>
+            <key type="filename">assets/unpacked_gfx/projectile.png</key>
+            <key type="filename">assets/unpacked_gfx/star.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/unpacked_gfx/boss_0.png</key>
+            <key type="filename">assets/unpacked_gfx/boss_1.png</key>
             <key type="filename">assets/unpacked_gfx/player_0.png</key>
             <key type="filename">assets/unpacked_gfx/player_1.png</key>
             <struct type="IndividualSpriteSettings">
@@ -283,21 +320,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">assets/unpacked_gfx/life.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>8,8,16,16</rect>
-                <key>scale9Paddings</key>
-                <rect>8,8,16,16</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">assets/unpacked_gfx/playerProjectile.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -313,23 +335,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">assets/unpacked_gfx/powerup.png</key>
-            <key type="filename">assets/unpacked_gfx/projectile.png</key>
-            <key type="filename">assets/unpacked_gfx/star.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>4,4,8,8</rect>
-                <key>scale9Paddings</key>
-                <rect>4,4,8,8</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">assets/unpacked_gfx/sky.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -342,6 +347,25 @@
                 <rect>1,8,2,16</rect>
                 <key>scale9Paddings</key>
                 <rect>1,8,2,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/unpacked_gfx/snowflake.png</key>
+            <key type="filename">assets/unpacked_gfx/snowflake_0.png</key>
+            <key type="filename">assets/unpacked_gfx/snowflake_1.png</key>
+            <key type="filename">assets/unpacked_gfx/snowflake_2.png</key>
+            <key type="filename">assets/unpacked_gfx/snowflake_3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,4,4</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,4,4</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
