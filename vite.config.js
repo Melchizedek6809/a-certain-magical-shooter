@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '',
   build: {
-    sourcemap: true,
+    //sourcemap: true,
     assetsInlineLimit: 65536
   },
   publicDir: 'assets'
