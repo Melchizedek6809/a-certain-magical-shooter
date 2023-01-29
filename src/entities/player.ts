@@ -191,11 +191,11 @@ export class Player extends Physics.Arcade.Sprite {
         if (ui.bombs > 0) {
             ui.bombs--;
             this.dyingOn = 0;
-            this.bombingUntil = this.scene.time.now + 5000;
+            this.bombingUntil = this.scene.time.now + 3500;
             ui.events.emit('refresh');
             const gs = this.scene as GameScene;
             gs.cameras.main.shake(
-                5000,
+                3500,
                 0.008,
                 false,
                 (cam: Phaser.Cameras.Scene2D.Camera, progress: number) => {
