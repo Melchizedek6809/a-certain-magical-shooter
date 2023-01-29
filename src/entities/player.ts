@@ -189,10 +189,10 @@ export class Player extends Physics.Arcade.Sprite {
         if (this.isDead || this.bombingUntil >= this.scene.time.now) {
             return;
         }
-        this.scene.sound.add('laserBeam').play();
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (ui.bombs > 0) {
             ui.bombs--;
+            this.scene.sound.add('laserBeam').play();
             this.dyingOn = 0;
             this.bombingUntil = this.scene.time.now + 3500;
             ui.events.emit('refresh');
