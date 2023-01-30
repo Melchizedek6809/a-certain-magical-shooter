@@ -15,19 +15,19 @@
 					"trimmed": false,
 					"sourceSize": {
 						"w": 256,
-						"h": 63
+						"h": 64
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 256,
-						"h": 63
+						"h": 64
 					},
 					"frame": {
 						"x": 2,
 						"y": 2,
 						"w": 256,
-						"h": 63
+						"h": 64
 					}
 				},
 				{
@@ -256,30 +256,9 @@
 					},
 					"frame": {
 						"x": 2,
-						"y": 68,
+						"y": 69,
 						"w": 128,
 						"h": 64
-					}
-				},
-				{
-					"filename": "player_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 14,
-						"w": 119,
-						"h": 97
-					},
-					"frame": {
-						"x": 133,
-						"y": 68,
-						"w": 119,
-						"h": 97
 					}
 				},
 				{
@@ -297,10 +276,31 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 2,
-						"y": 135,
+						"x": 133,
+						"y": 69,
 						"w": 128,
 						"h": 63
+					}
+				},
+				{
+					"filename": "player_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 14,
+						"w": 119,
+						"h": 97
+					},
+					"frame": {
+						"x": 264,
+						"y": 69,
+						"w": 119,
+						"h": 97
 					}
 				},
 				{
@@ -318,136 +318,10 @@
 						"h": 95
 					},
 					"frame": {
-						"x": 255,
-						"y": 69,
+						"x": 386,
+						"y": 94,
 						"w": 119,
 						"h": 95
-					}
-				},
-				{
-					"filename": "bossProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 377,
-						"y": 69,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "boss_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 32,
-						"y": 22,
-						"w": 71,
-						"h": 90
-					},
-					"frame": {
-						"x": 412,
-						"y": 94,
-						"w": 71,
-						"h": 90
-					}
-				},
-				{
-					"filename": "bossSickleProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 377,
-						"y": 104,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "bossTeaProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 377,
-						"y": 139,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "bigstar",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 486,
-						"y": 94,
-						"w": 24,
-						"h": 24
-					}
-				},
-				{
-					"filename": "bomb",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 24,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 24,
-						"h": 24
-					},
-					"frame": {
-						"x": 486,
-						"y": 121,
-						"w": 24,
-						"h": 24
 					}
 				},
 				{
@@ -465,8 +339,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 486,
-						"y": 148,
+						"x": 386,
+						"y": 69,
 						"w": 16,
 						"h": 16
 					}
@@ -486,10 +360,52 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 486,
-						"y": 148,
+						"x": 386,
+						"y": 69,
 						"w": 16,
 						"h": 16
+					}
+				},
+				{
+					"filename": "boss_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 22,
+						"w": 71,
+						"h": 90
+					},
+					"frame": {
+						"x": 133,
+						"y": 135,
+						"w": 71,
+						"h": 90
+					}
+				},
+				{
+					"filename": "bossProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 207,
+						"y": 135,
+						"w": 32,
+						"h": 32
 					}
 				},
 				{
@@ -507,8 +423,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 486,
-						"y": 167,
+						"x": 242,
+						"y": 135,
 						"w": 16,
 						"h": 16
 					}
@@ -528,10 +444,31 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 486,
-						"y": 186,
+						"x": 242,
+						"y": 154,
 						"w": 16,
 						"h": 16
+					}
+				},
+				{
+					"filename": "bossSickleProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 207,
+						"y": 170,
+						"w": 32,
+						"h": 32
 					}
 				},
 				{
@@ -549,8 +486,8 @@
 						"h": 41
 					},
 					"frame": {
-						"x": 255,
-						"y": 167,
+						"x": 261,
+						"y": 169,
 						"w": 59,
 						"h": 41
 					}
@@ -570,10 +507,31 @@
 						"h": 42
 					},
 					"frame": {
-						"x": 317,
-						"y": 167,
+						"x": 323,
+						"y": 169,
 						"w": 56,
 						"h": 42
+					}
+				},
+				{
+					"filename": "bossTeaProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 207,
+						"y": 205,
+						"w": 32,
+						"h": 32
 					}
 				},
 				{
@@ -591,8 +549,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 376,
-						"y": 174,
+						"x": 242,
+						"y": 213,
 						"w": 32,
 						"h": 32
 					}
@@ -612,8 +570,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 411,
-						"y": 187,
+						"x": 277,
+						"y": 213,
 						"w": 32,
 						"h": 32
 					}
@@ -633,10 +591,52 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 376,
-						"y": 209,
+						"x": 382,
+						"y": 192,
 						"w": 32,
 						"h": 16
+					}
+				},
+				{
+					"filename": "bigstar",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 417,
+						"y": 192,
+						"w": 24,
+						"h": 24
+					}
+				},
+				{
+					"filename": "bomb",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 24,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 24,
+						"h": 24
+					},
+					"frame": {
+						"x": 382,
+						"y": 211,
+						"w": 24,
+						"h": 24
 					}
 				}
 			]
@@ -645,6 +645,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:bce712d8773d145683e71ddb0966f6e7:9413e021569af27a1943cd72c230c617:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:2de6a9d3b57e8be0da9373288719bd4a:6036d436516f435de1d417282b78501f:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }
