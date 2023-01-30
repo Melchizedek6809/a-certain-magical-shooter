@@ -18,7 +18,7 @@ export class Player extends Physics.Arcade.Sprite {
     power = 0;
     focus = 0;
     bossStarsPickedUp = 0;
-    usedSpellBomb = false;
+    cantCaptureSpellCard = false;
     keymap: KeyMap;
 
     bombBeam: GameObjects.Image;
@@ -158,32 +158,32 @@ export class Player extends Physics.Arcade.Sprite {
             case 5:
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 48,
+                    this.x + 44,
                     this.y - (18 + 18 * f)
                 ).setVelocityY(f * -60);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 60,
+                    this.x + 58,
                     this.y - (12 + 12 * f)
                 ).setVelocityY(f * -30);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 64,
-                    this.y - (6 + 6 * f)
+                    this.y - (4 + 4 * f)
                 ).setVelocityY(f * -5);
                 new Projectile(
                     this.scene as GameScene,
                     this.x + 64,
-                    this.y + (6 + 6 * f)
+                    this.y + (4 + 4 * f)
                 ).setVelocityY(f * 5);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 60,
+                    this.x + 58,
                     this.y + (12 + 12 * f)
                 ).setVelocityY(f * 30);
                 new Projectile(
                     this.scene as GameScene,
-                    this.x + 48,
+                    this.x + 44,
                     this.y + (18 + 18 * f)
                 ).setVelocityY(f * 60);
 
@@ -192,7 +192,7 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     bomb() {
-        this.usedSpellBomb = true;
+        this.cantCaptureSpellCard = true;
         if (this.isDead || this.bombingUntil >= this.scene.time.now) {
             return;
         }
@@ -223,8 +223,9 @@ export class Player extends Physics.Arcade.Sprite {
         let top = this.keymap.Up.isDown;
         let down = this.keymap.Down.isDown;
         let focus = this.keymap.Shift.isDown;
-        let blast = this.keymap.Z.isDown;
+        let blast = this.keymap.Z.isDown || this.keymap.Y.isDown;
         let bomb = this.keymap.X.isDown;
+        let gamepadMove = false;
 
         if (this.scene.input.gamepad.gamepads[0]) {
             const gamepad = this.scene.input.gamepad.gamepads[0];
@@ -243,8 +244,20 @@ export class Player extends Physics.Arcade.Sprite {
             if (gamepad.A) {
                 blast = true;
             }
-            if (gamepad.A) {
+            if (gamepad.B) {
                 bomb = true;
+            }
+            if (gamepad.R1 || gamepad.L1) {
+                focus = true;
+            }
+
+            if (gamepad.leftStick.length() > 0.01){
+                const speed = focus ? 192 : 512;
+                const m = gamepad.leftStick;
+                const mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
+                const my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
+                this.setVelocity(mx, my);
+                gamepadMove = true;
             }
         }
 
@@ -286,14 +299,16 @@ export class Player extends Physics.Arcade.Sprite {
             this.focus = Math.max(0, this.focus - delta / 500);
         }
 
-        let mx = left ? -1 : right ? 1 : 0;
-        let my = top ? -1 : down ? 1 : 0;
-        const m = new Phaser.Math.Vector2(mx, my);
-        m.normalize();
+        if(!gamepadMove){
+            let mx = left ? -1 : right ? 1 : 0;
+            let my = top ? -1 : down ? 1 : 0;
+            const m = new Phaser.Math.Vector2(mx, my);
+            m.normalize();
 
-        mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
-        my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
-        this.setVelocity(mx, my);
+            mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
+            my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
+            this.setVelocity(mx, my);
+        }
 
         if (this.invincibleUntil > this.scene.time.now) {
             this.setAlpha(
@@ -352,6 +367,7 @@ export class Player extends Physics.Arcade.Sprite {
             new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
         }
         this.scene.sound.add('playerHitHurt').play();
+        this.cantCaptureSpellCard = true;
 
         this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;

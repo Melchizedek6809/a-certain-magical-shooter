@@ -58,3 +58,22 @@ h1,
     background:#ff0000c0;
     transition: width 66ms;
 }
+
+.text-fx {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:bold;
+    font-size:16px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
+}
+
+#game-controls-info {
+    margin:0 auto;
+}
+
+#game-controls-info th,
+#game-controls-info td {
+    font-family: 'Courier New', Courier, monospace;
+    font-size:16px;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
+    padding:4px 16px;
+}

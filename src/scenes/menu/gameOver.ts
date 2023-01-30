@@ -11,10 +11,6 @@ export class GameOverScene extends Scene {
         super(config);
     }
 
-    continueGame() {
-        this.scene.stop('GameOverScene');
-    }
-
     restartGame() {
         this.scene.stop('GameOverScene');
         this.scene.get('GameScene').scene.restart();
@@ -45,11 +41,8 @@ export class GameOverScene extends Scene {
         const that = this;
         if (this.input.gamepad.gamepads[0]) {
             const gamepad = this.input.gamepad.gamepads[0];
-            if (gamepad.B) {
-                that.restartGame();
-            }
             if (gamepad.A) {
-                that.continueGame();
+                that.restartGame();
             }
         }
     }

@@ -5,7 +5,14 @@ const introHTML = `<h1>A certain magical shooter</h1>
 <p>This is an independent and free fan-game based on the Touhou games originally created by ZUN/Team Shanghai Alice.</p>
 <p>It was developed for the 10th Touhou Fan Game Jam</p>
 <br/>
-<p>Use you arrow keys to move<br/>Z to shoot<br/>X to drop a bomb<br/>Shift to focus</p>`;
+<h2>Controls:</h2>
+<table id="game-controls-info">
+<tr><th></th><th>Keyboard</th><th>GamePad</th></tr>
+<tr><th>Move</th><td>Arrow Keys</td><td>Left Stick / D-Pad</td></tr>
+<tr><th>Shoot</th><td>Z</td><td>A</td></tr>
+<tr><th>Bomb</th><td>X</td><td>B</td></tr>
+<tr><th>Focus</th><td>Shift</td><td>L1 / R1</td></tr>
+</table>`;
 
 const gitHubLink = 'https://github.com/Melchizedek6809/touhou-jam-10';
 const phaserLink = 'https://phaser.io/';

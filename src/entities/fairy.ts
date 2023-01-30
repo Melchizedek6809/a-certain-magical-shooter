@@ -36,8 +36,8 @@ export class Fairy extends Physics.Arcade.Sprite {
 
     onCollide(other: Phaser.GameObjects.Sprite) {
         if (this.health-- <= 0) {
-            const stars = Math.floor(Math.random() * 2 + 1);
-            const pows = Math.floor(Math.random() * 2 + 1);
+            const stars = 1;
+            const pows = 1;
             for (let i = 0; i < stars; i++) {
                 const pu = new Pickup(
                     this.scene as GameScene,
@@ -55,15 +55,6 @@ export class Fairy extends Physics.Arcade.Sprite {
                     'powerup'
                 );
                 pu.setVelocity(Math.random() * 900, (Math.random()-0.5) * 900);
-            }
-            if (Math.floor(Math.random() * 50) === 0) {
-                const pu = new Pickup(
-                    this.scene as GameScene,
-                    this.x,
-                    this.y,
-                    'bigstar'
-                );
-                pu.setVelocity(Math.random() * 1500, (Math.random()-0.5) * 1500);
             }
             if (Math.floor(Math.random() * 300) === 0) {
                 const pu = new Pickup(

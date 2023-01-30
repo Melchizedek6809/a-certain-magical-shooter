@@ -24,6 +24,7 @@ export type KeyMap = {
     Down: Phaser.Input.Keyboard.Key;
     Z: Phaser.Input.Keyboard.Key;
     X: Phaser.Input.Keyboard.Key;
+    Y: Phaser.Input.Keyboard.Key;
     Shift: Phaser.Input.Keyboard.Key;
 };
 
@@ -121,7 +122,7 @@ export class GameScene extends Scene {
         1;
         this.physics.world.setBounds(0, 0, 1280, 720);
         this.keymap = this.input.keyboard.addKeys(
-            'Up,Left,Right,Down,X,Z,Shift'
+            'Up,Left,Right,Down,X,Z,Shift,Y'
         ) as KeyMap;
         this.gameOverActive = false;
         this.gameTicks = 0;

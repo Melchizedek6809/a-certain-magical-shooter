@@ -353,7 +353,6 @@
 
 ;; END WAVE 2
 
-
 ;;; --------------------------- FIRST MID BOSS!!! ------------------------------
 (advance-bgm)
 (boss-first-appearance)

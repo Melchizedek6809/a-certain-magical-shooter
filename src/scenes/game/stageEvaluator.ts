@@ -1,4 +1,5 @@
 import { Boss } from '../../entities/boss';
+import { TextFX } from '../../entities/textFx';
 import { EnemyBullet } from '../../entities/enemyBullet';
 import { Fairy } from '../../entities/fairy';
 import { Pickup } from '../../entities/pickup';
@@ -315,8 +316,9 @@ export class StageEvaluator {
         fiber.bindings.set(
             'begin-spell-card',
             ((args: any, fiber: StageFiber) => {
+                if(fiber.loopFiber){return;}
                 fiber.loopFiber = true;
-                this.scene.player!.usedSpellBomb = false;
+                this.scene.player!.cantCaptureSpellCard = false;
             }).bind(this)
         );
 
@@ -359,6 +361,17 @@ export class StageEvaluator {
                     new Pickup(this.scene, eb.x, eb.y, 'bossStar');
                     bul.destroy();
                 }
+
+                if (this.scene.player!.cantCaptureSpellCard){
+                    return;
+                }
+                const {width, height} = this.scene.renderer;
+                for(let i = 0;i<256;i++){
+                    const y = Math.random() * height;
+                    const x = width - Math.random() * 128;
+                    new Pickup(this.scene, x, y, 'bossStar');
+                }
+                new TextFX(this.scene, this.scene.player!.x, this.scene.player!.y, "Spell card captured!");
             }).bind(this)
         );
 
