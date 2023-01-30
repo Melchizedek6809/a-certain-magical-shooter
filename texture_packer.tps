@@ -237,6 +237,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">assets/unpacked_gfx/bossSickleProjectile.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,15,17,30</rect>
+                <key>scale9Paddings</key>
+                <rect>9,15,17,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">assets/unpacked_gfx/bossStar.png</key>
             <key type="filename">assets/unpacked_gfx/powerup.png</key>
             <key type="filename">assets/unpacked_gfx/projectile.png</key>

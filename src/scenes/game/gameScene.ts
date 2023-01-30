@@ -61,9 +61,7 @@ export class GameScene extends Scene {
     gameTicks = 0;
     bossFade = 0;
 
-    bgm?: Phaser.Sound.BaseSound[];
-    bgmIndex: number;
-
+    bgm?: Phaser.Sound.BaseSound;
     stageEvaluator?: StageEvaluator;
 
     colCount = 1;
@@ -76,7 +74,6 @@ export class GameScene extends Scene {
         super(config);
         this.gameOverActive = false;
         this.player = undefined;
-        this.bgmIndex = 0;
     }
 
     advanceBgm() {
@@ -91,15 +88,18 @@ export class GameScene extends Scene {
         const that = this;
         this.sound.pauseOnBlur = false;
         /*
-        this.bgm = [
-            this.sound.add('wave_one', {loop: true}),
-            this.sound.add('boss_first_encounter', {loop: true}),
-            this.sound.add('wave_two', {loop: true}),
-            this.sound.add('boss_second_encounter', {loop: true}),
-        ];
-        this.bgmIndex = 0;
-        this.bgm[this.bgmIndex].play();
+        if(this.bgm){
+            this.bgm.stop();
+            this.bgm.destroy();
+        }
+        if(this.scene.isActive('MainMenuScene')){
+            this.bgm = this.sound.add('menubgm', {loop: true});
+        } else {
+            this.bgm = this.sound.add('bgm', {loop: true});
+        }
+        this.bgm.play();
         */
+
         this.bossFade = 0;
         this.anims.create({
             key: 'fairy_animated',

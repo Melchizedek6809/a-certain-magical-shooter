@@ -1,3 +1,5 @@
+assets/bgm/
+
 *.zip
 *.tiled-session
 shell.nix

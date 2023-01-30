@@ -383,16 +383,18 @@
 (wait 1000)
 (wait 3000)
 
-(fairy-bot-easy 800 900 300 4200)
-(wait 1000)
-(fairy-bot-easy 820 920 300 4200)
-(wait 1000)
-(fairy-bot-easy 840 940 300 4200)
-(wait 1000)
-(fairy-bot-easy 860 960 300 4200)
-(wait 1000)
-(fairy-bot-easy 880 980 300 4200)
-(wait 3000)
+(comment
+       (fairy-bot-easy 800 900 300 4200)
+       (wait 1000)
+       (fairy-bot-easy 820 920 300 4200)
+       (wait 1000)
+       (fairy-bot-easy 840 940 300 4200)
+       (wait 1000)
+       (fairy-bot-easy 860 960 300 4200)
+       (wait 1000)
+       (fairy-bot-easy 880 980 300 4200)
+       (wait 3000)
+)
 
 
 (fairy-top-easy 800 900 300 4200)
