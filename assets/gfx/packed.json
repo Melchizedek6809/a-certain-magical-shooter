@@ -10,24 +10,24 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "bombbeam",
+					"filename": "topclouds",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 256,
-						"h": 64
+						"h": 63
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 256,
-						"h": 64
+						"h": 63
 					},
 					"frame": {
 						"x": 2,
 						"y": 2,
 						"w": 256,
-						"h": 64
+						"h": 63
 					}
 				},
 				{
@@ -241,7 +241,7 @@
 					}
 				},
 				{
-					"filename": "topclouds",
+					"filename": "bombbeam",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -256,30 +256,9 @@
 					},
 					"frame": {
 						"x": 2,
-						"y": 69,
+						"y": 68,
 						"w": 128,
 						"h": 64
-					}
-				},
-				{
-					"filename": "darkclouds",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 63
-					},
-					"frame": {
-						"x": 133,
-						"y": 69,
-						"w": 128,
-						"h": 63
 					}
 				},
 				{
@@ -297,10 +276,31 @@
 						"h": 97
 					},
 					"frame": {
-						"x": 264,
-						"y": 69,
+						"x": 133,
+						"y": 68,
 						"w": 119,
 						"h": 97
+					}
+				},
+				{
+					"filename": "darkclouds",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 63
+					},
+					"frame": {
+						"x": 2,
+						"y": 135,
+						"w": 128,
+						"h": 63
 					}
 				},
 				{
@@ -318,73 +318,10 @@
 						"h": 95
 					},
 					"frame": {
-						"x": 386,
-						"y": 94,
+						"x": 255,
+						"y": 69,
 						"w": 119,
 						"h": 95
-					}
-				},
-				{
-					"filename": "bossStar",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 386,
-						"y": 69,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "star",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 386,
-						"y": 69,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "boss_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 32,
-						"y": 22,
-						"w": 71,
-						"h": 90
-					},
-					"frame": {
-						"x": 133,
-						"y": 135,
-						"w": 71,
-						"h": 90
 					}
 				},
 				{
@@ -402,52 +339,31 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 207,
-						"y": 135,
+						"x": 377,
+						"y": 69,
 						"w": 32,
 						"h": 32
 					}
 				},
 				{
-					"filename": "powerup",
+					"filename": "boss_1",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 16,
-						"h": 16
+						"w": 128,
+						"h": 128
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
+						"x": 32,
+						"y": 22,
+						"w": 71,
+						"h": 90
 					},
 					"frame": {
-						"x": 242,
-						"y": 135,
-						"w": 16,
-						"h": 16
-					}
-				},
-				{
-					"filename": "projectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 242,
-						"y": 154,
-						"w": 16,
-						"h": 16
+						"x": 412,
+						"y": 94,
+						"w": 71,
+						"h": 90
 					}
 				},
 				{
@@ -465,52 +381,10 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 207,
-						"y": 170,
+						"x": 377,
+						"y": 104,
 						"w": 32,
 						"h": 32
-					}
-				},
-				{
-					"filename": "fairy_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 13,
-						"w": 59,
-						"h": 41
-					},
-					"frame": {
-						"x": 261,
-						"y": 169,
-						"w": 59,
-						"h": 41
-					}
-				},
-				{
-					"filename": "fairy_0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 12,
-						"w": 56,
-						"h": 42
-					},
-					"frame": {
-						"x": 323,
-						"y": 169,
-						"w": 56,
-						"h": 42
 					}
 				},
 				{
@@ -528,73 +402,10 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 207,
-						"y": 205,
+						"x": 377,
+						"y": 139,
 						"w": 32,
 						"h": 32
-					}
-				},
-				{
-					"filename": "hit",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 242,
-						"y": 213,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "life",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 277,
-						"y": 213,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "playerProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 16
-					},
-					"frame": {
-						"x": 382,
-						"y": 192,
-						"w": 32,
-						"h": 16
 					}
 				},
 				{
@@ -612,8 +423,8 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 417,
-						"y": 192,
+						"x": 486,
+						"y": 94,
 						"w": 24,
 						"h": 24
 					}
@@ -633,10 +444,199 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 382,
-						"y": 211,
+						"x": 486,
+						"y": 121,
 						"w": 24,
 						"h": 24
+					}
+				},
+				{
+					"filename": "bossStar",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 486,
+						"y": 148,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "star",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 486,
+						"y": 148,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "powerup",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 486,
+						"y": 167,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "projectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 486,
+						"y": 186,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "fairy_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 13,
+						"w": 59,
+						"h": 41
+					},
+					"frame": {
+						"x": 255,
+						"y": 167,
+						"w": 59,
+						"h": 41
+					}
+				},
+				{
+					"filename": "fairy_0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 12,
+						"w": 56,
+						"h": 42
+					},
+					"frame": {
+						"x": 317,
+						"y": 167,
+						"w": 56,
+						"h": 42
+					}
+				},
+				{
+					"filename": "hit",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 376,
+						"y": 174,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "life",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 411,
+						"y": 187,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "playerProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 16
+					},
+					"frame": {
+						"x": 376,
+						"y": 209,
+						"w": 32,
+						"h": 16
 					}
 				}
 			]
@@ -645,6 +645,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:75e17fa447dc7a03e4fa5ebd046cdb00:6657f3aeda918412689e25d04f86deec:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:4708f00d6c7af3151e0425376ca51435:3f0aca63a31971523baf69a2baa35a29:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }

@@ -53,6 +53,10 @@ export class GameScene extends Scene {
 
     frontSnowFlakes?: GameObjects.Blitter;
     frontSnowFlakeData: SnowFlakeData[] = [];
+
+    backSnowFlakes?: GameObjects.Blitter;
+    backSnowFlakeData: SnowFlakeData[] = [];
+
     gameTicks = 0;
     bossFade = 0;
 
@@ -220,15 +224,26 @@ export class GameScene extends Scene {
         this.frontSnowFlakes = this.add.blitter(-8, -8, 'packed');
         this.frontSnowFlakes.setDepth(1);
 
-        this.snowFlakeData.length = 0;
-        this.snowFlakes = this.add.blitter(-8, -8, 'packed');
-        this.snowFlakes.setDepth(-1);
-        for (let i = 0; i < 192; i++) {
+        for (let i = 0; i < 96; i++) {
             const x = Math.random() * this.renderer.width;
             const y = Math.random() * this.renderer.height;
             const frame = `snowflake_${i & 3}`;
-            console.log(frame);
-            this.snowFlakes.create(x, y, frame);
+            const flake = this.frontSnowFlakes.create(x, y, frame);
+            this.frontSnowFlakeData.push({
+                velX: 0.5 + Math.random() * 1.1,
+                velY: 0.7 + Math.random() * 0.5,
+                velZ: 0.5 + Math.random() * 1.1,
+            });
+        }
+
+        this.snowFlakeData.length = 0;
+        this.snowFlakes = this.add.blitter(-8, -8, 'packed');
+        this.snowFlakes.setDepth(-1);
+        for (let i = 0; i < 128; i++) {
+            const x = Math.random() * this.renderer.width;
+            const y = Math.random() * this.renderer.height;
+            const frame = `snowflake_${i & 3}`;
+            const flake = this.snowFlakes.create(x, y, frame);
             this.snowFlakeData.push({
                 velX: 0.2 + Math.random() * 1.1,
                 velY: 0.3 + Math.random() * 0.5,
@@ -236,18 +251,22 @@ export class GameScene extends Scene {
             });
         }
 
-        for (let i = 0; i < 96; i++) {
+
+        this.backSnowFlakeData.length = 0;
+        this.backSnowFlakes = this.add.blitter(-8, -8, 'packed');
+        this.backSnowFlakes.setDepth(-3);
+        for (let i = 0; i < 78; i++) {
             const x = Math.random() * this.renderer.width;
             const y = Math.random() * this.renderer.height;
             const frame = `snowflake_${i & 3}`;
-            console.log(frame);
-            this.frontSnowFlakes.create(x, y, frame);
-            this.frontSnowFlakeData.push({
-                velX: 0.5 + Math.random() * 1.1,
-                velY: 0.7 + Math.random() * 0.5,
-                velZ: 0.5 + Math.random() * 1.1,
+            const flake = this.backSnowFlakes.create(x, y, frame);
+            this.backSnowFlakeData.push({
+                velX: 0.2 + Math.random() * 0.6,
+                velY: 0.1 + Math.random() * 0.2,
+                velZ: 0.2 + Math.random() * 0.6,
             });
         }
+
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }
@@ -257,7 +276,8 @@ export class GameScene extends Scene {
         const w = this.renderer.width + 16;
         const flakes = this.snowFlakes?.children.list;
         const frontFlakes = this.frontSnowFlakes?.children.list;
-        if (!flakes || !frontFlakes) {
+        const backFlakes = this.backSnowFlakes?.children.list;
+        if (!flakes || !frontFlakes || !backFlakes) {
             return;
         }
 
@@ -265,7 +285,7 @@ export class GameScene extends Scene {
             const flake = flakes[i];
             const data = this.snowFlakeData[i];
             flake.y = (flake.y + data.velY) % h;
-            flake.x = (w + (flake.x - data.velX - 3)) % w;
+            flake.x = (w + (flake.x - data.velX - 2)) % w;
             data.velX += data.velZ * 0.02;
             data.velZ -= data.velX * 0.02;
         }
@@ -278,11 +298,24 @@ export class GameScene extends Scene {
             data.velX += data.velZ * 0.02;
             data.velZ -= data.velX * 0.02;
         }
+
+        for (let i = 0; i < backFlakes.length; i++) {
+            const flake = backFlakes[i];
+            const data = this.backSnowFlakeData[i];
+            flake.y = (flake.y + data.velY) % h;
+            flake.x = (w + (flake.x - data.velX - 1)) % w;
+            data.velX += data.velZ * 0.02;
+            data.velZ -= data.velX * 0.02;
+        }
     }
 
     update(time: number, delta: number) {
         this.updateSnow(delta);
         this.player?.update(time, delta);
+
+        if((this.player?.bombingUntil || 0) > time){
+            this.bossFade = Math.min(1, this.bossFade + 0.004);
+        }
 
         if (this.boss) {
             if (!this.boss.scene) {
@@ -302,6 +335,7 @@ export class GameScene extends Scene {
         this.skybg?.setAlpha(alpha);
         this.snowFlakes?.setAlpha(alpha);
         this.frontSnowFlakes?.setAlpha(alpha);
+        this.backSnowFlakes?.setAlpha(alpha);
         this.topclouds?.setAlpha(cloudAlpha);
         this.darkclouds?.setAlpha(cloudAlpha);
         this.darkdarkclouds?.setAlpha(cloudAlpha);

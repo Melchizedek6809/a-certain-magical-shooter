@@ -316,6 +316,7 @@ export class StageEvaluator {
             'begin-spell-card',
             ((args: any, fiber: StageFiber) => {
                 fiber.loopFiber = true;
+                this.scene.player!.usedSpellBomb = false;
             }).bind(this)
         );
 

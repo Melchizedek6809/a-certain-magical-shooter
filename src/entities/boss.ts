@@ -114,7 +114,9 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     onCollide(other: Phaser.GameObjects.Sprite) {
-        new HitFX(this.scene as GameScene, other.x, other.y);
+        if(other.name !== "beam"){
+            new HitFX(this.scene as GameScene, other.x, other.y);
+        }
         this.scene.sound.add('bossHitHurt').play();
         if (this.health-- <= 0) {
             for (let i = 0; i < 16; i++) {

@@ -18,6 +18,7 @@ export class Player extends Physics.Arcade.Sprite {
     power = 0;
     focus = 0;
     bossStarsPickedUp = 0;
+    usedSpellBomb = false;
     keymap: KeyMap;
 
     bombBeam: GameObjects.Image;
@@ -49,11 +50,16 @@ export class Player extends Physics.Arcade.Sprite {
             .setScale(2, 2)
             .setDisplaySize(1024, 128);
 
+        this.bombBeam.setBlendMode(Phaser.BlendModes.ADD);
+        this.bombBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
+
+
         this.beamCollider = scene.physics.add
             .image(x, y, 'packed', 'void')
             .setVisible(false)
             .setOrigin(0, 0.5)
             .setScale(0, 0);
+        this.beamCollider.setName('beam');
         this.graceCollider = scene.physics.add
             .image(x, y, 'packed', 'void')
             .setVisible(false)
@@ -186,6 +192,7 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     bomb() {
+        this.usedSpellBomb = true;
         if (this.isDead || this.bombingUntil >= this.scene.time.now) {
             return;
         }
@@ -312,7 +319,7 @@ export class Player extends Physics.Arcade.Sprite {
         }
         this.bombBeam.x = this.x + 32;
         this.bombBeam.y = this.y;
-        this.bombBeamRepeater.x = this.bombBeam.x + 512;
+        this.bombBeamRepeater.x = this.bombBeam.x + 256;
         this.bombBeamRepeater.y = this.y;
         this.beamCollider.x = this.x + 32;
         this.beamCollider.y = this.y;
