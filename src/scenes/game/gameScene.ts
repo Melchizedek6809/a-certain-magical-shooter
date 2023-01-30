@@ -154,7 +154,7 @@ export class GameScene extends Scene {
             .setDepth(-100);
         this.topclouds = this.add.tileSprite(
             -64,
-            -32,
+            -16,
             0,
             0,
             'packed',
@@ -166,26 +166,26 @@ export class GameScene extends Scene {
             .setDepth(2);
         this.darkclouds = this.add.tileSprite(
             -64,
-            -8,
+            -20,
             0,
             0,
             'packed',
             'darkclouds'
         );
         this.darkclouds
-            .setSize(1280 + 128, 64)
+            .setSize(1280 + 128, 96)
             .setOrigin(0, 0)
             .setDepth(-1);
         this.darkdarkclouds = this.add.tileSprite(
             -64,
-            16,
+            -32,
             0,
             0,
             'packed',
             'darkdarkclouds'
         );
         this.darkdarkclouds
-            .setSize(1280 + 128, 64)
+            .setSize(1280 + 128, 128)
             .setOrigin(0, 0)
             .setDepth(-2);
 

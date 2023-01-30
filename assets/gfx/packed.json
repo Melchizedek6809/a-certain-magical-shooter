@@ -36,19 +36,19 @@
 					"trimmed": false,
 					"sourceSize": {
 						"w": 156,
-						"h": 64
+						"h": 128
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 156,
-						"h": 64
+						"h": 128
 					},
 					"frame": {
 						"x": 261,
 						"y": 2,
 						"w": 156,
-						"h": 64
+						"h": 128
 					}
 				},
 				{
@@ -241,49 +241,7 @@
 					}
 				},
 				{
-					"filename": "bombbeam",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 128,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 64
-					},
-					"frame": {
-						"x": 2,
-						"y": 69,
-						"w": 128,
-						"h": 64
-					}
-				},
-				{
-					"filename": "darkclouds",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 128,
-						"h": 63
-					},
-					"frame": {
-						"x": 133,
-						"y": 69,
-						"w": 128,
-						"h": 63
-					}
-				},
-				{
-					"filename": "player_1",
+					"filename": "boss_1",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -291,37 +249,16 @@
 						"h": 128
 					},
 					"spriteSourceSize": {
-						"x": 1,
-						"y": 14,
-						"w": 119,
-						"h": 97
+						"x": 32,
+						"y": 22,
+						"w": 71,
+						"h": 90
 					},
 					"frame": {
-						"x": 264,
-						"y": 69,
-						"w": 119,
-						"h": 97
-					}
-				},
-				{
-					"filename": "player_0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 16,
-						"w": 119,
-						"h": 95
-					},
-					"frame": {
-						"x": 386,
+						"x": 420,
 						"y": 94,
-						"w": 119,
-						"h": 95
+						"w": 71,
+						"h": 90
 					}
 				},
 				{
@@ -339,8 +276,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 386,
-						"y": 69,
+						"x": 494,
+						"y": 94,
 						"w": 16,
 						"h": 16
 					}
@@ -360,52 +297,10 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 386,
-						"y": 69,
+						"x": 494,
+						"y": 94,
 						"w": 16,
 						"h": 16
-					}
-				},
-				{
-					"filename": "boss_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 128,
-						"h": 128
-					},
-					"spriteSourceSize": {
-						"x": 32,
-						"y": 22,
-						"w": 71,
-						"h": 90
-					},
-					"frame": {
-						"x": 133,
-						"y": 135,
-						"w": 71,
-						"h": 90
-					}
-				},
-				{
-					"filename": "bossProjectile",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 207,
-						"y": 135,
-						"w": 32,
-						"h": 32
 					}
 				},
 				{
@@ -423,8 +318,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 242,
-						"y": 135,
+						"x": 494,
+						"y": 113,
 						"w": 16,
 						"h": 16
 					}
@@ -444,10 +339,115 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 242,
-						"y": 154,
+						"x": 494,
+						"y": 132,
 						"w": 16,
 						"h": 16
+					}
+				},
+				{
+					"filename": "darkclouds",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 95
+					},
+					"frame": {
+						"x": 2,
+						"y": 69,
+						"w": 128,
+						"h": 95
+					}
+				},
+				{
+					"filename": "player_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 14,
+						"w": 119,
+						"h": 97
+					},
+					"frame": {
+						"x": 133,
+						"y": 69,
+						"w": 119,
+						"h": 97
+					}
+				},
+				{
+					"filename": "bombbeam",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 64
+					},
+					"frame": {
+						"x": 2,
+						"y": 167,
+						"w": 128,
+						"h": 64
+					}
+				},
+				{
+					"filename": "player_0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 16,
+						"w": 119,
+						"h": 95
+					},
+					"frame": {
+						"x": 255,
+						"y": 133,
+						"w": 119,
+						"h": 95
+					}
+				},
+				{
+					"filename": "bossProjectile",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 377,
+						"y": 133,
+						"w": 32,
+						"h": 32
 					}
 				},
 				{
@@ -465,8 +465,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 207,
-						"y": 170,
+						"x": 377,
+						"y": 168,
 						"w": 32,
 						"h": 32
 					}
@@ -486,31 +486,10 @@
 						"h": 41
 					},
 					"frame": {
-						"x": 261,
-						"y": 169,
+						"x": 412,
+						"y": 187,
 						"w": 59,
 						"h": 41
-					}
-				},
-				{
-					"filename": "fairy_0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 12,
-						"w": 56,
-						"h": 42
-					},
-					"frame": {
-						"x": 323,
-						"y": 169,
-						"w": 56,
-						"h": 42
 					}
 				},
 				{
@@ -528,8 +507,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 207,
-						"y": 205,
+						"x": 377,
+						"y": 203,
 						"w": 32,
 						"h": 32
 					}
@@ -549,8 +528,8 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 242,
-						"y": 213,
+						"x": 474,
+						"y": 187,
 						"w": 32,
 						"h": 32
 					}
@@ -570,10 +549,31 @@
 						"h": 32
 					},
 					"frame": {
-						"x": 277,
-						"y": 213,
+						"x": 474,
+						"y": 222,
 						"w": 32,
 						"h": 32
+					}
+				},
+				{
+					"filename": "fairy_0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 12,
+						"w": 56,
+						"h": 42
+					},
+					"frame": {
+						"x": 412,
+						"y": 231,
+						"w": 56,
+						"h": 42
 					}
 				},
 				{
@@ -591,8 +591,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 382,
-						"y": 192,
+						"x": 471,
+						"y": 257,
 						"w": 32,
 						"h": 16
 					}
@@ -612,8 +612,8 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 417,
-						"y": 192,
+						"x": 133,
+						"y": 169,
 						"w": 24,
 						"h": 24
 					}
@@ -633,8 +633,8 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 382,
-						"y": 211,
+						"x": 160,
+						"y": 169,
 						"w": 24,
 						"h": 24
 					}
@@ -645,6 +645,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:2de6a9d3b57e8be0da9373288719bd4a:6036d436516f435de1d417282b78501f:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:66099d87dd52abc8d36b081a029245b0:3256733de66fa37b4365ad6aca7bc20e:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }
