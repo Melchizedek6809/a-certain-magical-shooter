@@ -357,10 +357,20 @@ export class Player extends Physics.Arcade.Sprite {
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
             ui.bombs = 3;
-            this.power = Math.max(this.power - 5);
+            const pickups = Math.min(5,this.power);
+            this.power = Math.max(0, this.power - 5);
             this.scene.scene.get('UIScene').events.emit('setPower', this.power);
             this.invincibleUntil = this.scene.time.now + 1000;
             this.scene.scene.get('UIScene').events.emit('refresh');
+            for(let i=0;i<pickups;i++){
+                const pu = new Pickup(
+                    this.scene as GameScene,
+                    this.x + 78,
+                    this.y + (Math.random()-0.5)*64,
+                    'powerup'
+                );
+                pu.setVelocity(Math.random() * 3500, (Math.random() - 0.5) * 500);
+            }
             return;
         } else {
             this.isDead = true;

@@ -45,7 +45,7 @@ export class Pickup extends Physics.Arcade.Image {
             this.body.velocity.x = this.body.velocity.x * 0.9 - 400 * 0.1;
             this.body.velocity.y = this.body.velocity.y * 0.9;
         }
-        if (this.x <= this.width / 2) {
+        if (this.x <= (this.width / 2)+1) {
             this.destroy();
         }
     }

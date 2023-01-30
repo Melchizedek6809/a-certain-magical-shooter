@@ -7,15 +7,13 @@ I made a simple Shmup, trying to get better at Art/Sound/Music, hopefully you'll
 ## [Play the game](https://melchizedek6809.github.io/touhou-jam-10/)
 
 
-
 ## Dev Requirements
 - Node JS (v18+) with NPM
 
 ## Setup
-You need to run the build step once before starting a dev server so that the extruded tileset will be built:
+Nothing special, just install the dependencies via `npm` and you are ready to start a dev server:
 ```bash
 npm install
-npm build
 ```
 
 ## Development (VS Code)
