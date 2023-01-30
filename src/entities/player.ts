@@ -6,6 +6,7 @@ import { EnemyBullet } from './enemyBullet';
 import { UIScene } from '../scenes/ui/uiScene';
 import { Fairy } from './fairy';
 import { HitFX } from './hitFx';
+import { TextFX } from './textFx';
 
 export class Player extends Physics.Arcade.Sprite {
     isDead = false;
@@ -394,6 +395,9 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     powerup() {
+        if(this.power === 49){
+            new TextFX(this.scene as GameScene, this.x, this.y, "MAX Power!");
+        }
         const oldLevel = Math.floor(this.power / 10);
         this.power++;
         const newPower = Math.floor(this.power / 10);

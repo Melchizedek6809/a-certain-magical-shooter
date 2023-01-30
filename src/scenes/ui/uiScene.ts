@@ -1,4 +1,5 @@
 import { GameObjects, Scene } from 'phaser';
+import { TextFX } from '../../entities/textFx';
 import { GameScene } from '../game/gameScene';
 
 export class UIScene extends Scene {
@@ -81,6 +82,8 @@ export class UIScene extends Scene {
             const newScore = Math.floor(that.score / 10000);
             if (newScore > oldScore) {
                 that.lives++;
+                const gs = this.scene.get('GameScene') as GameScene;
+                new TextFX(gs, gs.player!.x, gs.player!.y, "Bonus Life");
             }
             that.refreshUI();
         });

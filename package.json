@@ -8,7 +8,8 @@
         "build": "vite build",
         "preview": "vite preview",
         "pretty": "prettier --write \"src/**/*.ts\"",
-        "typecheck": "tsc -p ./tsconfig.json --noEmit"
+        "typecheck": "tsc -p ./tsconfig.json --noEmit",
+        "zip": "npm run build && zip -r ld-itch-compatible.zip dist/"
     },
     "author": "Benjamin Vincent Schulenburg <ben@wolkenwelten.net>",
     "license": "MIT",
