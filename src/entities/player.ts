@@ -250,7 +250,7 @@ export class Player extends Physics.Arcade.Sprite {
         let speed = focus ? 192 : 512;
 
         if (this.bombingUntil > this.scene.time.now) {
-            this.magnetDD = 1024 * 1024;
+            this.magnetDD = 1536 * 1536;
             this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.04);
             this.beamCollider.setScale(2048, 128);
             speed = 192;
@@ -267,6 +267,10 @@ export class Player extends Physics.Arcade.Sprite {
             this.bombBeamRepeater
                 .setAlpha(this.bombBeam.alpha)
                 .setVisible(true);
+        }
+
+        if (this.x > 1024){
+            this.magnetDD = 1536 * 1536;
         }
 
         if (focus) {
@@ -374,6 +378,7 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     onPickup(other: Pickup) {
+        if(!other.scene){return;}
         if (other.pickupType === 'bossStar') {
             if ((++this.bossStarsPickedUp & 1) == 0) {
                 this.scene.sound.add('pickupCoin').play();
@@ -385,7 +390,7 @@ export class Player extends Physics.Arcade.Sprite {
             default:
             case 'bossStar':
             case 'star':
-                this.scene.scene.get('UIScene').events.emit('incScore', 5);
+                this.scene.scene.get('UIScene').events.emit('incScore', 10);
                 break;
             case 'powerup':
                 this.powerup();
@@ -394,7 +399,7 @@ export class Player extends Physics.Arcade.Sprite {
                 this.scene.scene.get('UIScene').events.emit('incBomb');
                 break;
             case 'bigstar':
-                this.scene.scene.get('UIScene').events.emit('incScore', 500);
+                this.scene.scene.get('UIScene').events.emit('incScore', 1000);
                 break;
             case 'life':
                 this.scene.scene.get('UIScene').events.emit('incLife');

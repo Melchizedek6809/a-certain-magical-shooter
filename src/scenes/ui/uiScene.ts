@@ -85,11 +85,11 @@ export class UIScene extends Scene {
             that.refreshUI();
         });
         this.events.on('incBomb', (δ: number) => {
-            that.bombs += 0.5;
+            that.bombs++;
             that.refreshUI();
         });
         this.events.on('incLife', (δ: number) => {
-            that.lives += 0.5;
+            that.lives++;
             that.refreshUI();
         });
         this.events.on('setPower', (pow: number) => {

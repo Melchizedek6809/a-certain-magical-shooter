@@ -122,7 +122,6 @@ export class GameScene extends Scene {
         this.gameOverActive = false;
         this.gameTicks = 0;
 
-        this.scene.run('UIScene');
         this.playerProjectiles = this.physics.add.group([], {
             key: 'playerProjectiles',
             visible: false,
@@ -284,6 +283,7 @@ export class GameScene extends Scene {
     update(time: number, delta: number) {
         this.updateSnow(delta);
         this.player?.update(time, delta);
+
         if (this.boss) {
             if (!this.boss.scene) {
                 this.boss = undefined;
@@ -296,6 +296,7 @@ export class GameScene extends Scene {
             ui.events.emit('setBossHealth', 0, 0);
             this.bossFade = Math.max(0, this.bossFade - 0.002);
         }
+
         const alpha = Math.min(1, 1.0 - this.bossFade);
         const cloudAlpha = Math.min(1, 1.0 - this.bossFade * 0.75);
         this.skybg?.setAlpha(alpha);
@@ -304,15 +305,18 @@ export class GameScene extends Scene {
         this.topclouds?.setAlpha(cloudAlpha);
         this.darkclouds?.setAlpha(cloudAlpha);
         this.darkdarkclouds?.setAlpha(cloudAlpha);
+        this.topclouds!.setTilePosition(time * 0.3, 0);
+        this.darkclouds!.setTilePosition(time * 0.17, 0);
+        this.darkdarkclouds!.setTilePosition(time * 0.09, 0);
+
+        if(this.scene.isActive('MainMenuScene')){return;}
+
         if (this.player?.isDead) {
             if (!this.gameOverActive) {
                 this.scene.run('GameOverScene');
                 this.gameOverActive = true;
             }
         }
-        this.topclouds!.setTilePosition(time * 0.3, 0);
-        this.darkclouds!.setTilePosition(time * 0.17, 0);
-        this.darkdarkclouds!.setTilePosition(time * 0.09, 0);
         this.gameTicks += delta;
         this.stageEvaluator!.tick(delta);
     }

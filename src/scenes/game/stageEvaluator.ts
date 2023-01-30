@@ -101,6 +101,8 @@ export class StageFiber {
                     this.fairy.wave(this.shotCount);
                 } else if (this.shotType === 'tea') {
                     this.fairy.teaWave(this.shotCount);
+                } else if (this.shotType === 'sickle') {
+                    this.fairy.sickleShoot();
                 } else if (this.shotType === 'reverse-wave') {
                     this.fairy.reverseWave(this.shotCount);
                 } else {
@@ -198,7 +200,9 @@ export class StageFiber {
 
     shootEvery(x: number, t: string) {
         this.shootEveryT = x;
-        this.nextShot = this.evaluator.ticks;
+        if(this.nextShot < this.evaluator.ticks){
+            this.nextShot = this.evaluator.ticks;
+        }
         this.shotType = t;
     }
 }

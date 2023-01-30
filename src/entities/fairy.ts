@@ -32,11 +32,12 @@ export class Fairy extends Physics.Arcade.Sprite {
     wave() {}
     teaWave() {}
     reverseWave() {}
+    sickleShoot() {}
 
     onCollide(other: Phaser.GameObjects.Sprite) {
         if (this.health-- <= 0) {
             const stars = Math.floor(Math.random() * 3 + 1);
-            const pows = Math.floor(Math.random() * 3);
+            const pows = Math.floor(Math.random() * 3 + 1);
             for (let i = 0; i < stars; i++) {
                 const pu = new Pickup(
                     this.scene as GameScene,

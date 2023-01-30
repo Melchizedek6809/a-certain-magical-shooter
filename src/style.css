@@ -71,8 +71,10 @@ body {
 
     font-size: 18px;
     border-radius: 2px;
-    background: linear-gradient(#38a01b, #35700b);
-    color:#000;
+    background: #38a01b;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    text-shadow: -1px 0px 0px#000, 1px 0px 0px#000, 0px -1px 0px#000, 0px 1px 0px#000;
     padding:4px 24px;
 
     outline: none;
@@ -93,7 +95,7 @@ body {
     border-right: solid 1px #16530a;
     border-bottom: solid 1px #16530a;
 
-    background: linear-gradient(33deg, #38a01b, #35700b, 30deg);
+    background: #38a01b;
 }
 
 #phaser-parent button.red-button {
@@ -103,5 +105,5 @@ body {
     border-right: solid 1px #530a0e;
     border-bottom: solid 1px #530a0e;
 
-    background: linear-gradient(#b32129, #8e142a);
+    background: #b32129;
 }

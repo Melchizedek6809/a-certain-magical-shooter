@@ -1,7 +1,7 @@
 import { Physics } from 'phaser';
 import { GameScene } from '../scenes/game/gameScene';
 
-type BulletFrame = 'projectile' | 'bossProjectile' | 'bossTeaProjectile';
+type BulletFrame = 'projectile' | 'bossProjectile' | 'bossTeaProjectile' | 'bossSickleProjectile';
 
 export class EnemyBullet extends Physics.Arcade.Image {
     constructor(
@@ -20,7 +20,7 @@ export class EnemyBullet extends Physics.Arcade.Image {
 
     preUpdate(time: number, delta: number) {
         if (
-            this.x <= this.width / 2 ||
+            this.x <= -this.width ||
             this.y < 0 ||
             this.y > 1280 ||
             this.x > 1300

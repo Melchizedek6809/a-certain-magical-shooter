@@ -78,87 +78,88 @@
 (deffiber boss-icicle-daisies ()
           (begin-spell-card)
 
-          (move 1100 160 1300 260)
-          (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 1300)
+          (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 260)
-          (wait 2100)
+          (wait 2400)
           (shoot-every 66.0 wave)
-          (wait-here 1300)
+          (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 560 1300 460)
-          (wait 2100)
+          (wait 2400)
           (shoot-every 66.0 wave)
-          (wait-here 1300)
+          (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 460)
-          (wait 2100)
+          (wait 2400)
           (shoot-every 66.0 wave)
-          (wait-here 1300)
-          (shoot-every 0.0 wave))
+          (wait-here 1700)
+          (shoot-every 0.0 wave)
+
+          (move 1100 160 1300 260)
+          (wait 2400))
 
 
 (deffiber boss-frozen-tea ()
           (begin-spell-card)
 
-          (move 1050 560 1200 560)
-          (wait 2100)
           (shoot-every 300.0 tea)
-          (wait-here 700)
-          (shoot-every 50.0 projectile)
+          (wait-here 850)
+          (shoot-every 150.0 sickle)
 
           (move 1050 160 1200 360)
-          (wait 2100)
+          (wait 1400)
           (shoot-every 300.0 tea)
-          (wait-here 700)
-          (shoot-every 50.0 projectile)
+          (wait-here 850)
+          (shoot-every 150.0 sickle)
 
           (move 1200 360 1200 160)
-          (wait 2100)
+          (wait 1400)
           (shoot-every 300.0 tea)
-          (wait-here 700)
-          (shoot-every 50.0 projectile))
+          (wait-here 850)
+          (shoot-every 150.0 sickle)
+          (move 1050 560 1200 560)
+          (wait 1400))
 
 
 (deffiber boss-cold-dandelions ()
           (begin-spell-card)
 
-          (move 1100 160 1300 260)
-          (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 500)
-          (shoot-every 42.0 reverse-wave)
-          (wait-here 500)
+          (wait-here 700)
+          (shoot-every 66.0 reverse-wave)
+          (wait-here 700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 260)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 500)
-          (shoot-every 42.0 reverse-wave)
-          (wait-here 500)
+          (wait-here 700)
+          (shoot-every 66.0 reverse-wave)
+          (wait-here 700)
           (shoot-every 0.0 wave)
 
           (move 1100 560 1300 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 500)
-          (shoot-every 42.0 reverse-wave)
-          (wait-here 500)
+          (wait-here 700)
+          (shoot-every 66.0 reverse-wave)
+          (wait-here 700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 460)
           (wait 2100)
           (shoot-every 66.0 wave)
-          (wait-here 500)
-          (shoot-every 42.0 reverse-wave)
-          (wait-here 500)
-          (shoot-every 0.0 wave))
+          (wait-here 700)
+          (shoot-every 66.0 reverse-wave)
+          (wait-here 700)
+          (shoot-every 0.0 wave)
+          (move 1100 160 1300 260)
+          (wait 2100))
 
 
 (deffiber boss-big-frost ()
@@ -351,6 +352,8 @@
 (wait 3000)
 
 ;; END WAVE 2
+
+
 
 ;;; --------------------------- FIRST MID BOSS!!! ------------------------------
 (advance-bgm)

@@ -29,15 +29,17 @@ export class Boss extends Physics.Arcade.Sprite {
         this.scene.sound.add('bossWave').play();
         for (let i = 0; i < 27; i++) {
             const gs = this.scene as GameScene;
-            const bullet = new EnemyBullet(
-                gs,
-                this.x,
-                this.y,
-                'bossProjectile'
-            );
             const t = (i / 27) * Math.PI * 2 + (wc / 256) * Math.PI * 2;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
+            const ox = vx * 0.12;
+            const oy = vy * 0.12;
+            const bullet = new EnemyBullet(
+                gs,
+                this.x + ox,
+                this.y + oy,
+                'bossProjectile'
+            );
             bullet.setVelocity(vx, vy);
         }
     }
@@ -46,33 +48,37 @@ export class Boss extends Physics.Arcade.Sprite {
         this.scene.sound.add('bossWave').play();
         for (let i = 0; i < 27; i++) {
             const gs = this.scene as GameScene;
-            const bullet = new EnemyBullet(
-                gs,
-                this.x,
-                this.y,
-                'bossProjectile'
-            );
             const t = (i / 27) * Math.PI * 2 - (wc / 256) * Math.PI * 2;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
+            const ox = vx * 0.12;
+            const oy = vy * 0.12;
+            const bullet = new EnemyBullet(
+                gs,
+                this.x + ox,
+                this.y + oy,
+                'bossProjectile'
+            );
             bullet.setVelocity(vx, vy);
         }
     }
 
     teaWave(wc: number) {
         this.scene.sound.add('bossWave').play();
-        for (let i = 0; i < 26; i++) {
+        for (let i = 0; i < 24; i++) {
             const gs = this.scene as GameScene;
+            const t =
+                (i / 24) * Math.PI + Math.PI / 2 + ((wc / 256) * Math.PI) / 32;
+            const vx = Math.cos(t) * 300;
+            const vy = Math.sin(t) * 300;
+            const ox = vx * 0.12;
+            const oy = vy * 0.12;
             const bullet = new EnemyBullet(
                 gs,
-                this.x,
-                this.y,
+                this.x + ox,
+                this.y + oy,
                 'bossTeaProjectile'
             );
-            const t =
-                (i / 26) * Math.PI + Math.PI / 2 + ((wc / 256) * Math.PI) / 32;
-            const vx = Math.cos(t) * 400;
-            const vy = Math.sin(t) * 400;
             bullet.setVelocity(vx, vy);
         }
     }
@@ -80,11 +86,21 @@ export class Boss extends Physics.Arcade.Sprite {
     shoot() {
         this.scene.sound.add('bossShoot').play();
         const gs = this.scene as GameScene;
-        const bullet = new EnemyBullet(gs, this.x, this.y);
         const dx = gs.player!.x - this.x;
         const dy = gs.player!.y - this.y;
         const v = new Phaser.Math.Vector2(dx, dy).normalize();
+        const bullet = new EnemyBullet(gs, this.x + v.x * 16, this.y + v.y * 16);
         bullet.setVelocity(v.x * 400, v.y * 400);
+    }
+
+    sickleShoot() {
+        this.scene.sound.add('bossShoot').play();
+        const gs = this.scene as GameScene;
+        const dx = gs.player!.x - this.x;
+        const dy = gs.player!.y - this.y;
+        const v = new Phaser.Math.Vector2(dx, dy).normalize();
+        const bullet = new EnemyBullet(gs, this.x + v.x * 16, this.y + v.y * 16, 'bossSickleProjectile');
+        bullet.setVelocity(v.x * 600, v.y * 600);
     }
 
     update(time: number, delta: number) {

@@ -42,12 +42,13 @@ export class MainMenuScene extends Scene {
     create() {
         this.parseOptions();
         this.addCreditsLinks();
+        this.scene.run('GameScene');
 
         const buttons = '<br/><br/><button class="green-button">Start</button>';
         const $intro = document.createElement('div');
         $intro.classList.add('main-menu-text');
         $intro.innerHTML = introHTML + buttons;
-        this.add.dom(this.scale.width / 2, 32, $intro).setOrigin(0.5, 0);
+        this.add.dom(this.scale.width / 2, 128, $intro).setOrigin(0.5, 0);
         const $button = $intro.querySelector(
             'button.green-button'
         ) as HTMLElement;
