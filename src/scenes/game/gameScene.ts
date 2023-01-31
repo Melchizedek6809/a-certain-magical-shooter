@@ -77,28 +77,27 @@ export class GameScene extends Scene {
     }
 
     advanceBgm() {
-        /*
-        if(!this.bgm){return;}
-        this.bgm[this.bgmIndex].stop();
-        this.bgm[++this.bgmIndex].play();
-        */
     }
 
     create() {
         const that = this;
         this.sound.pauseOnBlur = false;
-        /*
+
         if(this.bgm){
+            
             this.bgm.stop();
             this.bgm.destroy();
+            this.bgm = undefined;``
         }
-        if(this.scene.isActive('MainMenuScene')){
+
+        if(this.scene.isActive('MainMenuScene') && this.cache.audio.has('menubgm')){
             this.bgm = this.sound.add('menubgm', {loop: true});
-        } else {
+        }
+        if(!this.bgm && this.cache.audio.has('bgm')) {
             this.bgm = this.sound.add('bgm', {loop: true});
         }
-        this.bgm.play();
-        */
+        this.bgm?.play();
+
 
         this.bossFade = 0;
         this.anims.create({
