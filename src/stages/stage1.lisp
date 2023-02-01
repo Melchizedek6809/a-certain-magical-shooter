@@ -78,25 +78,25 @@
 (deffiber boss-icicle-daisies ()
           (begin-spell-card)
 
-          (shoot-every 66.0 wave)
+          (shoot-every 100.0 wave)
           (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 260)
           (wait 2400)
-          (shoot-every 66.0 wave)
+          (shoot-every 100.0 wave)
           (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 560 1300 460)
           (wait 2400)
-          (shoot-every 66.0 wave)
+          (shoot-every 100.0 wave)
           (wait-here 1700)
           (shoot-every 0.0 wave)
 
           (move 1100 360 900 460)
           (wait 2400)
-          (shoot-every 66.0 wave)
+          (shoot-every 100.0 wave)
           (wait-here 1700)
           (shoot-every 0.0 wave)
 
@@ -165,7 +165,7 @@
 (deffiber boss-big-frost ()
           (begin-spell-card)
 
-          (shoot-every 400.0 tea)
+          (shoot-every 500.0 tea)
           (move 1050 560 1200 560)
           (wait 2100)
           (wait-here 700)

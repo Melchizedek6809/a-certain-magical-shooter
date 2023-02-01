@@ -1,3 +1,4 @@
+import options from '../options';
 import { GameObjects, Physics } from 'phaser';
 import { GameScene, KeyMap } from '../scenes/game/gameScene';
 import { Projectile } from './projectile';
@@ -24,6 +25,13 @@ export class Player extends Physics.Arcade.Sprite {
 
     bombBeam: GameObjects.Image;
     bombBeamRepeater: GameObjects.TileSprite;
+
+    backBeam: GameObjects.Image;
+    backBeamRepeater: GameObjects.TileSprite;
+
+    backBackBeam: GameObjects.Image;
+    backBackBeamRepeater: GameObjects.TileSprite;
+
     beamCollider: Physics.Arcade.Image;
     graceCollider: Physics.Arcade.Image;
 
@@ -42,17 +50,49 @@ export class Player extends Physics.Arcade.Sprite {
             .setOrigin(0, 0.5)
             .setAlpha(0)
             .setScale(2, 2)
-            .setDepth(-1);
+            .setDepth(1);
         this.bombBeamRepeater = scene.add
             .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
             .setAlpha(0)
             .setOrigin(0, 0.5)
-            .setDepth(-1)
+            .setDepth(1)
             .setScale(2, 2)
             .setDisplaySize(1024, 128);
 
+        this.backBeam = scene.add
+            .image(x, y, 'packed', 'bombbeam')
+            .setOrigin(0, 0.5)
+            .setAlpha(0)
+            .setScale(4, 4)
+            .setDepth(1);
+        this.backBeamRepeater = scene.add
+            .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
+            .setAlpha(0)
+            .setOrigin(0, 0.5)
+            .setDepth(1)
+            .setScale(4, 4)
+            .setDisplaySize(2048, 256);
+
+        this.backBackBeam = scene.add
+            .image(x, y, 'packed', 'bombbeam')
+            .setOrigin(0, 0.5)
+            .setAlpha(0)
+            .setScale(8, 8)
+            .setDepth(1);
+        this.backBackBeamRepeater = scene.add
+            .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
+            .setAlpha(0)
+            .setOrigin(0, 0.5)
+            .setDepth(1)
+            .setScale(8, 8)
+            .setDisplaySize(4096, 512);
+
         this.bombBeam.setBlendMode(Phaser.BlendModes.ADD);
         this.bombBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
+        this.backBeam.setBlendMode(Phaser.BlendModes.ADD);
+        this.backBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
+        this.backBackBeam.setBlendMode(Phaser.BlendModes.ADD);
+        this.backBackBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
 
 
         this.beamCollider = scene.physics.add
@@ -66,6 +106,11 @@ export class Player extends Physics.Arcade.Sprite {
             .setVisible(false)
             .setScale(1.25, 1.25);
         scene.playerProjectiles?.add(this.beamCollider);
+
+        const ui = this.scene.scene.get('UIScene') as UIScene;
+        ui.events.emit('refresh');
+        this.power = options.startPower;
+
         this.setDepth(1);
         this.keymap = keymap;
     }
@@ -283,11 +328,23 @@ export class Player extends Physics.Arcade.Sprite {
         if (this.bombBeam.alpha <= 0) {
             this.bombBeam.setVisible(false);
             this.bombBeamRepeater.setVisible(false);
+
+            this.backBeam.setVisible(false);
+            this.backBeamRepeater.setVisible(false);
+
+            this.backBackBeam.setVisible(false);
+            this.backBeamRepeater.setVisible(false);
         } else {
             this.bombBeam.setVisible(true);
             this.bombBeamRepeater
                 .setAlpha(this.bombBeam.alpha)
                 .setVisible(true);
+
+            this.backBeam.setAlpha(this.bombBeam.alpha * 0.33).setVisible(true);
+            this.backBeamRepeater.setAlpha(this.backBeam.alpha).setVisible(true);
+
+            this.backBackBeam.setAlpha(this.bombBeam.alpha * 0.166).setVisible(true);
+            this.backBackBeamRepeater.setAlpha(this.backBackBeam.alpha).setVisible(true);
         }
 
         if (this.x > 1024){
@@ -341,6 +398,16 @@ export class Player extends Physics.Arcade.Sprite {
         this.beamCollider.y = this.y;
         this.graceCollider.x = this.x;
         this.graceCollider.y = this.y;
+
+        this.backBeam.x = this.x + 24;
+        this.backBeam.y = this.y;
+        this.backBeamRepeater.x = this.backBeam.x + 512;
+        this.backBeamRepeater.y = this.y;
+
+        this.backBackBeam.x = this.x + 16;
+        this.backBackBeam.y = this.y;
+        this.backBackBeamRepeater.x = this.backBackBeam.x + 1024;
+        this.backBackBeamRepeater.y = this.y;
     }
 
     willDie() {
@@ -351,24 +418,28 @@ export class Player extends Physics.Arcade.Sprite {
         ) {
             return;
         }
-        this.dyingOn = this.scene.time.now + 50;
+
+        this.dyingOn = this.scene.time.now + 133;
     }
 
     die() {
+        this.cantCaptureSpellCard = true;
         if (this.invincibleUntil >= this.scene.time.now) {
             return;
         }
-        if (this.bombingUntil >= this.scene.time.now) {
-            return;
-        }
-
         for (let i = 0; i < 8; i++) {
             const ox = (Math.random() - 0.5) * 64;
             const oy = (Math.random() - 0.5) * 64;
             new HitFX(this.scene as GameScene, this.x + ox, this.y + oy);
         }
         this.scene.sound.add('playerHitHurt').play();
-        this.cantCaptureSpellCard = true;
+        if (this.bombingUntil >= this.scene.time.now) {
+            return;
+        }
+        this.bombBeam.setVisible(false);
+        this.bombBeamRepeater.setVisible(false);
+        this.backBeam.setVisible(false);
+        this.backBeamRepeater.setVisible(false);
 
         this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;

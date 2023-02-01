@@ -14,8 +14,16 @@ export class EnemyBullet extends Physics.Arcade.Image {
         scene.add.existing(this);
         scene.enemyProjectiles?.add(this);
         scene.physics.add.existing(this);
-        const s = frame === 'projectile' ? 16 : 32;
-        this.body.setSize(s, s, true);
+        let r = 32;
+        switch(frame){
+            case 'projectile':
+                r = 16;
+                break;
+            case 'bossTeaProjectile':
+                r = 48;
+                break;
+        }
+        this.body.setCircle(r);
     }
 
     preUpdate(time: number, delta: number) {

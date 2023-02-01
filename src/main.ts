@@ -1,6 +1,7 @@
 import './style.css';
 import './game.css';
 
+import options from './options';
 import { Game, Types } from 'phaser';
 import { GameScene } from './scenes/game/gameScene';
 import { UIScene } from './scenes/ui/uiScene';
@@ -32,7 +33,7 @@ const main = () => {
             default: 'arcade',
             arcade: {
                 gravity: { y: 0 },
-                //debug: true,
+                debug: options.showCollider,
             },
         },
         scene: [

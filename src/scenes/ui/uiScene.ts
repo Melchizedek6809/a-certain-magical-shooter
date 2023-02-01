@@ -76,6 +76,13 @@ export class UIScene extends Scene {
                 }
             }
         );
+        this.events.on('reset', (δ: number) => {
+            this.score = 0;
+            this.bombs = 3;
+            this.lives = 3;
+            that.refreshUI();
+        });
+
         this.events.on('incScore', (δ: number) => {
             const oldScore = Math.floor(that.score / 10000);
             that.score += δ;

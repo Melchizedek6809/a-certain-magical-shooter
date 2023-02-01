@@ -27,9 +27,9 @@ export class Boss extends Physics.Arcade.Sprite {
 
     wave(wc: number) {
         this.scene.sound.add('bossWave').play();
-        for (let i = 0; i < 27; i++) {
+        for (let i = 0; i < 22; i++) {
             const gs = this.scene as GameScene;
-            const t = (i / 27) * Math.PI * 2 + (wc / 256) * Math.PI * 2;
+            const t = (i / 22) * Math.PI * 2 + (wc / 256) * Math.PI * 2;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             const ox = vx * 0.12;
@@ -46,9 +46,9 @@ export class Boss extends Physics.Arcade.Sprite {
 
     reverseWave(wc: number) {
         this.scene.sound.add('bossWave').play();
-        for (let i = 0; i < 27; i++) {
+        for (let i = 0; i < 22; i++) {
             const gs = this.scene as GameScene;
-            const t = (i / 27) * Math.PI * 2 - (wc / 256) * Math.PI * 2;
+            const t = (i / 22) * Math.PI * 2 - (wc / 256) * Math.PI * 2;
             const vx = Math.cos(t) * 400;
             const vy = Math.sin(t) * 400;
             const ox = vx * 0.12;
@@ -65,10 +65,10 @@ export class Boss extends Physics.Arcade.Sprite {
 
     teaWave(wc: number) {
         this.scene.sound.add('bossWave').play();
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < 18; i++) {
             const gs = this.scene as GameScene;
             const t =
-                (i / 24) * Math.PI + Math.PI / 2 + ((wc / 256) * Math.PI) / 32;
+                (i / 18) * Math.PI + Math.PI / 2 + ((wc / 256) * Math.PI) / 32;
             const vx = Math.cos(t) * 300;
             const vy = Math.sin(t) * 300;
             const ox = vx * 0.12;

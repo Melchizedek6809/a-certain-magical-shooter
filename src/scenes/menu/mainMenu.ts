@@ -1,3 +1,4 @@
+import options from "../../options";
 import { Scene } from 'phaser';
 
 const introHTML = `<h1>A certain magical shooter</h1>
@@ -33,14 +34,6 @@ export class MainMenuScene extends Scene {
         this.scene.switch('GameScene');
     }
 
-    parseOptions() {
-        const params = new URLSearchParams(window.location.search);
-        const skipMenu = params.get('skipMenu');
-        if (skipMenu) {
-            this.startGame();
-        }
-    }
-
     addCreditsLinks() {
         const $links = document.createElement('div');
         $links.innerHTML = `<a href="${gitHubLink}" target="_blank" class="github-link" title="Source code available on GitHub"></a>`;
@@ -49,7 +42,9 @@ export class MainMenuScene extends Scene {
     }
 
     create() {
-        this.parseOptions();
+        if (options.skipMenu) {
+            this.startGame();
+        }
         this.addCreditsLinks();
         this.scene.run('GameScene');
 

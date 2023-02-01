@@ -20,12 +20,23 @@ export class Fairy extends Physics.Arcade.Sprite {
     }
 
     shoot() {
-        this.scene.sound.add('bossShoot').play();
         const gs = this.scene as GameScene;
-        const bullet = new EnemyBullet(gs, this.x, this.y);
         const dx = gs.player!.x - this.x;
         const dy = gs.player!.y - this.y;
         const v = new Phaser.Math.Vector2(dx, dy).normalize();
+        const x = this.x + v.x * 24;
+        const y = this.y + v.y * 24;
+
+        if (
+            x <= -this.width ||
+            y < 0 ||
+            y > 720 ||
+            x > 1300
+        ) {
+            return;
+        }
+        this.scene.sound.add('bossShoot').play();
+        const bullet = new EnemyBullet(gs, x, y);
         bullet.setVelocity(v.x * 400, v.y * 400);
     }
 

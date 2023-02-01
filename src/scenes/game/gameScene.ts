@@ -1,3 +1,4 @@
+import options from '../../options';
 import { GameObjects, Scene } from 'phaser';
 import { EnemyBullet } from '../../entities/enemyBullet';
 import { Boss } from '../../entities/boss';
@@ -84,20 +85,22 @@ export class GameScene extends Scene {
         this.sound.pauseOnBlur = false;
 
         if(this.bgm){
-            
             this.bgm.stop();
             this.bgm.destroy();
             this.bgm = undefined;``
         }
 
-        if(this.scene.isActive('MainMenuScene') && this.cache.audio.has('menubgm')){
-            this.bgm = this.sound.add('menubgm', {loop: true});
+        if(options.playBGM){
+            if(this.scene.isActive('MainMenuScene') && this.cache.audio.has('menubgm')){
+                this.bgm = this.sound.add('menubgm', {loop: true});
+            }
+            if(!this.bgm && this.cache.audio.has('bgm')) {
+                this.bgm = this.sound.add('bgm', {loop: true});
+            }
+            this.bgm?.play();
         }
-        if(!this.bgm && this.cache.audio.has('bgm')) {
-            this.bgm = this.sound.add('bgm', {loop: true});
-        }
-        this.bgm?.play();
-
+        const ui = this.scene.get('UIScene') as UIScene;
+        ui.events.emit('reset');
 
         this.bossFade = 0;
         this.anims.create({
