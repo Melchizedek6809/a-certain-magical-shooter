@@ -3,6 +3,8 @@ import { GameScene } from '../game/gameScene';
 import { UIScene } from '../ui/uiScene';
 
 export class GameOverScene extends Scene {
+    gamepadWasUnpressed = false;
+
     constructor(config: Phaser.Types.Scenes.SettingsConfig) {
         if (!config) {
             config = {};
@@ -21,6 +23,7 @@ export class GameOverScene extends Scene {
         const that = this;
         const gs = that.scene.get('GameScene') as GameScene;
         const score = (that.scene.get('UIScene') as UIScene).score;
+        this.gamepadWasUnpressed = false;
 
         const $dom = document.createElement('div');
         $dom.style.textAlign = 'center';
@@ -41,8 +44,10 @@ export class GameOverScene extends Scene {
         const that = this;
         if (this.input.gamepad.gamepads[0]) {
             const gamepad = this.input.gamepad.gamepads[0];
-            if (gamepad.A) {
+            if (gamepad.A && this.gamepadWasUnpressed) {
                 that.restartGame();
+            } else {
+                this.gamepadWasUnpressed = true;
             }
         }
     }

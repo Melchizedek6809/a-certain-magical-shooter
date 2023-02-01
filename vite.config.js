@@ -7,5 +7,8 @@ export default defineConfig({
     //sourcemap: true,
     assetsInlineLimit: 65536
   },
-  publicDir: 'assets'
+  publicDir: 'assets',
+  server: {
+    host: true,
+  }
 })

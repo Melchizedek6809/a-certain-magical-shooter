@@ -1,4 +1,4 @@
-import options from "../../options";
+import options from '../../options';
 import { GameObjects, Scene } from 'phaser';
 
 export class LoadingScreenScene extends Scene {
@@ -114,7 +114,7 @@ export class LoadingScreenScene extends Scene {
         this.load.audio('playerHitHurt', 'sfx/playerHitHurt.wav');
         this.load.audio('laserBeam', 'sfx/laserBeam.mp3');
 
-        if(options.playBGM){
+        if (options.playBGM) {
             this.load.audio('bgm', 'bgm/bgm.mp3');
             this.load.audio('menubgm', 'bgm/menubgm.mp3');
         }

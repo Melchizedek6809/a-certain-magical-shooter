@@ -27,12 +27,7 @@ export class Fairy extends Physics.Arcade.Sprite {
         const x = this.x + v.x * 24;
         const y = this.y + v.y * 24;
 
-        if (
-            x <= -this.width ||
-            y < 0 ||
-            y > 720 ||
-            x > 1300
-        ) {
+        if (x <= -this.width || y < 0 || y > 720 || x > 1300) {
             return;
         }
         this.scene.sound.add('bossShoot').play();
@@ -56,7 +51,10 @@ export class Fairy extends Physics.Arcade.Sprite {
                     this.y,
                     'star'
                 );
-                pu.setVelocity(Math.random() * 600, (Math.random()-0.5) * 600);
+                pu.setVelocity(
+                    Math.random() * 600,
+                    (Math.random() - 0.5) * 600
+                );
             }
             for (let i = 0; i < pows; i++) {
                 const pu = new Pickup(
@@ -65,7 +63,10 @@ export class Fairy extends Physics.Arcade.Sprite {
                     this.y,
                     'powerup'
                 );
-                pu.setVelocity(Math.random() * 900, (Math.random()-0.5) * 900);
+                pu.setVelocity(
+                    Math.random() * 900,
+                    (Math.random() - 0.5) * 900
+                );
             }
             if (Math.floor(Math.random() * 300) === 0) {
                 const pu = new Pickup(
@@ -74,7 +75,10 @@ export class Fairy extends Physics.Arcade.Sprite {
                     this.y,
                     'bomb'
                 );
-                pu.setVelocity(Math.random() * 1500, (Math.random()-0.5) * 1500);
+                pu.setVelocity(
+                    Math.random() * 1500,
+                    (Math.random() - 0.5) * 1500
+                );
             }
             if (Math.floor(Math.random() * 900) === 0) {
                 const pu = new Pickup(
@@ -83,7 +87,10 @@ export class Fairy extends Physics.Arcade.Sprite {
                     this.y,
                     'life'
                 );
-                pu.setVelocity(Math.random() * 2500, (Math.random()-0.5) * 2500);
+                pu.setVelocity(
+                    Math.random() * 2500,
+                    (Math.random() - 0.5) * 2500
+                );
             }
             const gs = this.scene as GameScene;
             new HitFX(gs, this.x, this.y);

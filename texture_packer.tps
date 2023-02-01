@@ -253,6 +253,7 @@
                 <false/>
             </struct>
             <key type="filename">assets/unpacked_gfx/bossStar.png</key>
+            <key type="filename">assets/unpacked_gfx/playerCollider.png</key>
             <key type="filename">assets/unpacked_gfx/powerup.png</key>
             <key type="filename">assets/unpacked_gfx/projectile.png</key>
             <key type="filename">assets/unpacked_gfx/star.png</key>
@@ -272,8 +273,10 @@
             </struct>
             <key type="filename">assets/unpacked_gfx/boss_0.png</key>
             <key type="filename">assets/unpacked_gfx/boss_1.png</key>
+            <key type="filename">assets/unpacked_gfx/boss_2.png</key>
             <key type="filename">assets/unpacked_gfx/player_0.png</key>
             <key type="filename">assets/unpacked_gfx/player_1.png</key>
+            <key type="filename">assets/unpacked_gfx/player_2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -321,6 +324,7 @@
             </struct>
             <key type="filename">assets/unpacked_gfx/fairy_0.png</key>
             <key type="filename">assets/unpacked_gfx/fairy_1.png</key>
+            <key type="filename">assets/unpacked_gfx/fairy_2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -365,7 +369,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">assets/unpacked_gfx/snowflake.png</key>
             <key type="filename">assets/unpacked_gfx/snowflake_0.png</key>
             <key type="filename">assets/unpacked_gfx/snowflake_1.png</key>
             <key type="filename">assets/unpacked_gfx/snowflake_2.png</key>

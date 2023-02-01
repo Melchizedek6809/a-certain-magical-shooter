@@ -12,7 +12,7 @@ import { Pickup } from '../../entities/pickup';
 
 const animation_frames = (frame: string, frames: number | number[]) => {
     const ret = [];
-    if(Array.isArray(frames)){
+    if (Array.isArray(frames)) {
         for (let i = 0; i < frames.length; i++) {
             ret.push({ key: 'packed', frame: `${frame}_${frames[i]}` });
         }
@@ -83,25 +83,28 @@ export class GameScene extends Scene {
         this.player = undefined;
     }
 
-    advanceBgm() {
-    }
+    advanceBgm() {}
 
     create() {
         const that = this;
         this.sound.pauseOnBlur = false;
 
-        if(this.bgm){
+        if (this.bgm) {
             this.bgm.stop();
             this.bgm.destroy();
-            this.bgm = undefined;``
+            this.bgm = undefined;
+            ``;
         }
 
-        if(options.playBGM){
-            if(this.scene.isActive('MainMenuScene') && this.cache.audio.has('menubgm')){
-                this.bgm = this.sound.add('menubgm', {loop: true});
+        if (options.playBGM) {
+            if (
+                this.scene.isActive('MainMenuScene') &&
+                this.cache.audio.has('menubgm')
+            ) {
+                this.bgm = this.sound.add('menubgm', { loop: true });
             }
-            if(!this.bgm && this.cache.audio.has('bgm')) {
-                this.bgm = this.sound.add('bgm', {loop: true});
+            if (!this.bgm && this.cache.audio.has('bgm')) {
+                this.bgm = this.sound.add('bgm', { loop: true });
             }
             this.bgm?.play();
         }
@@ -111,19 +114,19 @@ export class GameScene extends Scene {
         this.bossFade = 0;
         this.anims.create({
             key: 'fairy_animated',
-            frames: animation_frames('fairy', [0,1,2,1]),
+            frames: animation_frames('fairy', [0, 1, 2, 1]),
             frameRate: 6,
             repeat: -1,
         });
         this.anims.create({
             key: 'player_animated',
-            frames: animation_frames('player', [0,1,2,1]),
+            frames: animation_frames('player', [0, 1, 2, 1]),
             frameRate: 6,
             repeat: -1,
         });
         this.anims.create({
             key: 'boss_animated',
-            frames: animation_frames('boss', [0,1,2,1]),
+            frames: animation_frames('boss', [0, 1, 2, 1]),
             frameRate: 6,
             repeat: -1,
         });
@@ -260,7 +263,6 @@ export class GameScene extends Scene {
             });
         }
 
-
         this.backSnowFlakeData.length = 0;
         this.backSnowFlakes = this.add.blitter(-8, -8, 'packed');
         this.backSnowFlakes.setDepth(-3);
@@ -275,7 +277,6 @@ export class GameScene extends Scene {
                 velZ: 0.2 + Math.random() * 0.6,
             });
         }
-
 
         this.stageEvaluator = new StageEvaluator(stageOneData, this);
     }
@@ -322,7 +323,7 @@ export class GameScene extends Scene {
         this.updateSnow(delta);
         this.player?.update(time, delta);
 
-        if((this.player?.bombingUntil || 0) > time){
+        if ((this.player?.bombingUntil || 0) > time) {
             this.bossFade = Math.min(1, this.bossFade + 0.004);
         }
 
@@ -352,7 +353,9 @@ export class GameScene extends Scene {
         this.darkclouds!.setTilePosition(time * 0.17, 0);
         this.darkdarkclouds!.setTilePosition(time * 0.09, 0);
 
-        if(this.scene.isActive('MainMenuScene')){return;}
+        if (this.scene.isActive('MainMenuScene')) {
+            return;
+        }
 
         if (this.player?.isDead) {
             if (!this.gameOverActive) {

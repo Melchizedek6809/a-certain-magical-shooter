@@ -47,8 +47,10 @@ export class Player extends Physics.Arcade.Sprite {
         this.setOrigin(0.6, 0.5);
         this.body.setCircle(3, 3, 3).setOffset(75, 60);
 
-        this.graceCollider = scene.physics.add.image(x,y,'packed','void').setVisible(false);
-        this.graceCollider.body.setCircle(24,-24,-24);
+        this.graceCollider = scene.physics.add
+            .image(x, y, 'packed', 'void')
+            .setVisible(false);
+        this.graceCollider.body.setCircle(24, -24, -24);
 
         this.colliderIndicator = scene.add
             .image(x, y, 'packed', 'playerCollider')
@@ -60,12 +62,12 @@ export class Player extends Physics.Arcade.Sprite {
             .setOrigin(0, 0.5)
             .setAlpha(0)
             .setScale(2, 2)
-            .setDepth(1);
+            .setDepth(11);
         this.bombBeamRepeater = scene.add
             .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
             .setAlpha(0)
             .setOrigin(0, 0.5)
-            .setDepth(1)
+            .setDepth(11)
             .setScale(2, 2)
             .setDisplaySize(1024, 128);
 
@@ -74,12 +76,12 @@ export class Player extends Physics.Arcade.Sprite {
             .setOrigin(0, 0.5)
             .setAlpha(0)
             .setScale(4, 4)
-            .setDepth(1);
+            .setDepth(11);
         this.backBeamRepeater = scene.add
             .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
             .setAlpha(0)
             .setOrigin(0, 0.5)
-            .setDepth(1)
+            .setDepth(11)
             .setScale(4, 4)
             .setDisplaySize(2048, 256);
 
@@ -88,12 +90,12 @@ export class Player extends Physics.Arcade.Sprite {
             .setOrigin(0, 0.5)
             .setAlpha(0)
             .setScale(8, 8)
-            .setDepth(1);
+            .setDepth(11);
         this.backBackBeamRepeater = scene.add
             .tileSprite(x, y, 0, 0, 'packed', 'bombbeam_repeater')
             .setAlpha(0)
             .setOrigin(0, 0.5)
-            .setDepth(1)
+            .setDepth(11)
             .setScale(8, 8)
             .setDisplaySize(4096, 512);
 
@@ -103,7 +105,6 @@ export class Player extends Physics.Arcade.Sprite {
         this.backBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
         this.backBackBeam.setBlendMode(Phaser.BlendModes.ADD);
         this.backBackBeamRepeater.setBlendMode(Phaser.BlendModes.ADD);
-
 
         this.beamCollider = scene.physics.add
             .image(x, y, 'packed', 'void')
@@ -296,20 +297,11 @@ export class Player extends Physics.Arcade.Sprite {
             if (gamepad.A) {
                 blast = true;
             }
-            if (gamepad.B) {
+            if (gamepad.B || gamepad.X) {
                 bomb = true;
             }
             if (gamepad.R1 || gamepad.L1) {
                 focus = true;
-            }
-
-            if (gamepad.leftStick.length() > 0.01){
-                const speed = focus ? 192 : 512;
-                const m = gamepad.leftStick;
-                const mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
-                const my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
-                this.setVelocity(mx, my);
-                gamepadMove = true;
             }
         }
 
@@ -319,18 +311,19 @@ export class Player extends Physics.Arcade.Sprite {
         if (bomb) {
             this.bomb();
         }
-        let speed = focus ? 156 : 460;
 
+        let speed = focus ? delta * (1 / 6) : delta * 0.44;
         if (this.bombingUntil > this.scene.time.now) {
             this.magnetDD = 1536 * 1536;
             this.bombBeam.alpha = Math.min(1, this.bombBeam.alpha + 0.04);
             this.beamCollider.setScale(2048, 128);
-            speed = 192;
+            speed = delta * (1 / 6);
         } else {
             this.magnetDD = 64 * 64;
             this.bombBeam.alpha = Math.max(0, this.bombBeam.alpha - 0.01);
             this.beamCollider.setScale(0, 0);
         }
+
         if (this.bombBeam.alpha <= 0) {
             this.bombBeam.setVisible(false);
             this.bombBeamRepeater.setVisible(false);
@@ -347,13 +340,19 @@ export class Player extends Physics.Arcade.Sprite {
                 .setVisible(true);
 
             this.backBeam.setAlpha(this.bombBeam.alpha * 0.33).setVisible(true);
-            this.backBeamRepeater.setAlpha(this.backBeam.alpha).setVisible(true);
+            this.backBeamRepeater
+                .setAlpha(this.backBeam.alpha)
+                .setVisible(true);
 
-            this.backBackBeam.setAlpha(this.bombBeam.alpha * 0.166).setVisible(true);
-            this.backBackBeamRepeater.setAlpha(this.backBackBeam.alpha).setVisible(true);
+            this.backBackBeam
+                .setAlpha(this.bombBeam.alpha * 0.166)
+                .setVisible(true);
+            this.backBackBeamRepeater
+                .setAlpha(this.backBackBeam.alpha)
+                .setVisible(true);
         }
 
-        if (this.x > 1024){
+        if (this.x > 1024) {
             this.magnetDD = 1536 * 1536;
         }
 
@@ -363,23 +362,32 @@ export class Player extends Physics.Arcade.Sprite {
             this.focus = Math.max(0, this.focus - delta / 500);
         }
 
-        if(!gamepadMove){
-            let mx = left ? -1 : right ? 1 : 0;
-            let my = top ? -1 : down ? 1 : 0;
+        if (gamepad) {
+            if (gamepad.leftStick.length() > 0.01) {
+                const m = gamepad.leftStick;
+                const mx = m.x * speed;
+                const my = m.y * speed;
+                this.x += mx;
+                this.y += my;
+                gamepadMove = true;
+            }
+        }
+        if (!gamepadMove) {
+            const mx = left ? -1 : right ? 1 : 0;
+            const my = top ? -1 : down ? 1 : 0;
             const m = new Phaser.Math.Vector2(mx, my);
             m.normalize();
 
-            mx = m.x * speed;
-            my = m.y * speed;
-            this.setVelocity(mx, my);
+            this.x += m.x * speed;
+            this.y += m.y * speed;
         }
 
         if (this.invincibleUntil > this.scene.time.now) {
             this.setTint(
-                Boolean((this.scene.time.now / 200) & 1) ? 0xFFFFFF : 0xFF6666
+                Boolean((this.scene.time.now / 200) & 1) ? 0xffffff : 0xff6666
             );
         } else {
-            this.setTint(!this.dyingOn ? 0xFFFFFF : 0xFF6666);
+            this.setTint(!this.dyingOn ? 0xffffff : 0xff6666);
         }
 
         if (this.dyingOn) {
@@ -417,11 +425,13 @@ export class Player extends Physics.Arcade.Sprite {
         this.backBackBeamRepeater.x = this.backBackBeam.x + 1024;
         this.backBackBeamRepeater.y = this.y;
 
-
-        if(this.focus > 0 && !this.isDead){
-            this.colliderIndicator.setVisible(true).setAlpha(this.focus).setAngle(time/10);
-            this.colliderIndicator.x = this.x+2;
-            this.colliderIndicator.y = this.y-1;
+        if (this.focus > 0 && !this.isDead) {
+            this.colliderIndicator
+                .setVisible(true)
+                .setAlpha(this.focus)
+                .setAngle(time / 10);
+            this.colliderIndicator.x = this.x + 2;
+            this.colliderIndicator.y = this.y - 1;
         } else {
             this.colliderIndicator.setVisible(false);
         }
@@ -466,19 +476,22 @@ export class Player extends Physics.Arcade.Sprite {
         const ui = this.scene.scene.get('UIScene') as UIScene;
         if (--ui.lives >= 0) {
             ui.bombs = 3;
-            const pickups = Math.min(5,this.power);
+            const pickups = Math.min(5, this.power);
             this.power = Math.max(0, this.power - 5);
             this.scene.scene.get('UIScene').events.emit('setPower', this.power);
             this.invincibleUntil = this.scene.time.now + 1000;
             this.scene.scene.get('UIScene').events.emit('refresh');
-            for(let i=0;i<pickups;i++){
+            for (let i = 0; i < pickups; i++) {
                 const pu = new Pickup(
                     this.scene as GameScene,
                     this.x + 78,
-                    this.y + (Math.random()-0.5)*64,
+                    this.y + (Math.random() - 0.5) * 64,
                     'powerup'
                 );
-                pu.setVelocity(Math.random() * 3500, (Math.random() - 0.5) * 500);
+                pu.setVelocity(
+                    Math.random() * 3500,
+                    (Math.random() - 0.5) * 500
+                );
             }
             return;
         } else {
@@ -487,8 +500,8 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     powerup() {
-        if(this.power === 49){
-            new TextFX(this.scene as GameScene, this.x, this.y, "MAX Power!");
+        if (this.power === 49) {
+            new TextFX(this.scene as GameScene, this.x, this.y, 'MAX Power!');
         }
         const oldLevel = Math.floor(this.power / 10);
         this.power++;
@@ -507,7 +520,9 @@ export class Player extends Physics.Arcade.Sprite {
     }
 
     onPickup(other: Pickup) {
-        if(!other.scene){return;}
+        if (!other.scene) {
+            return;
+        }
         if (other.pickupType === 'bossStar') {
             if ((++this.bossStarsPickedUp & 1) == 0) {
                 this.scene.sound.add('pickupCoin').play();

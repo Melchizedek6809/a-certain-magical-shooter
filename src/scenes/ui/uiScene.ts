@@ -90,7 +90,7 @@ export class UIScene extends Scene {
             if (newScore > oldScore) {
                 that.lives++;
                 const gs = this.scene.get('GameScene') as GameScene;
-                new TextFX(gs, gs.player!.x, gs.player!.y, "Bonus Life");
+                new TextFX(gs, gs.player!.x, gs.player!.y, 'Bonus Life');
             }
             that.refreshUI();
         });

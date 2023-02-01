@@ -89,7 +89,11 @@ export class Boss extends Physics.Arcade.Sprite {
         const dx = gs.player!.x - this.x;
         const dy = gs.player!.y - this.y;
         const v = new Phaser.Math.Vector2(dx, dy).normalize();
-        const bullet = new EnemyBullet(gs, this.x + v.x * 16, this.y + v.y * 16);
+        const bullet = new EnemyBullet(
+            gs,
+            this.x + v.x * 16,
+            this.y + v.y * 16
+        );
         bullet.setVelocity(v.x * 400, v.y * 400);
     }
 
@@ -99,7 +103,12 @@ export class Boss extends Physics.Arcade.Sprite {
         const dx = gs.player!.x - this.x;
         const dy = gs.player!.y - this.y;
         const v = new Phaser.Math.Vector2(dx, dy).normalize();
-        const bullet = new EnemyBullet(gs, this.x + v.x * 16, this.y + v.y * 16, 'bossSickleProjectile');
+        const bullet = new EnemyBullet(
+            gs,
+            this.x + v.x * 16,
+            this.y + v.y * 16,
+            'bossSickleProjectile'
+        );
         bullet.setVelocity(v.x * 600, v.y * 600);
     }
 
@@ -114,7 +123,7 @@ export class Boss extends Physics.Arcade.Sprite {
     }
 
     onCollide(other: Phaser.GameObjects.Sprite) {
-        if(other.name !== "beam"){
+        if (other.name !== 'beam') {
             new HitFX(this.scene as GameScene, other.x, other.y);
         }
         this.scene.sound.add('bossHitHurt').play();

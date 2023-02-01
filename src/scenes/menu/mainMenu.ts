@@ -1,4 +1,4 @@
-import options from "../../options";
+import options from '../../options';
 import { Scene } from 'phaser';
 
 const introHTML = `<h1>A certain magical shooter</h1>
@@ -12,7 +12,7 @@ const introHTML = `<h1>A certain magical shooter</h1>
 <tr><th></th><th>Keyboard</th><th>GamePad</th></tr>
 <tr><th>Move</th><td>Arrow Keys</td><td>Left Stick / D-Pad</td></tr>
 <tr><th>Shoot</th><td>Z</td><td>A</td></tr>
-<tr><th>Bomb</th><td>X</td><td>B</td></tr>
+<tr><th>Bomb</th><td>X</td><td>B or X</td></tr>
 <tr><th>Focus</th><td>Shift</td><td>L1 / R1</td></tr>
 
 </table>`;

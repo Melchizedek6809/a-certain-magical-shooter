@@ -116,15 +116,16 @@ export class StageFiber {
 
     run() {
         if (this.destroyed) {
-            return false;
+            return;
         }
         if (this.fairy && !this.fairy.scene) {
-            return false; // Fairy ded;
+            this.destroyed = true;
+            return;
         }
         this.interpolate();
         while (true) {
             if (this.isBlocked()) {
-                return true;
+                return;
             }
             const v = this.code[this.ip++];
             if (v) {
@@ -132,9 +133,11 @@ export class StageFiber {
             } else {
                 if (this.loopFiber) {
                     this.ip = 0;
+                    return;
                 } else {
                     this.despawn();
-                    return false;
+                    this.destroyed = true;
+                    return;
                 }
             }
         }
@@ -201,7 +204,7 @@ export class StageFiber {
 
     shootEvery(x: number, t: string) {
         this.shootEveryT = x;
-        if(this.nextShot < this.evaluator.ticks){
+        if (this.nextShot < this.evaluator.ticks) {
             this.nextShot = this.evaluator.ticks;
         }
         this.shotType = t;
@@ -316,7 +319,9 @@ export class StageEvaluator {
         fiber.bindings.set(
             'begin-spell-card',
             ((args: any, fiber: StageFiber) => {
-                if(fiber.loopFiber){return;}
+                if (fiber.loopFiber) {
+                    return;
+                }
                 fiber.loopFiber = true;
                 this.scene.player!.cantCaptureSpellCard = false;
             }).bind(this)
@@ -362,16 +367,21 @@ export class StageEvaluator {
                     bul.destroy();
                 }
 
-                if (this.scene.player!.cantCaptureSpellCard){
+                if (this.scene.player!.cantCaptureSpellCard) {
                     return;
                 }
-                const {width, height} = this.scene.renderer;
-                for(let i = 0;i<256;i++){
+                const { width, height } = this.scene.renderer;
+                for (let i = 0; i < 256; i++) {
                     const y = Math.random() * height;
                     const x = width - Math.random() * 128;
                     new Pickup(this.scene, x, y, 'bossStar');
                 }
-                new TextFX(this.scene, this.scene.player!.x, this.scene.player!.y, "Spell card captured!");
+                new TextFX(
+                    this.scene,
+                    this.scene.player!.x,
+                    this.scene.player!.y,
+                    'Spell card captured!'
+                );
             }).bind(this)
         );
 
@@ -616,6 +626,19 @@ export class StageEvaluator {
 
     tick(delta: number) {
         this.ticks += delta;
-        this.fibers.filter((fiber) => fiber.run());
+        for (const fiber of this.fibers) {
+            fiber.run();
+        }
+        let newLen = this.fibers.length;
+        for (let i = 0; i < this.fibers.length; i++) {
+            const fiber = this.fibers[i];
+            if (fiber.destroyed) {
+                this.fibers[i] = this.fibers[newLen - 1];
+                newLen--;
+            }
+        }
+        if (newLen !== this.fibers.length) {
+            this.fibers.length = newLen;
+        }
     }
 }
