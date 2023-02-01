@@ -319,7 +319,7 @@ export class Player extends Physics.Arcade.Sprite {
         if (bomb) {
             this.bomb();
         }
-        let speed = focus ? 156 : 500;
+        let speed = focus ? 156 : 460;
 
         if (this.bombingUntil > this.scene.time.now) {
             this.magnetDD = 1536 * 1536;

@@ -10,10 +10,16 @@ import stageOneData from './../../stages/stage1.lisp?raw';
 import { UIScene } from '../ui/uiScene';
 import { Pickup } from '../../entities/pickup';
 
-const animation_frames = (frame: string, frames: number) => {
+const animation_frames = (frame: string, frames: number | number[]) => {
     const ret = [];
-    for (let i = 0; i < frames; i++) {
-        ret.push({ key: 'packed', frame: `${frame}_${i}` });
+    if(Array.isArray(frames)){
+        for (let i = 0; i < frames.length; i++) {
+            ret.push({ key: 'packed', frame: `${frame}_${frames[i]}` });
+        }
+    } else {
+        for (let i = 0; i < frames; i++) {
+            ret.push({ key: 'packed', frame: `${frame}_${i}` });
+        }
     }
     return ret;
 };
@@ -105,19 +111,19 @@ export class GameScene extends Scene {
         this.bossFade = 0;
         this.anims.create({
             key: 'fairy_animated',
-            frames: animation_frames('fairy', 2),
+            frames: animation_frames('fairy', [0,1,2,1]),
             frameRate: 6,
             repeat: -1,
         });
         this.anims.create({
             key: 'player_animated',
-            frames: animation_frames('player', 2),
+            frames: animation_frames('player', [0,1,2,1]),
             frameRate: 6,
             repeat: -1,
         });
         this.anims.create({
             key: 'boss_animated',
-            frames: animation_frames('boss', 2),
+            frames: animation_frames('boss', [0,1,2,1]),
             frameRate: 6,
             repeat: -1,
         });
