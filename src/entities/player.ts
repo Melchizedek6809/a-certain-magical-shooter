@@ -273,8 +273,8 @@ export class Player extends Physics.Arcade.Sprite {
         let bomb = this.keymap.X.isDown;
         let gamepadMove = false;
 
-        if (this.scene.input.gamepad.gamepads[0]) {
-            const gamepad = this.scene.input.gamepad.gamepads[0];
+        const gamepad = this.scene.input.gamepad.gamepads[0];
+        if (gamepad) {
             if (gamepad.left) {
                 left = true;
             }
