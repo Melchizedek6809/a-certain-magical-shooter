@@ -35,6 +35,8 @@ export class Player extends Physics.Arcade.Sprite {
     beamCollider: Physics.Arcade.Image;
     graceCollider: Physics.Arcade.Image;
 
+    colliderIndicator: GameObjects.Image;
+
     constructor(scene: GameScene, x: number, y: number, keymap: KeyMap) {
         super(scene, x, y, 'packed', 'player_0');
         this.play('player_animated');
@@ -43,7 +45,15 @@ export class Player extends Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
         this.setOrigin(0.6, 0.5);
-        this.body.setSize(6, 6, true).setOffset(75, 61);
+        this.body.setCircle(3, 3, 3).setOffset(75, 60);
+
+        this.graceCollider = scene.physics.add.image(x,y,'packed','void').setVisible(false);
+        this.graceCollider.body.setCircle(24,-24,-24);
+
+        this.colliderIndicator = scene.add
+            .image(x, y, 'packed', 'playerCollider')
+            .setVisible(false)
+            .setDepth(2);
 
         this.bombBeam = scene.add
             .image(x, y, 'packed', 'bombbeam')
@@ -101,10 +111,6 @@ export class Player extends Physics.Arcade.Sprite {
             .setOrigin(0, 0.5)
             .setScale(0, 0);
         this.beamCollider.setName('beam');
-        this.graceCollider = scene.physics.add
-            .image(x, y, 'packed', 'void')
-            .setVisible(false)
-            .setScale(1.25, 1.25);
         scene.playerProjectiles?.add(this.beamCollider);
 
         const ui = this.scene.scene.get('UIScene') as UIScene;
@@ -313,7 +319,7 @@ export class Player extends Physics.Arcade.Sprite {
         if (bomb) {
             this.bomb();
         }
-        let speed = focus ? 192 : 512;
+        let speed = focus ? 156 : 500;
 
         if (this.bombingUntil > this.scene.time.now) {
             this.magnetDD = 1536 * 1536;
@@ -363,17 +369,17 @@ export class Player extends Physics.Arcade.Sprite {
             const m = new Phaser.Math.Vector2(mx, my);
             m.normalize();
 
-            mx = m.x * speed * 0.33 + this.body.velocity.x * 0.66;
-            my = m.y * speed * 0.33 + this.body.velocity.y * 0.66;
+            mx = m.x * speed;
+            my = m.y * speed;
             this.setVelocity(mx, my);
         }
 
         if (this.invincibleUntil > this.scene.time.now) {
-            this.setAlpha(
-                Boolean((this.scene.time.now / 200) & 1) ? 1.0 : 0.33
+            this.setTint(
+                Boolean((this.scene.time.now / 200) & 1) ? 0xFFFFFF : 0xFF6666
             );
         } else {
-            this.setAlpha(1);
+            this.setTint(!this.dyingOn ? 0xFFFFFF : 0xFF6666);
         }
 
         if (this.dyingOn) {
@@ -389,7 +395,9 @@ export class Player extends Physics.Arcade.Sprite {
         } else {
             this.setVisible(false);
             this.setVelocity(0, 0);
+            this.colliderIndicator.setVisible(false);
         }
+
         this.bombBeam.x = this.x + 32;
         this.bombBeam.y = this.y;
         this.bombBeamRepeater.x = this.bombBeam.x + 256;
@@ -408,6 +416,18 @@ export class Player extends Physics.Arcade.Sprite {
         this.backBackBeam.y = this.y;
         this.backBackBeamRepeater.x = this.backBackBeam.x + 1024;
         this.backBackBeamRepeater.y = this.y;
+
+
+        if(this.focus > 0 && !this.isDead){
+            this.colliderIndicator.setVisible(true).setAlpha(this.focus).setAngle(time/10);
+            this.colliderIndicator.x = this.x+2;
+            this.colliderIndicator.y = this.y-1;
+        } else {
+            this.colliderIndicator.setVisible(false);
+        }
+
+        this.graceCollider.x = this.x;
+        this.graceCollider.y = this.y;
     }
 
     willDie() {
@@ -440,6 +460,7 @@ export class Player extends Physics.Arcade.Sprite {
         this.bombBeamRepeater.setVisible(false);
         this.backBeam.setVisible(false);
         this.backBeamRepeater.setVisible(false);
+        this.colliderIndicator.setVisible(false);
 
         this.dyingOn = 0;
         const ui = this.scene.scene.get('UIScene') as UIScene;

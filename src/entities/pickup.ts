@@ -42,7 +42,7 @@ export class Pickup extends Physics.Arcade.Image {
             this.body.velocity.y = this.body.velocity.y * 0.9 - v.y * d * 0.1;
         } else {
             const v = new Phaser.Math.Vector2(dx, dy).normalize();
-            this.body.velocity.x = this.body.velocity.x * 0.9 - 400 * 0.1;
+            this.body.velocity.x = this.body.velocity.x * 0.95 - 360 * 0.05;
             this.body.velocity.y = this.body.velocity.y * 0.9;
         }
         if (this.x <= (this.width / 2)+1) {

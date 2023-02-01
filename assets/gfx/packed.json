@@ -73,7 +73,7 @@
 					}
 				},
 				{
-					"filename": "snowflake",
+					"filename": "snowflake_0",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -115,7 +115,7 @@
 					}
 				},
 				{
-					"filename": "snowflake_0",
+					"filename": "snowflake_1",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -136,7 +136,7 @@
 					}
 				},
 				{
-					"filename": "snowflake_1",
+					"filename": "snowflake_2",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -157,7 +157,7 @@
 					}
 				},
 				{
-					"filename": "snowflake_2",
+					"filename": "snowflake_3",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -178,27 +178,6 @@
 					}
 				},
 				{
-					"filename": "snowflake_3",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 8,
-						"h": 8
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 8,
-						"h": 8
-					},
-					"frame": {
-						"x": 495,
-						"y": 46,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
 					"filename": "sky",
 					"rotated": false,
 					"trimmed": false,
@@ -214,7 +193,7 @@
 					},
 					"frame": {
 						"x": 495,
-						"y": 57,
+						"y": 46,
 						"w": 1,
 						"h": 8
 					}
@@ -235,7 +214,7 @@
 					},
 					"frame": {
 						"x": 499,
-						"y": 57,
+						"y": 46,
 						"w": 1,
 						"h": 1
 					}
@@ -304,7 +283,7 @@
 					}
 				},
 				{
-					"filename": "powerup",
+					"filename": "playerCollider",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -320,6 +299,27 @@
 					"frame": {
 						"x": 494,
 						"y": 113,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "powerup",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 494,
+						"y": 132,
 						"w": 16,
 						"h": 16
 					}
@@ -645,6 +645,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:26222993d260f978c759de2c4e376636:4cd5016ba706eb0781f7a2a95fd4350e:de62c4130a72712ae995d05d7f4a14e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:06d24d87bfc999b7679c310dd0691e11:7486c5214abe666d4374ef42e44314ea:de62c4130a72712ae995d05d7f4a14e5$"
 	}
 }
