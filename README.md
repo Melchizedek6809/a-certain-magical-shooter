@@ -4,7 +4,7 @@
 
 I made a simple Shmup, trying to get better at Art/Sound/Music, hopefully you'll enjoy the results.
 
-## [Play the game](https://melchizedek6809.github.io/touhou-jam-10/)
+## [Play the game](https://melchizedek6809.github.io/a-certain-magical-shooter/)
 
 
 ## Dev Requirements
