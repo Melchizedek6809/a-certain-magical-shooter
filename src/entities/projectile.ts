@@ -7,11 +7,13 @@ export class Projectile extends Physics.Arcade.Image {
         scene.add.existing(this);
         scene.playerProjectiles?.add(this);
         scene.physics.add.existing(this);
-        this.body.setSize(32, 16, true);
+        this.body?.setSize(32, 16, true);
     }
 
     preUpdate(time: number, delta: number) {
-        this.body.velocity.x = this.body.velocity.x * 0.9 + 800 * 0.1;
+        if(this.body){
+            this.body.velocity.x = this.body.velocity.x * 0.9 + 800 * 0.1;
+        }
         if (this.x > 1300) {
             this.destroy();
         }

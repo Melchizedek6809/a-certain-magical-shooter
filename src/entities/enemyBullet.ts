@@ -28,7 +28,7 @@ export class EnemyBullet extends Physics.Arcade.Image {
                 break;
         }
         this.setDepth(1);
-        this.body.setCircle(r);
+        this.body?.setCircle(r);
     }
 
     preUpdate(time: number, delta: number) {

@@ -45,12 +45,12 @@ export class Player extends Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.setBounce(1).setCollideWorldBounds(true);
         this.setOrigin(0.6, 0.5);
-        this.body.setCircle(3, 3, 3).setOffset(75, 60);
+        this.body?.setCircle(3, 3, 3).setOffset(75, 60);
 
         this.graceCollider = scene.physics.add
             .image(x, y, 'packed', 'void')
             .setVisible(false);
-        this.graceCollider.body.setCircle(24, -24, -24);
+        this.graceCollider.body?.setCircle(24, -24, -24);
 
         this.colliderIndicator = scene.add
             .image(x, y, 'packed', 'playerCollider')
@@ -280,7 +280,7 @@ export class Player extends Physics.Arcade.Sprite {
         let bomb = this.keymap.X.isDown;
         let gamepadMove = false;
 
-        const gamepad = this.scene.input.gamepad.gamepads[0];
+        const gamepad = this.scene.input.gamepad?.gamepads[0];
         if (gamepad) {
             if (gamepad.left) {
                 left = true;
@@ -404,6 +404,10 @@ export class Player extends Physics.Arcade.Sprite {
             this.setVisible(false);
             this.setVelocity(0, 0);
             this.colliderIndicator.setVisible(false);
+        }
+
+        if(this.x < this.width/2){
+            this.x = this.width/2;
         }
 
         this.bombBeam.x = this.x + 32;

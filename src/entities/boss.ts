@@ -19,8 +19,10 @@ export class Boss extends Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         scene.enemies?.add(this);
-        this.body.setSize(32, 72, true);
-        this.body.onOverlap = true;
+        if(this.body){
+            this.body.setSize(32, 72, true);
+            this.body.onOverlap = true;
+        }
         this.spellCards = spellCards;
         scene.boss = this;
     }

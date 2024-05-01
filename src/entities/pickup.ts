@@ -35,17 +35,18 @@ export class Pickup extends Physics.Arcade.Image {
         const dd = dx * dx + dy * dy;
         const magnetDD =
             this.pickupType === 'bossStar' ? 1024 * 1024 : gs.player!.magnetDD;
-        if (dd < magnetDD) {
-            const v = new Phaser.Math.Vector2(dx, dy).normalize();
-            const d = 1536 - Math.sqrt(dd);
-            this.body.velocity.x = this.body.velocity.x * 0.9 - v.x * d * 0.1;
-            this.body.velocity.y = this.body.velocity.y * 0.9 - v.y * d * 0.1;
-        } else {
-            const v = new Phaser.Math.Vector2(dx, dy).normalize();
-            this.body.velocity.x = this.body.velocity.x * 0.95 - 320 * 0.05;
-            this.body.velocity.y = this.body.velocity.y * 0.9;
+        if (this.body){
+            if (dd < magnetDD) {
+                const v = new Phaser.Math.Vector2(dx, dy).normalize();
+                const d = 1536 - Math.sqrt(dd);
+                this.body.velocity.x = this.body.velocity.x * 0.9 - v.x * d * 0.1;
+                this.body.velocity.y = this.body.velocity.y * 0.9 - v.y * d * 0.1;
+            } else {
+                this.body.velocity.x = this.body.velocity.x * 0.95 - 320 * 0.05;
+                this.body.velocity.y = this.body.velocity.y * 0.9;
+            }
         }
-        if (this.x <= this.width / 2 + 1) {
+        if (this.x <= (this.width / -2)) {
             this.destroy();
         }
     }

@@ -131,8 +131,8 @@ export class GameScene extends Scene {
             repeat: -1,
         });
         1;
-        this.physics.world.setBounds(0, 0, 1280, 720);
-        this.keymap = this.input.keyboard.addKeys(
+        this.physics.world.setBounds(-32, 0, 1280, 720);
+        this.keymap = this.input.keyboard?.addKeys(
             'Up,Left,Right,Down,X,Z,Shift,Y'
         ) as KeyMap;
         this.gameOverActive = false;

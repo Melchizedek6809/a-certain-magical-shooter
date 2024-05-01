@@ -15,8 +15,10 @@ export class Fairy extends Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         scene.enemies?.add(this);
-        this.body.setSize(24, 32, true);
-        this.body.onOverlap = true;
+        if(this.body){
+            this.body.setSize(24, 32, true);
+            this.body.onOverlap = true;
+        }
     }
 
     shoot() {
