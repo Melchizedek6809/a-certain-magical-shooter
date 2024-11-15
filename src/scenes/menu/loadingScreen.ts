@@ -103,15 +103,15 @@ export class LoadingScreenScene extends Scene {
         this.initLoadScreen();
         this.load.multiatlas('packed', 'gfx/packed.json', 'gfx');
 
-        this.load.audio('shot', 'sfx/shot.wav');
-        this.load.audio('explosion', 'sfx/explosion.wav');
-        this.load.audio('bossExplosion', 'sfx/bossExplosion.wav');
-        this.load.audio('pickupCoin', 'sfx/pickupCoin.wav');
-        this.load.audio('powerUp', 'sfx/powerUp.wav');
-        this.load.audio('bossWave', 'sfx/bossWave.wav');
-        this.load.audio('bossShoot', 'sfx/bossShoot.wav');
-        this.load.audio('bossHitHurt', 'sfx/bossHitHurt.wav');
-        this.load.audio('playerHitHurt', 'sfx/playerHitHurt.wav');
+        this.load.audio('shot', 'sfx/shot.mp3');
+        this.load.audio('explosion', 'sfx/explosion.mp3');
+        this.load.audio('bossExplosion', 'sfx/bossExplosion.mp3');
+        this.load.audio('pickupCoin', 'sfx/pickupCoin.mp3');
+        this.load.audio('powerUp', 'sfx/powerUp.mp3');
+        this.load.audio('bossWave', 'sfx/bossWave.mp3');
+        this.load.audio('bossShoot', 'sfx/bossShoot.mp3');
+        this.load.audio('bossHitHurt', 'sfx/bossHitHurt.mp3');
+        this.load.audio('playerHitHurt', 'sfx/playerHitHurt.mp3');
         this.load.audio('laserBeam', 'sfx/laserBeam.mp3');
 
         if (options.playBGM) {
