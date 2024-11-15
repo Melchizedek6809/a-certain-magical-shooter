@@ -42,13 +42,11 @@ export class GameOverScene extends Scene {
 
     update(time: number, delta: number): void {
         const that = this;
-        if (this.input.gamepad.gamepads[0]) {
-            const gamepad = this.input.gamepad.gamepads[0];
-            if (gamepad.A && this.gamepadWasUnpressed) {
-                that.restartGame();
-            } else {
-                this.gamepadWasUnpressed = true;
-            }
+        const gamepad = this.input.gamepad?.gamepads[0];
+        if (gamepad?.A && this.gamepadWasUnpressed) {
+            that.restartGame();
+        } else if (gamepad) {
+            this.gamepadWasUnpressed = true;
         }
     }
 }

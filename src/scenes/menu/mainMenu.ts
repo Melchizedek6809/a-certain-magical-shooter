@@ -63,12 +63,9 @@ export class MainMenuScene extends Scene {
     }
 
     update(time: number, delta: number) {
-        const that = this;
-        if (this.input.gamepad.gamepads[0]) {
-            const gamepad = this.input.gamepad.gamepads[0];
-            if (gamepad.A) {
-                that.startGame();
-            }
+        const gamepad = this.input.gamepad?.gamepads[0];
+        if (gamepad?.A) {
+            this.startGame();
         }
     }
 }
