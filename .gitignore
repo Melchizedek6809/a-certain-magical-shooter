@@ -5,3 +5,4 @@ assets/bgm/
 shell.nix
 **/node_modules/
 dist/
+.direnv/
